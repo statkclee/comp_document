@@ -1,6 +1,7 @@
 ---
 layout: page
-title: 데이터 과학을 위한 저작도구
+title: Computational Documents
+subtitle: 데이터 과학 문서
 ---
 
 > ### AI is a Superpower {.callout}
@@ -10,6 +11,7 @@ title: 데이터 과학을 위한 저작도구
 > 금수저, 은수저 슈퍼파워를 받은 사람과 기계학습을 통달한 흑수저들간의 무한경쟁이 드뎌 시작되었다. 물론, 
 > 금수저를 입에 물고 기계학습을 통달한 사람이 가장 유리한 출발을 시작한 것도 사실이다.
 
+<img src="fig/comp-documents-overview.png" alt="computational documents" width="100%" />
 
 ## 학습목차 
 
