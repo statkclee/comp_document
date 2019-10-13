@@ -82,16 +82,16 @@ $ jekyll serve</code></pre>
 $ git commit -m &quot;initial commit with Hello World&quot;
 $ git push origin gh-pages</code></pre>
 <h4 id="깃허브와-젠킨스를-웹훅을-통해서-연결">1.3. 깃허브와 젠킨스를 웹훅을 통해서 연결</h4>
-<p>깃허브 해당 프로젝트 저장소로 이동해서, 우측에 <strong>Settings</strong> –&gt; <strong>Webhooks &amp; Services</strong>를 클릭한다. <strong>Services</strong>에서 <strong>Add service</strong>를 클릭하고, 젠킨스 서버에서 설치한 플러그인 <strong>Jenkins (GitHub plugin)</strong>을 선택한다. 비밀번호 인증을 마치고 나면 <strong>Jenkins hook url</strong>이 나타나고 젠킨스 서버가 설치된 웹호스트를 <code>http://161.202.103.101:8080/github-webhook/</code>와 같이 지정하고 <strong>Add service</strong>로 저장한다.</p>
+<p>깃허브 해당 프로젝트 저장소로 이동해서, 우측에 <strong>Settings</strong> --&gt; <strong>Webhooks &amp; Services</strong>를 클릭한다. <strong>Services</strong>에서 <strong>Add service</strong>를 클릭하고, 젠킨스 서버에서 설치한 플러그인 <strong>Jenkins (GitHub plugin)</strong>을 선택한다. 비밀번호 인증을 마치고 나면 <strong>Jenkins hook url</strong>이 나타나고 젠킨스 서버가 설치된 웹호스트를 <code>http://161.202.103.101:8080/github-webhook/</code>와 같이 지정하고 <strong>Add service</strong>로 저장한다.</p>
 <h4 id="젠킨스가-클라우드-지정한-가상-컴퓨터에-자동-배포한다.">1.4. 젠킨스가 클라우드 지정한 가상 컴퓨터에 자동 배포한다.</h4>
 <p>젠킨스 첫화면에서 <code>새로운 Item</code>을 클릭하고 <code>Item 이름</code>에 <code>uno-dbyll</code> 이름으로 <code>새로운 Item</code>을 등록한다. 그리고 나서 <code>Freestyle project</code>를 클릭하고 <code>OK</code>를 클릭한다. 그리고 나서 차례로 관련 정보를 입력한다.</p>
 <ul>
 <li>GitHub project : https://github.com/statkclee/uno-dbyll</li>
-<li>소스 코드 관리 : <code>Git</code> 클릭, Repositories –&gt; Repository URL : https://github.com/statkclee/uno-dbyll.git Credentials에는 Add를 클릭해서 GitHub 사용자이름과 비밀번호를 입력한다.</li>
-<li>Branches to build : Branch Specifier (blank for ‘any’) <code>*/gh-pages</code>로 브랜치를 설정한다.</li>
+<li>소스 코드 관리 : <code>Git</code> 클릭, Repositories --&gt; Repository URL : https://github.com/statkclee/uno-dbyll.git Credentials에는 Add를 클릭해서 GitHub 사용자이름과 비밀번호를 입력한다.</li>
+<li>Branches to build : Branch Specifier (blank for 'any') <code>*/gh-pages</code>로 브랜치를 설정한다.</li>
 <li>Additional Behaviors : Add를 클릭하고 <code>Advanced sub-module behaviours</code>를 선택한다.</li>
 <li>빌드 유발 : <code>Build when a change is pushed to GitHub</code> 체크한다.</li>
-<li>Build : <code>Add build step</code> –&gt; <code>Execute Shell</code> 을 클릭하고 실행 쉘 스크립트를 작성한다.</li>
+<li>Build : <code>Add build step</code> --&gt; <code>Execute Shell</code> 을 클릭하고 실행 쉘 스크립트를 작성한다.</li>
 </ul>
 <p><strong>쉘스크립트</strong> 쉘스크립트 내용은 <code>git</code> 에서 브랜치 <code>gh-pages</code>를 배포서버로 풀(<code>pull</code>)로 가져온다는 내용이다. 그리고 <code>make preview</code>를 통해서 빌드 작업을 하고 <code>jekyll build --destination /var/www/html</code> 명령어를 통해서 정적웹사이트를 생성한다. 그러면 자동으로 웹서버 배포위치로 배포가 완료된다.</p>
 <pre class="input"><code>git submodule foreach git checkout gh-pages
@@ -103,7 +103,7 @@ jekyll build --destination /var/www/html/</code></pre>
 <h3 id="jenkins-권한관리"><span class="glyphicon glyphicon-pushpin"></span>Jenkins 권한관리</h3>
 </div>
 <div class="panel-body">
-<p><code>/var/www/html/</code> 디렉토리 소유자가 <code>root</code>인 경우 *permission denied “jekyll build – destination /var/www/html* 처럼 권한 오류가 발생되어 빌드가 되지 못한다. 이런 경우 <code>whoami</code> 를 통해서 사용자를 확인하고 사용자에게 <code>/var/www/html/</code> 적절한 권한을 부여한다. 사용자가 <code>jenkins</code> 라면 <code>root@dev:~# chown -cR jenkins /var/www/html/</code>에 권한을 부여한다. <code>-cR</code>은 <code>/var/www/html/</code> 디렉토리 및 내부 모든 파일의 소유자, 소유그룹을 변경한다.</p>
+<p><code>/var/www/html/</code> 디렉토리 소유자가 <code>root</code>인 경우 <em>permission denied &quot;jekyll build -- destination /var/www/html</em> 처럼 권한 오류가 발생되어 빌드가 되지 못한다. 이런 경우 <code>whoami</code> 를 통해서 사용자를 확인하고 사용자에게 <code>/var/www/html/</code> 적절한 권한을 부여한다. 사용자가 <code>jenkins</code> 라면 <code>root@dev:~# chown -cR jenkins /var/www/html/</code>에 권한을 부여한다. <code>-cR</code>은 <code>/var/www/html/</code> 디렉토리 및 내부 모든 파일의 소유자, 소유그룹을 변경한다.</p>
 </div>
 </aside>
 <p>빌드 진행 결과는 첫 대쉬보드 화면에서 <strong>최근 성공</strong> 에서 마우스를 위치하면 검은색 작은 삼각형이 생기고, <strong>Console Output</strong>이 생기며 이를 클릭하면 확인할 수 있다.</p>
@@ -140,7 +140,7 @@ jenkins
  Auto-regeneration: disabled. Use --watch to enable.
 Sending e-mails to: i@xwmooc.net
 Finished: SUCCESS</code></pre>
-<p><strong>빌드 후 조치 추가: 전자우편</strong> 빌드가 완료된 후 자동으로 전자우편을 통해서 내용을 확인할 수 있다. 빌드가 성공되면 성공 메시지가, 실패하면 로그가 함께 전송되어 빌드결과를 바로 확인한다. 젠킨스 첫 대쉬보드 화면에서 <code>Jenkins 관리</code> –&gt; <code>시스템 설정</code> –&gt; <code>E-mail로 알려줌</code> 으로 내려간다. 구글 지메일(gmail)을 예시로 한다.</p>
+<p><strong>빌드 후 조치 추가: 전자우편</strong> 빌드가 완료된 후 자동으로 전자우편을 통해서 내용을 확인할 수 있다. 빌드가 성공되면 성공 메시지가, 실패하면 로그가 함께 전송되어 빌드결과를 바로 확인한다. 젠킨스 첫 대쉬보드 화면에서 <code>Jenkins 관리</code> --&gt; <code>시스템 설정</code> --&gt; <code>E-mail로 알려줌</code> 으로 내려간다. 구글 지메일(gmail)을 예시로 한다.</p>
 <ul>
 <li>SMTP 서버 : smpt.gmail.com<br />
 </li>

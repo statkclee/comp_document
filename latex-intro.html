@@ -80,8 +80,8 @@
 </aside>
 <p><img src="fig/latex-toolchain-provisioning.png" width="100%" /> 그림 3. LaTeX 툴체인 배포 자동화</p>
 <h3 id="latex-개요">2. LaTeX 개요</h3>
-<p>미국 스탠포트 대학 Donald Knuth 교수가 1977년에 만든 문서조판 프로그램을 TeX(“텍”이라고 읽음)이라고 하고, Leslie Lamport 교수가 만든 TeX 매크로 팩키지를 LaTeX(“레이텍”이라고 읽음)이라고 한다.</p>
-<p><code>pdftex</code>과 <code>e-TeX</code>이 합쳐져서 사실상(de factor) <a href="http://wiki.ktug.org/wiki/wiki.php/TeX">표준 TeX</a>이 되었고, <a href="http://wiki.ktug.org/wiki/wiki.php/XeTeX">XeTeX</a>과 LuaTeX이 기존TeX을 대체하면서 발전하고 특히, 한글 폰트 때문에 <a href="http://wiki.ktug.org/wiki/wiki.php/XeTeX">XeTeX</a>[“지텍”이라고 읽음]을 한글처리를 위해서 많이 사용하고 있다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>미국 스탠포트 대학 Donald Knuth 교수가 1977년에 만든 문서조판 프로그램을 TeX(&quot;텍&quot;이라고 읽음)이라고 하고, Leslie Lamport 교수가 만든 TeX 매크로 팩키지를 LaTeX(&quot;레이텍&quot;이라고 읽음)이라고 한다.</p>
+<p><code>pdftex</code>과 <code>e-TeX</code>이 합쳐져서 사실상(de factor) <a href="http://wiki.ktug.org/wiki/wiki.php/TeX">표준 TeX</a>이 되었고, <a href="http://wiki.ktug.org/wiki/wiki.php/XeTeX">XeTeX</a>과 LuaTeX이 기존TeX을 대체하면서 발전하고 특히, 한글 폰트 때문에 <a href="http://wiki.ktug.org/wiki/wiki.php/XeTeX">XeTeX</a>[&quot;지텍&quot;이라고 읽음]을 한글처리를 위해서 많이 사용하고 있다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 <p>LaTeX의 동작원리는 Salomon이 도식화한 것에 영감을 받아, Kees van der Laan <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>이 1994년 정리한 논문에 잘 정리되어 있다. 기본적으로 고품질 전자출판을 위해서 폰트와 더블어 TeX이 필요하고 이를 하나로 묶어서 고품질 출력물을 얻게된다. 저자가 편집기(editor)로 작업한 <code>.tex</code> 파일이 폰트(Fonts) 작업과정과 조판(Typesetting)과정이 하나로 합쳐져 출력물이 산출된다. TeX 기본 엔진을 지원하는 다양한 TeX 팩키지, <em>AMS-(La)TeX</em>, <em>LaTeX</em>, <em>manmac</em>가 눈에 띈다.</p>
 <p>문서에 들어가는 다양한 구성요소, <em>목차</em>, <em>색인</em>, <em>참고문헌</em>, <em>그림과 표</em> 등은 모듈화되어 관리되고, 폰트나 구조 스타일과 관련된 것도 별도로 구분되어 관리되고 있으며, <a href="https://www.tug.org/texworks/">TeXWorks</a>같이 위지윅을 지원하는 은 편집기는 구문강조 및 맞춤범 검사등 고품질 LaTeX 저작물 작성을 위해 저작자를 지원하고 있다.</p>
 <p><img src="fig/latex-how-it-works.png" width="100%" /></p>

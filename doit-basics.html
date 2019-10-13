@@ -36,8 +36,8 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
                     <a href="index.html"><h1 class="title">데이터 과학을 위한 저작도구</h1></a>
-          <h2 class="subtitle">파이썬 빌드 doit - “doit”으로 작업 자동화</h2>
-          <h2 id="doit으로-작업-자동화">“doit”으로 작업 자동화</h2>
+          <h2 class="subtitle">파이썬 빌드 doit - &quot;doit&quot;으로 작업 자동화</h2>
+          <h2 id="doit으로-작업-자동화">&quot;doit&quot;으로 작업 자동화</h2>
 <p>기후 데이터 분석으로 프로젝트를 시작한다. 이번 분석은 많은 단계가 필요한데, 중요한 것은 올바른 순서대로 수행되어야 한다. 또한 데이터가 항상 새로운 관측자료로 갱신된다. 그래서, 원천 데이터를 갱신할 때마다 다시 실행하기 위해서, 어떤 단계를 수행하고 어떤 단계를 수행하지 않았는지 기억해서 기록하는 것도 원치 않는다.</p>
 <p>이를 위해서, <a href="http://pydoit.org/">doit</a>으로 불리는 파이썬 라이브러리를 사용한다. 이번 학습은 doit의 기초를 다루지만 고급 사용법에 관심있는 사람을 위한 매우 훌륭한 <a href="http://pydoit.org/contents.html">문서(documentation)</a>도 준비되어 있다.</p>
 <section class="objectives panel panel-warning">
@@ -97,7 +97,7 @@
       File &quot;C:\Python34\lib\site-packages\pandas\__init__.py&quot;, line 13, in &lt;module&gt;
         &quot;extensions first.&quot;.format(module))
     ImportError: C extension: No module named &#39;numpy&#39; not built. If you want to import pandas from the source directory, you may need to run &#39;python setup.py build_ext --inplace&#39; to build the C extensions first.</code></pre>
-<p>한결 좋다. 데이터 분석 파이프라인 첫번째 작업은 <code>UK_Tmean_data.txt</code> 파일에 파이썬 스크립트를 실행하고, 새이름 <code>UK_Tmean_data.reformatted.txt</code>으로 저장하는 것이다. “doit” 라이브러리를 사용해서 파이썬이 자동으로 원데이터가 갱신될 때마다 데이터 형식을 바꾸는 작업을 수행하게 만들고 싶다.</p>
+<p>한결 좋다. 데이터 분석 파이프라인 첫번째 작업은 <code>UK_Tmean_data.txt</code> 파일에 파이썬 스크립트를 실행하고, 새이름 <code>UK_Tmean_data.reformatted.txt</code>으로 저장하는 것이다. &quot;doit&quot; 라이브러리를 사용해서 파이썬이 자동으로 원데이터가 갱신될 때마다 데이터 형식을 바꾸는 작업을 수행하게 만들고 싶다.</p>
 <p>첫째로, doit이 설치되었는지 확실히 한다:</p>
 <pre class="input"><code>    !pip install doit</code></pre>
 <pre class="output"><code>    Requirement already satisfied (use --upgrade to upgrade): doit in c:\python34\lib\site-packages
@@ -151,7 +151,7 @@
 
     1910-09-01,11.8</code></pre>
 <p>만약 파일마다 작업규칙 하나만 허용된다면, 수작업으로 명령어를 타이핑하거나, 작은 쉘스크립트를 작성하는 것과 다름이 없다. 운좋게도, <code>doit</code>으로 단하나의 환경설정 파일에 원하는 만큼 작업규칙을 적을 수 있다.</p>
-<p><code>two_tasks.py</code>으로 명명된 또다른 <code>doit</code> 파일이 있는데 두 파일 <code>UK_Tmean_data.txt</code>와 <code>UK_Sunshine_data.txt</code> 형태를 바꾸는 작업규칙을 갖고 있다. “Tmean” 혹은 “Sunshine”에 대한 것만 제외하고 규칙은 동일하다; 나중에 규칙을 하나로 통합하는 방법을 살펴볼 것이다.</p>
+<p><code>two_tasks.py</code>으로 명명된 또다른 <code>doit</code> 파일이 있는데 두 파일 <code>UK_Tmean_data.txt</code>와 <code>UK_Sunshine_data.txt</code> 형태를 바꾸는 작업규칙을 갖고 있다. &quot;Tmean&quot; 혹은 &quot;Sunshine&quot;에 대한 것만 제외하고 규칙은 동일하다; 나중에 규칙을 하나로 통합하는 방법을 살펴볼 것이다.</p>
 <pre class="input"><code>    %%doit
     
     # two_tasks.py
@@ -210,7 +210,7 @@
 <p>다음절에서 나머지 중복을 제거할 것이다.</p>
 <h3 id="도전과제">도전과제:</h3>
 <ol style="list-style-type: decimal">
-<li>“Hello World!” 텍스트를 담고 있는 <code>hello.txt</code>라는 새로운 파일을 생성하는데 “echo” 유닉스 명령어를 사용하는 작업을 작성하라.</li>
+<li>&quot;Hello World!&quot; 텍스트를 담고 있는 <code>hello.txt</code>라는 새로운 파일을 생성하는데 &quot;echo&quot; 유닉스 명령어를 사용하는 작업을 작성하라.</li>
 <li>다음 작업 환경설정 파일이 주어진다면, <code>doit</code>이 어떤 순서로 작업을 실행할까요?</li>
 </ol>
 <pre class="input"><code>    def task_giraffe():

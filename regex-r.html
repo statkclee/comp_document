@@ -44,25 +44,23 @@ $ cd STAT545-UBC.github.io</code></pre>
 <p>GitHub 저장소에서 학습에 사용될 데이터를 가져왔으면, <code>list.files()</code> R 내부 쉘명령어로 저장소에서 로컬컴퓨터로 제대로 가져왔는지 확인한다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</code></pre></div>
 <p><code>stringr</code> 팩키지에 나온 함수를 활용한다. <code>stringr</code> 팩키지가 깔끔하고 현대적인 문자열 연산기능을 제공하고, R에 기본으로 내장된 문자열 함수보다 사용하기 쉽고 기억하기도 좋다. 지금까지 사용한 적이 없다면, 팩키지를 설치하고 시작해본다.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)
-files &lt;-<span class="st"> </span><span class="kw">list.files</span>()
-<span class="kw">head</span>(files)</code></pre></div>
-<pre class="output"><code>[1] &quot;_includes&quot;                          
-[2] &quot;_layouts&quot;                           
-[3] &quot;2018&quot;                               
-[4] &quot;한밭대_창업과인공지능_20180503.Rmd&quot; 
-[5] &quot;한밭대_창업과인공지능_20180529.html&quot;
-[6] &quot;한밭대_창업과인공지능_20180529.Rmd&quot; 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)</code></pre></div>
+<pre class="error"><code>Warning: package &#39;stringr&#39; was built under R version 3.5.2
 </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gDat &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;gapminderDataFiveYear.txt&quot;</span>)
-<span class="kw">str</span>(gDat)</code></pre></div>
-<pre class="output"><code>&#39;data.frame&#39;:   1704 obs. of  6 variables:
- $ country  : Factor w/ 142 levels &quot;Afghanistan&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
- $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
- $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
- $ continent: Factor w/ 5 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
- $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
- $ gdpPercap: num  779 821 853 836 740 ...
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">files &lt;-<span class="st"> </span><span class="kw">list.files</span>()
+<span class="kw">head</span>(files)</code></pre></div>
+<pre class="output"><code>[1] &quot;_includes&quot;                   &quot;_layouts&quot;                   
+[3] &quot;AUTHORS&quot;                     &quot;bookdown-github-travis.html&quot;
+[5] &quot;bookdown-github-travis.md&quot;   &quot;bookdown-intro.html&quot;        
+</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gDat &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;gapminderDataFiveYear.txt&quot;</span>)</code></pre></div>
+<pre class="error"><code>Warning in file(file, &quot;rt&quot;): 파일 &#39;gapminderDataFiveYear.txt&#39;를 여는데 실패
+했습니다: No such file or directory
+</code></pre>
+<pre class="error"><code>Error in file(file, &quot;rt&quot;): 커넥션을 열 수 없습니다
+</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(gDat)</code></pre></div>
+<pre class="error"><code>Error in str(gDat): 객체 &#39;gDat&#39;를 찾을 수 없습니다
 </code></pre>
 <p>문자열 함수를 사용해서 파일명을 추출한다. 예를 들어 <code>dplyr</code> 관련 문서. <code>grep()</code> 함수를 사용해서 <code>dplyr</code> 문자열이 포함된 파일명을 식별한다. 인자값을 <code>value = TRUE</code> 으로 설정하면, <code>grep()</code> 함수가 매칭되는 것을 반환하는 반면에, <code>value = FALSE</code> 로 설정하면, 인덱스를 반환한다. <code>invert</code> 인자를 사용하면, 지정된 패턴을 제외한 모든 것을 반환한다. <code>grepl()</code> 함수는 유사한 함수지만, 논리벡터를 반환한다. 자세한 정보는 <a href="http://www.rdocumentation.org/packages/base/functions/grep">여기</a>를 참조한다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;dplyr&quot;</span>, files, <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
@@ -82,7 +80,7 @@ files &lt;-<span class="st"> </span><span class="kw">list.files</span>()
  [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
  [89] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [100] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[111] FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[111] FALSE
 </code></pre>
 <p><code>dplyr</code> 팩키지와 관련된 모든 숙제 파일을 뽑아내려면 어떨까? <code>hw</code> 문자열과 중간에 문자열 그리고 <code>dplyr</code> 문자열을 매칭하도록 명세할 필요가 있다. 이런 경우에 정규표현식이 편리하다.</p>
 <h3 id="정규표현식과-관련된-문자열-함수">정규표현식과 관련된 문자열 함수</h3>
@@ -97,9 +95,9 @@ files &lt;-<span class="st"> </span><span class="kw">list.files</span>()
 <h3 id="정규표현식-구문">정규표현식 구문</h3>
 <p>일반적으로 정규표현식은 문자열 내부에 반복되는 정보와 위치정보로 검색할 문자열 (혹은 문자열 클래스)를 명세한다. 특수한 의미를 갖는 메타문자를 사용해서 이런 작업을 완수한다: <code>$ * + . ? [ ] ^ { } | ( ) \</code>. 다음에 단순하고 작은 예제를 통해 정규표현식 구문과 메타문자가 어떤 의미도 함께 소개한다.</p>
 <h3 id="확장-문자열-escape-sequence">확장 문자열 (Escape Sequence)</h3>
-<p>문자열로 직접적으로 부호화할 수 없는 특수한 문자가 있다. 예를 들어, 단일 인용부호를 패턴으로 두고 단일 인용부호(<code>'</code>)를 갖는 국가를 검색한다고 가정하자. 패턴에서 단일 인용부호 앞에 <code>\</code> 부호를 넣어서 단일 인용부호를 “빠져나오게(escape)” 만들어야 한다. 그렇게 함으로써 문자열에서 명세하는 부분이 아님을 분명히 한다.</p>
+<p>문자열로 직접적으로 부호화할 수 없는 특수한 문자가 있다. 예를 들어, 단일 인용부호를 패턴으로 두고 단일 인용부호(<code>'</code>)를 갖는 국가를 검색한다고 가정하자. 패턴에서 단일 인용부호 앞에 <code>\</code> 부호를 넣어서 단일 인용부호를 &quot;빠져나오게(escape)&quot; 만들어야 한다. 그렇게 함으로써 문자열에서 명세하는 부분이 아님을 분명히 한다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&#39;</span><span class="ch">\&#39;</span><span class="st">&#39;</span>, <span class="kw">levels</span>(gDat$country), <span class="dt">value =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre class="output"><code>[1] &quot;Cote d&#39;Ivoire&quot;
+<pre class="error"><code>Error in levels(gDat$country): 객체 &#39;gDat&#39;를 찾을 수 없습니다
 </code></pre>
 <p>R에는 확장 문자가 또 있다. 정규표현식을 포함해서, R에 모든 문자열함수에 동일한 규칙이 적용된다. R 확장 문자열에 대한 전체 목록은 <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Quotes.html">여기</a>서 확인한다.</p>
 <ul>
@@ -155,7 +153,7 @@ b
 <p>도전과제 {.challenges}</p>
 <p>정량자를 사용해서 <code>gapminder</code> 데이터프레임에서 <code>ee</code> 문자열을 갖는 모든 국가를 찾아라.</p>
 </blockquote>
-<pre class="output"><code>[1] &quot;Greece&quot;
+<pre class="error"><code>Error in levels(gDat$country): 객체 &#39;gDat&#39;를 찾을 수 없습니다
 </code></pre>
 <h3 id="문자열-내부-패턴-위치">문자열 내부 패턴 위치</h3>
 <ul>
@@ -182,7 +180,7 @@ b
 <blockquote>
 <p>도전과제 {.challenges}</p>
 <p>해당 디렉토리에 <code>.txt</code> 확장자를 갖는 모든 파일을 찾는다.</p>
-<pre class="output"><code>[1] &quot;gapminderDataFiveYear.txt&quot; &quot;requirements.txt&quot;         
+<pre class="output"><code>[1] &quot;requirements.txt&quot;
 </code></pre>
 </blockquote>
 <h3 id="연산자">연산자</h3>
@@ -192,7 +190,7 @@ b
 <li><code>[^...]</code>: 반전문자 리스트. <code>[...]</code>와 유사하지만, 꺾쇠괄호 내부에 있는 것을 <strong>제외</strong>한 문자 어떤 것이나 매칭</li>
 <li><code>\</code>: 정규표현식 메타문자가 갖는 특수한 의미를 억제. 즉, <code>$ * + . ? [ ] ^ { } | ( ) \</code> 확장문자열 사용과 유사함. R에서 <code>\</code> 자체가 탈출할 필요가 있기 때문에, <code>\\$</code>처럼 역슬래쉬를 두개 사용해서 이런 메타문자를 탈출시킨다.<br />
 </li>
-<li><code>|</code>: “or” 또는 연산자. <code>|</code> 어느쪽이든 패턴을 매칭.<br />
+<li><code>|</code>: &quot;or&quot; 또는 연산자. <code>|</code> 어느쪽이든 패턴을 매칭.<br />
 </li>
 <li><code>(...)</code>: 정규표현식에 있는 그룹연산자. 정규표현식으로 매칭된 부분을 나중에 불러올 수 있어서 추후 변경을 하거나 새로운 문자열을 만들어 내는데 사용할 수 있다. 각 그룹을 <code>\\N</code> 을 사용해서 참조할 수 있다. N은 <code>(...)</code> 에서 나온 번호에 해당되는 N 이다. 이것을 <strong>역참조(backreference)</strong>라고 부른다.</li>
 </ul>
@@ -223,8 +221,9 @@ b
 <blockquote>
 <p>도전과제 {.challenges}</p>
 <p><code>i</code> 혹은 <code>t</code> 를 포함하고, <code>land</code>로 끝나는 국가를 <code>gapminder</code> 에서 찾아 역참조를 사용해서 <code>land</code>를 <code>LAND</code>로 치환한다.</p>
-<pre class="output"><code>[1] &quot;FinLAND&quot;     &quot;IceLAND&quot;     &quot;IreLAND&quot;     &quot;SwaziLAND&quot;   &quot;SwitzerLAND&quot;
-[6] &quot;ThaiLAND&quot;   
+<pre class="error"><code>Error in levels(gDat$country): 객체 &#39;gDat&#39;를 찾을 수 없습니다
+</code></pre>
+<pre class="error"><code>Error in grep(&quot;LAND&quot;, countries, value = TRUE): 객체 &#39;countries&#39;를 찾을 수 없습니다
 </code></pre>
 </blockquote>
 <h3 id="문자열-클래스">문자열 클래스</h3>
@@ -243,7 +242,7 @@ b
 <li><code>[:space:]</code> : 공백 문자: 탭, 개행문자, 수직탭, 공백, 복귀문자, 서식이송(form feed)</li>
 <li><code>\s</code> : 간격, ` `.</li>
 <li><code>\S</code> : 간격 아님.</li>
-<li><code>[:punct:]</code> : 구두점 문자, ! &quot; # $ % &amp; ’ ( ) * + , - . / : ; &lt; = &gt; ? @ [  ] ^ _ ` { | } ~.</li>
+<li><code>[:punct:]</code> : 구두점 문자, ! &quot; # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [  ] ^ _ ` { | } ~.</li>
 <li><code>[:graph:]</code> : 그래픽 (사람이 읽을 수 있는) 문자, 동등한 표현 <code>[[:alnum:][:punct:]]</code>.</li>
 <li><code>[:print:]</code> : 출력가능한 문자, 동등한 표현 <code>[[:alnum:][:punct:]\\s]</code>.</li>
 <li><code>[:cntrl:]</code> : <code>\n</code>, <code>\r</code> 같은 제어문자, 동등한 표현 <code>[\x00-\x1F\x7F]</code>.</li>
@@ -260,7 +259,7 @@ b
 <li>펄(Perl) 정규표현식</li>
 </ul>
 <p><code>grep()</code>, <code>sub()</code> 같은 <code>base</code> R 함수에서 <code>perl = FALSE/TRUE</code> 선택옵션 설정을 통해 쉽게 모드를 전환할 수 있다. <code>stringr</code> 팩키지 함수는 <code>perl()</code> 함수로 패턴을 감싼다. 두가지 표준 사이 구문에 다소간 차이가 존재하는데, 자세한 사항은 <a href="http://www.inside-r.org/packages/cran/stringr/docs/perl">이곳</a>을 참조한다. 파이썬 혹은 자바를 이전에 경험했다면, 아마 펄 모드에 더 익숙할 것이다. 하지만 이번 학습에서는 R에 기본으로 설정된 POSIX 표준만 사용한다.</p>
-<p>마지막 정규표현식 유형이 하나 남아 있다 – “고정(fixed)”. 패턴이 글자그대로 받아들여져야 된다는 의미다. (R <code>base</code> 함수) <code>fixed = TRUE</code> 로 명세하거나, (<code>stringr</code> 함수) <code>fixed()</code> 함수로 감싼다. 예를 들어, 정규표현식을 <code>&quot;A.b&quot;</code>와 같이 정의하면 “A” 다음에 임의 문자 하나 다음에 “b” 패턴을 갖는 문자열을 매칭하지만, 고정 패턴으로 정의하면, 문자그대로 “A.b”만 매칭한다.</p>
+<p>마지막 정규표현식 유형이 하나 남아 있다 -- &quot;고정(fixed)&quot;. 패턴이 글자그대로 받아들여져야 된다는 의미다. (R <code>base</code> 함수) <code>fixed = TRUE</code> 로 명세하거나, (<code>stringr</code> 함수) <code>fixed()</code> 함수로 감싼다. 예를 들어, 정규표현식을 <code>&quot;A.b&quot;</code>와 같이 정의하면 &quot;A&quot; 다음에 임의 문자 하나 다음에 &quot;b&quot; 패턴을 갖는 문자열을 매칭하지만, 고정 패턴으로 정의하면, 문자그대로 &quot;A.b&quot;만 매칭한다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(strings &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Axbc&quot;</span>, <span class="st">&quot;A.bc&quot;</span>))</code></pre></div>
 <pre class="output"><code>[1] &quot;Axbc&quot; &quot;A.bc&quot;
 </code></pre>
@@ -282,7 +281,7 @@ b
 <blockquote>
 <p>도전과제 {.challenges}</p>
 <p><code>gapminder</code> 에서 <code>o</code> 문자가 들어간 대륙을 찾는다.</p>
-<pre class="output"><code>[1] &quot;Europe&quot;  &quot;Oceania&quot;
+<pre class="error"><code>Error in levels(gDat$continent): 객체 &#39;gDat&#39;를 찾을 수 없습니다
 </code></pre>
 </blockquote>
 <h3 id="연습문제">연습문제</h3>
@@ -316,7 +315,7 @@ attr(,&quot;na.action&quot;)
  [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
  [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
  [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102
-[103] 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+[103] 103 104 105 106 107 108 109 110 111
 attr(,&quot;class&quot;)
 [1] &quot;omit&quot;
 </code></pre>
@@ -350,7 +349,7 @@ attr(,&quot;class&quot;)
 <li><code>?</code> : 임의 문자를 한번만 매칭한다. 정규표현식 <code>.</code> 과 동일.</li>
 <li><code>\</code> : 정규표현식과 동일.</li>
 <li><code>[...]</code> : 정규표현식과 동일.</li>
-<li>[!…] : 정규표현식 <code>[^...]</code>와 동일.</li>
+<li>[!...] : 정규표현식 <code>[^...]</code>와 동일.</li>
 </ul>
 <h3 id="추가-학습교재">추가 학습교재</h3>
 <ul>

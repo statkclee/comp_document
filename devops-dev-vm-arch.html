@@ -242,16 +242,16 @@ root@dev:~# apt-get install jenkins</code></pre>
 <p>젠킨스 깃허브 플러그인 설치는 먼저 관리자 권한이 있는 사용자로 로그인 한다음 좌측메뉴에서 <code>Jenkins 관리</code> -&gt; <code>플러그인 관리</code>에서 <em>설치가능(Available)</em> 탭을 클릭하고 <code>필터:</code> 검색창에 <code>Git</code>를 입력하면 다양한 <code>Git</code> 관련 플러그인이 나타난다. <strong>GitHub Plugin</strong>을 클릭하고, <code>지금 다운로드하고 재시작 후 설치하기</code>를 클릭해서 플러그인 설치를 완료한다.</p>
 <p>폴링과 푸쉬 방법 모두 변경사항을 인지하고 자동으로 빌드 및 배포실행한다는 측면에서 동일하나 폴링은 Git/GitHub 버젼관리 시스템에 변경사항이 필요없지만, 젠킨스나 Git/GitHub에 많은 부하를 줄 수 있고, 폴링 주기에 따라 변경사항 반영이 부족할 수 있다. 푸쉬방식은 전송하는 Git/GitHub와 받는쪽 젠킨스 모두 일정 작업이 필요하다. 하지만, 폴링에 비해서 변경사항이 발생되면 최소의 부하로 즉시 반영할 수 있는 장점이 있다.</p>
 <h3 id="젠킨스jenkins-깃허브github-툴체인-통한-지속적인-통합">5.5. 젠킨스(Jenkins) 깃허브(GitHub) 툴체인 통한 지속적인 통합</h3>
-<p>지속적인 통합(Continous Integraion, CI)를 위해서 먼저 젠킨스가 주체가 되어서 하는 방법은 젠킨스 시작화면에서 <code>http://161.202.103.101:8080/</code> 좌측에 <code>Jenkins 관리</code> –&gt; <code>시스템 설정</code> –&gt; <strong>GitHub Web Hook</strong> 에서 <em>Let Jenkins auto-manage hook URLs</em>을 클릭하여 설정한다. 다른 한가지는 <strong>GitHub</strong> 중심으로 진행하는 것으로 <em>Manually manage hook URLs</em>을 클릭하고 저장한다.</p>
+<p>지속적인 통합(Continous Integraion, CI)를 위해서 먼저 젠킨스가 주체가 되어서 하는 방법은 젠킨스 시작화면에서 <code>http://161.202.103.101:8080/</code> 좌측에 <code>Jenkins 관리</code> --&gt; <code>시스템 설정</code> --&gt; <strong>GitHub Web Hook</strong> 에서 <em>Let Jenkins auto-manage hook URLs</em>을 클릭하여 설정한다. 다른 한가지는 <strong>GitHub</strong> 중심으로 진행하는 것으로 <em>Manually manage hook URLs</em>을 클릭하고 저장한다.</p>
 <p>깃허브 화면으로 돌아와서 저장소를 선택하고 들어가면 우측에 <strong>Settings</strong> 메뉴가 있어 클릭하고 들어가면, 좌측편에 <code>Webhooks &amp; Services</code>가 나온다. 클릭하고 들어가면 <code>Services</code>에서 <code>Add Service</code>를 클릭하면 하위선택항목이 많은 <code>Jenkins (GitHub plugin)</code>을 선택한다. 그리고 나서 <code>Jenkins hook url</code>에 <code>http://161.202.103.101:8080/github-webhook/</code> 설정해서 완료한다. 상단의 <code>Test service</code>를 클릭해서 <code>Okay, the test payload is on its way.</code>가 나오면 설정이 정상적으로 완료된 것이다.</p>
 <p>젠킨스 <code>rpy-cloudlayer</code>에 <code>새로운 Item</code>을 등록한다. 먼저 <code>새로운 Item</code>을 등록하면 <code>Item 이름</code>을 입력한다. 그리고 나서 <code>Freestyle project</code>를 클릭하고 <code>OK</code>를 클릭한다. 그리고 나서 차례로 관련 정보를 입력한다.</p>
 <ul>
 <li>GitHub project : https://github.com/statkclee/pyr-cloudlayer/</li>
-<li>소스 코드 관리 : <code>Git</code> 클릭, Repositories –&gt; Repository URL : https://github.com/statkclee/pyr-cloudlayer.git Credentials에는 Add를 클릭해서 GitHub 사용자이름과 비밀번호를 입력한다.</li>
-<li>Branches to build : Branch Specifier (blank for ‘any’) <code>*/gh-pages</code>로 브랜치를 설정한다.</li>
+<li>소스 코드 관리 : <code>Git</code> 클릭, Repositories --&gt; Repository URL : https://github.com/statkclee/pyr-cloudlayer.git Credentials에는 Add를 클릭해서 GitHub 사용자이름과 비밀번호를 입력한다.</li>
+<li>Branches to build : Branch Specifier (blank for 'any') <code>*/gh-pages</code>로 브랜치를 설정한다.</li>
 <li>Additional Behaviors : Add를 크릭하고 <code>Advanced sub-module behaviours</code>를 선택한다.</li>
 <li>빌드 유발 : <code>Build when a change is pushed to GitHub</code> 체크한다.</li>
-<li>Build : <code>Add build step</code> –&gt; <code>Execute Shell</code> 을 클릭하고 실행 쉘 스크립트를 작성한다.</li>
+<li>Build : <code>Add build step</code> --&gt; <code>Execute Shell</code> 을 클릭하고 실행 쉘 스크립트를 작성한다.</li>
 </ul>
 <pre class="input"><code>git submodule foreach git checkout master
 git submodule foreach git pull

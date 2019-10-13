@@ -38,7 +38,7 @@
                     <a href="index.html"><h1 class="title">데이터 과학: 저작(Authoring)</h1></a>
           <h2 class="subtitle">한글 <span class="math inline">\(LaTeX\)</span> 윈도우 설치</h2>
           <h1 id="windows-10-install">윈도우 10 환경 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h1>
-<p><a href="http://wiki.ktug.org/wiki/wiki.php/%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0Windows/tlinstall">KTUG (2018-04-30), “설치하기Windows/tlinstall”</a>을 참고하여 설치 작업을 수행한다.</p>
+<p><a href="http://wiki.ktug.org/wiki/wiki.php/%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0Windows/tlinstall">KTUG (2018-04-30), &quot;설치하기Windows/tlinstall&quot;</a>을 참고하여 설치 작업을 수행한다.</p>
 <iframe width="300" height="180" src="https://www.youtube.com/embed/V1Q6vEuoAQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <ol style="list-style-type: decimal">
@@ -63,9 +63,9 @@
 </ul></li>
 <li>환경변수 설정
 <ul>
-<li>[내컴퓨터 - 속성] 또는 [제어판및 보안] 에서 왼쪽의 ‘고급 시스템 설정’ 으로 들어갑니다. 혹은 Windows 설정에서 “설정 찾기” 검색창에 ’고급 시스템 설정’을 입력합니다.</li>
-<li>시스템 속성 창입니다. ‘환경 변수’ 클릭</li>
-<li>시스템 변수의 ‘새로 만들기’ 를 클릭하여 시스템 변수를 추가하거나, 사용자 변수에 추가합니다. -<code>C:\usr\texlive\2018\bin\win32</code>을 추가</li>
+<li>[내컴퓨터 - 속성] 또는 [제어판및 보안] 에서 왼쪽의 '고급 시스템 설정' 으로 들어갑니다. 혹은 Windows 설정에서 &quot;설정 찾기&quot; 검색창에 '고급 시스템 설정'을 입력합니다.</li>
+<li>시스템 속성 창입니다. '환경 변수' 클릭</li>
+<li>시스템 변수의 '새로 만들기' 를 클릭하여 시스템 변수를 추가하거나, 사용자 변수에 추가합니다. -<code>C:\usr\texlive\2018\bin\win32</code>을 추가</li>
 </ul></li>
 <li><a href="http://wiki.ktug.org/wiki/wiki.php/koTeXLive">ko.TeX Live</a> 설정
 <ul>
@@ -73,13 +73,13 @@
 <li>TeX Live command-line(cmd 프로그램)을 열어서 다음 명령을 차례로 실행한다. (<code>&gt;</code> 표시는 프롬프트이므로 직접 써넣는 것이 아님.)</li>
 </ul></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>tlmgr repository add http<span class="op">:</span><span class="er">//</span>ftp.ktug.org<span class="op">/</span>KTUG<span class="op">/</span>texlive<span class="op">/</span>tlnet ktug
-<span class="op">&gt;</span><span class="st"> </span>tlmgr pinning add ktug <span class="op">*</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>tlmgr repository add http:<span class="er">//</span>ftp.ktug.org/KTUG/texlive/tlnet ktug
+&gt;<span class="st"> </span>tlmgr pinning add ktug *
 <span class="er">&gt;</span><span class="st"> </span>tlmgr install ktugbin
-<span class="op">&gt;</span><span class="st"> </span>tlmgr install texworks<span class="op">-</span>config
-<span class="op">&gt;</span><span class="st"> </span>tlmgr install nanumttf hcr<span class="op">-</span>lvt</code></pre></div>
+&gt;<span class="st"> </span>tlmgr install texworks-config
+&gt;<span class="st"> </span>tlmgr install nanumttf hcr-lvt</code></pre></div>
 <h2 id="latex-hello-world">Hello World</h2>
-<p>구글링해서 “latex hello world” 검색해서 <code>hello_world.tex</code> 파일로 저장시킨다.</p>
+<p>구글링해서 &quot;latex hello world&quot; 검색해서 <code>hello_world.tex</code> 파일로 저장시킨다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 파일명 hello_world.tex</span>
 
 \documentclass[12pt]{oblivoir}
@@ -87,9 +87,9 @@
 \usepackage[T1]{fontenc}
 
 \begin{document}
-  Hello world<span class="op">!</span>
+  Hello world!
 <span class="st">  </span>안녕하세요. 안녕하세요. 
-  <span class="op">$</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span> =<span class="st"> </span>z<span class="op">^</span><span class="dv">2</span> <span class="op">$</span><span class="st"> </span>%수학 모드
+  $x^<span class="dv">2</span> +<span class="st"> </span>y^<span class="dv">2</span> =<span class="st"> </span>z^<span class="dv">2</span> $<span class="st"> </span>%수학 모드
 \end{document}</code></pre></div>
 <p>그리고 나서, 이를 RStudio에서 컴파일하게 되면 다음과 같이 한글도 정상 출력되어 PDF 파일이 생성되는 것이 확인된다.</p>
 <p><img src="fig/rstudio_latex.png" alt="latex in rstudio" width="100%" /></p>
@@ -122,24 +122,24 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </ol>
 <p><img src="fig/latex-install-windows.png" width="77%" alt="윈도우즈 LaTeX 설치" /></p>
 <p>윈도우 쉘을 열고 <code>pdflatex --version</code> 명령어를 쳐서 다음과 같이 출력되면 정상이다.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">$</span><span class="st"> </span>pdflatex <span class="op">--</span>version
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">$<span class="st"> </span>pdflatex --version
 
-pdfTeX <span class="fl">3.14159265</span><span class="op">-</span><span class="fl">2.6</span><span class="op">-</span><span class="fl">1.40</span>.<span class="dv">17</span> (TeX Live <span class="dv">2016</span><span class="op">/</span>W32TeX)
-kpathsea version <span class="fl">6.2</span>.<span class="dv">2</span>
+pdfTeX <span class="fl">3.14159265-2.6-1.40.17</span> (TeX Live <span class="dv">2016</span>/W32TeX)
+kpathsea version <span class="fl">6.2.2</span>
 Copyright <span class="dv">2016</span> Han The <span class="kw">Thanh</span> (pdfTeX) et al.
 There is NO warranty.  Redistribution of this software is
 covered by the terms of both the pdfTeX copyright and
 the Lesser GNU General Public License.
 For more information about these matters, see the file
 named COPYING and the pdfTeX source.
-Primary author of pdfTeX<span class="op">:</span><span class="st"> </span>Han The <span class="kw">Thanh</span> (pdfTeX) et al.
-Compiled with libpng <span class="fl">1.6</span>.<span class="dv">21</span>; using libpng <span class="fl">1.6</span>.<span class="dv">21</span>
-Compiled with zlib <span class="fl">1.2</span>.<span class="dv">8</span>; using zlib <span class="fl">1.2</span>.<span class="dv">8</span>
+Primary author of pdfTeX:<span class="st"> </span>Han The <span class="kw">Thanh</span> (pdfTeX) et al.
+Compiled with libpng <span class="fl">1.6.21</span>; using libpng <span class="fl">1.6.21</span>
+Compiled with zlib <span class="fl">1.2.8</span>; using zlib <span class="fl">1.2.8</span>
 Compiled with xpdf version <span class="fl">3.04</span></code></pre></div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p><a href="http://wiki.ktug.org/wiki/wiki.php/%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0Windows/tlinstall">KTUG (2018-04-30), “설치하기Windows/tlinstall”</a><a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p><a href="http://wiki.ktug.org/wiki/wiki.php/%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0Windows/tlinstall">KTUG (2018-04-30), &quot;설치하기Windows/tlinstall&quot;</a><a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
         </div>

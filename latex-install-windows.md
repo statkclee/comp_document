@@ -6,7 +6,7 @@ author:
     name: xwMOOC
     url: https://www.facebook.com/groups/tidyverse/
     affiliation: Tidyverse Korea
-date: "2019-01-15"
+date: "2019-10-13"
 output:
   html_document: 
     toc: yes

@@ -44,6 +44,18 @@ R에 기본으로 내장된 문자열 함수보다 사용하기 쉽고 기억하
 
 ~~~{.r}
 library(stringr)
+~~~
+
+
+
+~~~{.error}
+Warning: package 'stringr' was built under R version 3.5.2
+
+~~~
+
+
+
+~~~{.r}
 files <- list.files()
 head(files)
 ~~~
@@ -51,12 +63,9 @@ head(files)
 
 
 ~~~{.output}
-[1] "_includes"                          
-[2] "_layouts"                           
-[3] "2018"                               
-[4] "한밭대_창업과인공지능_20180503.Rmd" 
-[5] "한밭대_창업과인공지능_20180529.html"
-[6] "한밭대_창업과인공지능_20180529.Rmd" 
+[1] "_includes"                   "_layouts"                   
+[3] "AUTHORS"                     "bookdown-github-travis.html"
+[5] "bookdown-github-travis.md"   "bookdown-intro.html"        
 
 ~~~
 
@@ -64,19 +73,33 @@ head(files)
 
 ~~~{.r}
 gDat <- read.delim("gapminderDataFiveYear.txt")
+~~~
+
+
+
+~~~{.error}
+Warning in file(file, "rt"): 파일 'gapminderDataFiveYear.txt'를 여는데 실패
+했습니다: No such file or directory
+
+~~~
+
+
+
+~~~{.error}
+Error in file(file, "rt"): 커넥션을 열 수 없습니다
+
+~~~
+
+
+
+~~~{.r}
 str(gDat)
 ~~~
 
 
 
-~~~{.output}
-'data.frame':	1704 obs. of  6 variables:
- $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
- $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
- $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
- $ gdpPercap: num  779 821 853 836 740 ...
+~~~{.error}
+Error in str(gDat): 객체 'gDat'를 찾을 수 없습니다
 
 ~~~
 
@@ -131,7 +154,7 @@ grepl("dplyr", files)
  [78] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
  [89] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [100] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[111] FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[111] FALSE
 
 ~~~
 
@@ -174,8 +197,8 @@ grep('\'', levels(gDat$country), value = TRUE)
 
 
 
-~~~{.output}
-[1] "Cote d'Ivoire"
+~~~{.error}
+Error in levels(gDat$country): 객체 'gDat'를 찾을 수 없습니다
 
 ~~~
 
@@ -326,8 +349,8 @@ grep("ac{2,3}b", strings, value = TRUE)
 > 정량자를 사용해서 `gapminder` 데이터프레임에서 `ee` 문자열을 갖는 모든 국가를 찾아라.
 
 
-~~~{.output}
-[1] "Greece"
+~~~{.error}
+Error in levels(gDat$country): 객체 'gDat'를 찾을 수 없습니다
 
 ~~~
 
@@ -408,7 +431,7 @@ grep("\\bab", strings, value = TRUE)
 > 
 > 
 > ~~~{.output}
-> [1] "gapminderDataFiveYear.txt" "requirements.txt"         
+> [1] "requirements.txt"
 > 
 > ~~~
 
@@ -530,9 +553,15 @@ gsub("(ab) 12", "\\1 34", strings)
 > `i` 혹은 `t` 를 포함하고, `land`로 끝나는 국가를 `gapminder` 에서 찾아 역참조를 사용해서 `land`를 `LAND`로 치환한다.
 > 
 > 
-> ~~~{.output}
-> [1] "FinLAND"     "IceLAND"     "IreLAND"     "SwaziLAND"   "SwitzerLAND"
-> [6] "ThaiLAND"   
+> ~~~{.error}
+> Error in levels(gDat$country): 객체 'gDat'를 찾을 수 없습니다
+> 
+> ~~~
+> 
+> 
+> 
+> ~~~{.error}
+> Error in grep("LAND", countries, value = TRUE): 객체 'countries'를 찾을 수 없습니다
 > 
 > ~~~
 
@@ -660,8 +689,8 @@ grep(pattern, strings, value = TRUE, ignore.case = TRUE)
 > `gapminder` 에서 `o` 문자가 들어간 대륙을 찾는다.
 > 
 > 
-> ~~~{.output}
-> [1] "Europe"  "Oceania"
+> ~~~{.error}
+> Error in levels(gDat$continent): 객체 'gDat'를 찾을 수 없습니다
 > 
 > ~~~
 
@@ -764,7 +793,7 @@ attr(,"na.action")
  [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
  [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
  [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102
-[103] 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+[103] 103 104 105 106 107 108 109 110 111
 attr(,"class")
 [1] "omit"
 
