@@ -1,2 +1,2 @@
 # comp_document
-Computational Documents
+Computational Document
