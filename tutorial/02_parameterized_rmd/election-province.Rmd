@@ -1,12 +1,14 @@
 ---
 layout: page
 title: "Computational Document"
-subtitle: "경기도 대통령 선거 득표 보고서"
+subtitle: "`r params$province` 대통령 선거 득표 보고서"
 author:
     name: 이광춘 (KPMG)
     affilates: 데이터 과학자
 date: "`r Sys.Date()`"
 always_allow_html: yes
+params:
+  province: "서울특별시"
 output:
   html_document: 
     toc: yes
@@ -75,18 +77,18 @@ df <- dat %>%
 #   pull()
 
 df %>% 
-  filter(시도명 == "경기도") %>% 
+  filter(시도명 == params$province) %>% 
   DT::datatable()
 ```
 
 
-# 경기도 득표수 {#election-dataset-gg}
+# `r params$province` 득표수 {#election-dataset-gg}
 
-주요 대선 후보인 5명을 추려 경기도 대통령 후보 득표수를 표로 총계를 계산한다.
+주요 대선 후보인 5명을 추려 `r params$province` 대통령 후보 득표수를 표로 총계를 계산한다.
 
 ```{r basic-analysis}
 df %>% 
-  filter(시도명 == "경기도") %>% 
+  filter(시도명 == params$province) %>% 
   group_by(구시군명) %>% 
   summarise(
          문재인 = sum(문재인),
@@ -99,11 +101,11 @@ df %>%
 ```
 
 
-# 경기도 득표수 시각화 {#election-dataset-gg-viz}
+# `r params$province` 득표수 시각화 {#election-dataset-gg-viz}
 
 ```{r basic-analysis-viz}
 df %>% 
-  filter(`시도명` == "경기도") %>% 
+  filter(`시도명` == params$province) %>% 
   group_by(`구시군명`) %>% 
   summarise(`문재인` = sum(`문재인`),
          `홍준표` = sum(`홍준표`),
@@ -119,6 +121,6 @@ df %>%
     theme_bw() +
     theme(legend.position = "right") +
     scale_y_continuous(labels=scales::comma) +
-    labs(x="", title=paste0("경기도", " 주요 후보별 득표수"))
+    labs(x="", title=paste0(params$province, " 주요 후보별 득표수"))
 ```
 
