@@ -50,6 +50,10 @@ subtitle: 데이터 과학 문서
     * [doit 시작하기](doit-basics.html)
     * [부작업(Sub-tasks)](doit-sub_tasks.html)
     * [분석결과가 최신상태인지 점검하기](doit-uptodate.html)
+1. Computational Documents Tutorial
+    - [R 마크다운](tutorial/01_rmarkdown/bmi.html)
+    - [매개변수 적용된 문서](tutorial/02_parameterized_rmd/election.html)
+    - [인터랙티브 문서](tutorial/03_interactive_rmd/election-map.html)
 
 > ### 원문 출처 및 저작 라이선스 {.getready}
 >
