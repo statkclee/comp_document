@@ -52,8 +52,11 @@ subtitle: 데이터 과학 문서
     * [분석결과가 최신상태인지 점검하기](doit-uptodate.html)
 1. Computational Documents Tutorial
     - [R 마크다운](tutorial/01_rmarkdown/bmi.html)
-    - [매개변수 적용된 문서](tutorial/02_parameterized_rmd/election.html)
-    - [인터랙티브 문서](tutorial/03_interactive_rmd/election-map.html)
+    - **Parameterized Documents**
+        - [기본 문서](tutorial/02_parameterized_rmd/election.html)
+        - [매개변수 적용된 문서](tutorial/02_parameterized_rmd/election-province.html)
+        - [자동 문서 생성 스크립트](tutorial/02_parameterized_rmd/automate-province-report.R)
+    - [인터랙티브 문서](tutorial/03_interactive_rmd/election-interactive.html)
 
 > ### 원문 출처 및 저작 라이선스 {.getready}
 >
