@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Computational Document"
-subtitle: "선거"
+subtitle: "인터랙티브 문서"
 author:
     name: 이광춘 (KPMG)
     affilates: 데이터 과학자
@@ -28,5 +28,4 @@ use_condaenv("anaconda3")
 # reticulate::repl_python()
 ```
 
-# 
-
+[RStudio Trainer Program - "Tidyverse: Visualization - Lecture Note"](https://statkclee.github.io/rstudio-trainer/viz-lecture-note.html)
