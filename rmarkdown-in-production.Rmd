@@ -1,9 +1,12 @@
 ---
 layout: page
-title: 데이터 과학을 위한 저작도구
-subtitle: R 마크다운 실무
+title: "데이터 과학을 위한 저작도구"
+subtitle: "**R 마크다운 실무**"
 output:
   html_document:
+    css: style.css
+    includes:
+      after_body: footer.html
     theme: default
     toc: yes
     toc_float: true
@@ -14,20 +17,29 @@ mainfont: NanumGothic
 ---
 
 ```{r, include=FALSE}
-source("tools/chunk-options.R") 
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(tidyverse)
 ```
 
 
 실무에서 많이 사용되는 R 마크다운 구문이 잘 정리된 블로그가 있어 [현대적인 과학논문 저작](http://statkclee.github.io/modern-scientific-authoring/index-kr.html)의 
-내용에 더하여 R을 주로 사용하는 사용자에게 유용할 것으로 사료되어 블로그의 내용을 중심으로 내용을 정리하였고 몇가지 유용한 사례도 추가하였다. 특히, [Pimp my RMD: a few tips for R Markdown by Yan Holtz - 11 April 2018](https://holtzy.github.io/Pimp-my-rmd/) 내용이 많이 포함되어 있다. PIMP는 "**P**ut **I**n **M**y **P**ocket"으로 추청된다.
+내용에 더하여 R을 주로 사용하는 사용자에게 유용할 것으로 사료되어 블로그의 내용을 중심으로 내용을 정리하였고 몇가지 유용한 사례도 추가하였다. 특히, [Pimp my RMD: a few tips for R Markdown by Yan Holtz - 11 April 2018](https://holtzy.github.io/Pimp-my-rmd/) 내용이 많이 포함되어 있다. PIMP는 "**P**ut **I**n **M**y **P**ocket"으로 추청된다. 또한, [Pimp my RMD: a few tips for R Markdown by Yan Holtz - 10 December 2019](https://holtzy.github.io/Pimp-my-rmd/) 거의 1년만에 업데이트 되면서 추가로 추가된 사항도 많이 있다.
 
-# 문서 형식(format) [^put-in-my-pocket-rmd] {#rmd}
+# 문서 형식 (Text formating) [^put-in-my-pocket-rmd] {#rmd}
+***
 
 [^put-in-my-pocket-rmd]: [Pimp my RMD: a few tips for R Markdown, by Yan Holtz - 11 April 2018](https://holtzy.github.io/Pimp-my-rmd/)
 
-## 수평선 {#horizontal-line}
+R 마크다운을 사용해서 쉽게 아무것도 없는 텍스트를 **강조**, *이태릭*은 물론이고 [링크](www.r-graph-gallery.com)도 추가할 수 있는데 자세한 내용은 [영문 컨닝쪽지(RStudio  cheatsheet)](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)에서 확인 가능하고 한글은 [R 마크다운 컨닝쪽지](https://github.com/rstudio/cheatsheets/raw/master/translations/korean/rmarkdown-cheatsheet-kr.pdf)에서 확인 가능하다.
 
+```{r pimp-text-format, eval=FALSE}
+R 마크다운을 사용해서 쉽게 아무것도 없는 텍스트를 **강조**, *이태릭*은 물론이고 [링크](www.r-graph-gallery.com)도 추가할 수 있는데 자세한 내용은 [영문 컨닝쪽지(RStudio  cheatsheet)](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)에서 확인 가능하고 한글은 [R 마크다운 컨닝쪽지](https://github.com/rstudio/cheatsheets/raw/master/translations/korean/rmarkdown-cheatsheet-kr.pdf)에서 확인 가능하다.
+```
+
+# 수평선 {#horizontal-line}
+***
 문서에 수평선을 넣어 문장이나 문단을 구분할 때 유용하게 사용될 수 있는데 이런 경우 별 3개로 간단히 처리가 된다.
 
 ``` {r horizontal-line, eval=FALSE}
@@ -36,7 +48,8 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 ***
 
-## 제목 자동번호 넣기 {#auto-numbering}
+# 제목 자동번호 넣기 {#auto-numbering}
+***
 
 큰제목, 중간제목, 작은제목, ... 표현하는데 `#`, `##`, `###`을 사용하는데 각각에 대해서 번호를 넣고자 하는 경우 YAML 헤더에 `number_sections: TRUE`를 넣어 사용하면 된다.
 
@@ -62,7 +75,8 @@ mainfont: NanumGothic
 ```
 
 
-## 줄간격 넓히기 {#skip-line}
+# 줄간격 넓히기 {#skip-line}
+***
 
 줄간격을 넓혀 띄어쓰기를 하고자 할 경우 `<br>`을 넣어 준다.
 
@@ -76,7 +90,133 @@ mainfont: NanumGothic
 <br><br><br>
 국회에서 응답
 
-## 특정 문단 강조 {#text-highlight}
+# 이미지 가운데 정렬 {#center-image}
+***
+
+이미지를 가운데 정렬시키는데 다음 코드를 사용한다.
+`{#id .class width="50%"}`을 통해 이미지 크기도 조정할 수 있다.
+
+```{r image-center, eval=FALSE}
+<center>
+![이미지 설명을 단다.](fig/00_cover_boy_girl.png){#id .class width="50%"}
+</center>
+```
+
+결과는 다음과 같다.
+
+<center>
+![컴퓨터 과학 언플러그드](fig/00_cover_boy_girl.png){#id .class width="50%"}
+</center>
+
+
+# 이미지 주변 공백 {#pimp-white-space}
+***
+
+이미지 주변 공백이 문제된다면 [Anna Quaglieri](https://twitter.com/annaquagli)님이 제안해 주신 `fig.asp` 인자값을 조정하여 해결한다. 예를 들어, `fig.asp=0.50` 값을 사용한다.
+
+- fig.width=3,
+- fig.height=3
+- fig.align='center'
+- cache=TRUE
+- fig.cap="Lovely Kangaroo from the Mornington Peninsula."
+- fig.asp=0.50
+
+```{r fig.width=3,fig.height=3,fig.align='center',cache=TRUE,fig.cap="Lovely Kangaroo from the Mornington Peninsula.",fig.asp=0.50}
+library(png)
+library(grid)
+img <- readPNG("fig/kan.png")
+grid.raster(img)
+```
+
+# Footer and header {#add-footer}
+***
+
+HTML 문서의 `header.html`, `footer.html` HTML 파일에 관련된 내용을 저장시키고 나서 `.Rmd` 파일에 이를 반영시킨다. 필요한 경우, [fontawesome.com](https://fontawesome.com/) 웹사이트에서 적절한 아이콘을 선택한다.
+
+
+```{r footer-header, eval=FALSE}
+&nbsp;
+<hr />
+<p style="text-align: center;"> 데이터 과학자 <a href="https://github.com/statkclee/">이광춘</a> 저작</p>
+<p style="text-align: center;"><span style="color: #808080;"><em>kwangchun.lee.7@gmail.com</em></span></p>
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+  <a href="https://education.rstudio.com/trainers/people/lee+kwangchun/" class="fa fa-registered"></a>
+	<a href="https://www.facebook.com/groups/tidyverse/" class="fa fa-facebook"></a>
+	<a href="https://www.linkedin.com/in/kwangchunlee/" class="fa fa-linkedin"></a>
+	<a href="https://github.com/statkclee/" class="fa fa-github"></a>
+</p>
+&nbsp;
+```
+
+`footer.html` 파일에 상기 내용을 저장시키고 나서, `.Rmd` 파일 YAML 영역에 다음과 같이 포함시키도록 지정한다.
+
+
+```{r pimp-footer-yaml, eval=FALSE}
+layout: page
+title: "데이터 과학을 위한 저작도구"
+subtitle: "**R 마크다운 실무**"
+output:
+  html_document:
+    includes:
+      after_body: footer.html
+    theme: default
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_sections: TRUE
+mainfont: NanumGothic
+```
+
+`footer.html` 파일을 반영한 후 모습은 다음과 같다.
+
+<center>
+![`footer.html` 반영모습](fig/pimp-footer.png)
+</center>
+
+
+# 이미지 캡션(caption) {#add-caption}
+***
+
+다음과 같이 `fig.cap` 인자를 지정하여 이미지에 짧은 해설문(caption)을 단다.
+
+```{r add-figure-caption, eval=FALSE}
+{r, fig.align="center", fig.width=6, fig.height=6, fig.cap="그림 1: 정말 짧은 해설문 을 caption이라고 영어로 번역한다."}
+```
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6, fig.cap="그림 1: 정말 짧은 해설문 을 caption이라고 영어로 번역한다."}
+mpg %>%
+  ggplot( aes(x=reorder(class, hwy), y=hwy, fill=class)) + 
+    geom_boxplot() +
+    xlab("class") +
+    theme(legend.position="none")
+```
+
+# 고급 이미지 캡션(caption) {#add-caption-custom}
+
+사용자 정의 캡션을 다음과 같이 `style.css` 파일에 적어 활용할 수 있다.
+
+<style>
+div.custom_caption { font-size: 0.9em; font-style: italic; color: grey; margin-right: 10%; margin-left: 10%; text-align: justify;}
+</style>
+<div class = "custom_caption">
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6, fig.cap="Figure: Here is a really important caption, customized to be grey and in italic."}
+mpg %>%
+  ggplot( aes(x=reorder(class, hwy), y=hwy, fill=class)) + 
+    geom_boxplot() +
+    xlab("class") +
+    theme(legend.position="none")
+```
+</div>
+
+
+
+# 특정 문단 강조 {#text-highlight}
+***
 
 특정 문단을 강조하고자 할 경우 다음과 같이 `<style> ... </style>`을 정의하고 
 `<div class = "blue"> ... </div>`로 뽑아내서 사용한다.
