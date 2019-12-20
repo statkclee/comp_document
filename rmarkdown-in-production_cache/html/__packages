@@ -8,5 +8,13 @@ utils
 grDevices
 graphics
 stats
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
 png
 grid
