@@ -31,6 +31,10 @@ subtitle: 데이터 과학 문서
     * [R 노트북(Notebook)](ds-notebook.html)
     * [R 발표자료(Presentation)](ds-presn.html)
     * [보고서 자동화](ds-report-automation.html)
+1. 블로그와 이력서
+    * [정적 웹서비스 개발 툴체인](devops-dev-vm.html) 
+        * [윈도우 정적 웹서비스 개발 툴체인](devops-dev-vm-windows.html) 
+    * [Github - 블로그](ds-github-blog.html)
     * [블로그 - blogdown](ds-blogdown.html)
     * [이력서(Resume)](ds-resume.html)
 1. Computational Documents Tutorial
@@ -42,9 +46,6 @@ subtitle: 데이터 과학 문서
     - [인터랙티브 문서](tutorial/03_interactive_rmd/election-interactive.html)
     - [$\LaTeX$ `PDF` 문서](comp_doc_pdf.html)
 1.  [데이터 과학 개발운영 아키텍처](devops-dev-vm-arch.html)
-    * [Github - 블로그](ds-github-blog.html)
-    * [정적 웹서비스 개발 툴체인](devops-dev-vm.html) 
-        * [윈도우 정적 웹서비스 개발 툴체인](devops-dev-vm-windows.html) 
     * [객체 저장소 FTP 배포(Deployment)](devops-ftp-object-storage.html)
     * [개발운영(DevOps) 실습예제 - 컴퓨터 과학 언플러그드](devops-pracitce.html)
 1. [문서 프로그래밍 - 한글 LaTeX 사전준비](latex.html)

@@ -1,23 +1,36 @@
 ---
 layout: page
-title: 데이터 과학을 위한 저작도구
-subtitle: 윈도우 정적 웹콘텐츠 개발 가상서버 구축
-minutes: 10
+title: 데이터 과학을 위한 Computational Documents
+subtitle: "윈도우 정적 웹콘텐츠 개발환경 - Software Carpentry"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_sections: TRUE
+editor_options: 
+  chunk_output_type: console
 ---
+ 
+``` {r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
 
-> ## 학습 목표 {.objectives}
->
-> * 윈도우 정적 웹콘텐츠 개발 툴체인(Tool Chain)을 이해한다. 
-> * 윈도우 정적 웹콘테츠 개발 가상컴퓨터 환경을 구축한다.
-> * 소프트웨어 카펜트리 마크다운 콘텐츠를 HTML로 컴파일 한다. 
+```
 
 
-### 윈도우 정적 웹콘텐츠 제작 툴체인(Tool Chain)
+윈도우 정적 웹콘텐츠 개발 툴체인(Tool Chain)을 이해하고, 
+윈도우 정적 웹콘테츠 개발환경을 구축한다.
+특히,소프트웨어 카펜트리 마크다운 콘텐츠를 HTML로 컴파일 한다. 
+
+# 정적 웹콘텐츠 제작환경 - 윈도우즈 {#static-webcontents-windows}
 
 정적 웹콘텐츠를 **`제킬(Jekyll)`** 기반으로 구축하기 위해서 `제킬(Jekyll)`과 관련된 소프트웨어도 함께 
 버젼을 맞추어서 설치해야 된다. 특히, [소프트웨어 카펜트리](http://software-carpentry.org/)에서 정적 웹콘텐츠 저작을 위한 좋은 툴을 개발하여 활발히 사용되고 있다. [소프트웨어 카펜트리](http://software-carpentry.org/) 저작 도구는 `pandoc`, `jekyll`에 기반하고 있고 근본에는 루비언어 기반으로 글로벌 협업도구 **GitHub** 인프라가 깔려있다.
 
-~~~ {.output}
+
+``` {r web-contents-for-software-carpentry, eval=FALSE}
 Package Manager         Language               Webpage Reuse           Plugins (SWCarepntry)
 +-----------+           +----------+           +-----------+           +---------------+ 
 |           |           |          |           |           |           |               |
@@ -31,18 +44,30 @@ Package Manager         Language               Webpage Reuse           Plugins (
 | Pandoc    |----------------------------------------
 |           |          
 +-----------+          
-~~~
+```
 
-> ### 설치가 필요한 소프트웨어 {.callout}
-> 
-> * **팬독(Pandoc)** : 마크다운 문서 변환 소프트웨어
-> * **[Chocolatey](https://chocolatey.org/)** : 윈도우즈 팩키지 관리자
-> * **루비(Ruby)** : 마츠모토 유키히로가 개발한 동적 객체 지향 스크립트 프로그래밍 언어.
-> * **제킬(Jekyll)** : GitHub 공동 창업자 Tom Preston-Werner이 루비로 작성한 단순하며, 블로그-인식, 정적사이트 생성 프로그램.
-> * **pandocfilters** : pandoc 필터를 작성하는 파이썬 모듈. pandoc 필터는 파이프로 JSON을 받아 변환하여 출력한다.
-> * **kramdown** : 루비로 작성된 마크다운 변환기
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
 
-### 윈도우 툴체인 구축 절차
+- **설치가 필요한 소프트웨어**
+* RVM(Ruby Version Manager) : 루비 버젼 관리자 
+* 팬독(Pandoc) : 마크다운 문서 변환 소프트웨어
+* 루비(Ruby) : 마츠모토 유키히로가 개발한 동적 객체 지향 스크립트 프로그래밍 언어.
+* 제킬(Jekyll) : GitHub 공동 창업자 Tom Preston-Werner이 루비로 작성한 단순하며, 블로그-인식, 정적사이트 생성 프로그램.
+* therubyracer : 루비 언어내에서 V8 자바스크립트 인터프리터를 내장. NodeJS 대신 경량화된 자바스크립트 인터프리터로 사용.
+* pandocfilters : pandoc 필터를 작성하는 파이썬 모듈. pandoc 필터는 파이프로 JSON을 받아 변환하여 출력한다.
+* kramdown : 루비로 작성된 마크다운 변환기
+
+</div>
+
+
+![정적 웹콘텐츠 개발 툴체인](fig/dev-vm-software-stack.png)
+
+
+
+# 윈도우 툴체인 구축 절차 {#swcarpentry-windows-toolcahin}
 
 [팬독(pandoc)](http://pandoc.org/)과 [루비](https://www.ruby-lang.org/) 중 어떤 것을 먼지 설치할 것은 중요하지 않다. 
 [제킬(Jekyll)](https://jekyllrb.com/)이 루비에 의존성을 갖고, HTML, PDF 등 문서 생성에 [팬독(pandoc)](http://pandoc.org/)이 필요하기 
@@ -76,19 +101,16 @@ Package Manager         Language               Webpage Reuse           Plugins (
     * `python -m pip install --upgrade pip` 명령어로 `pip` 최신 버젼으로 올린다.
     * `pip install pandocfilters` 명령어로 `pandocfilters`를 마지막으로 설치한다.
 
-### 소프트웨어 카펜트리 예제 
+# 소프트웨어 카펜트리 예제 {#swcarpentry-example}
 
 소프트웨어 카펜트리를 교재 템플릿을 사용하는 Git 웹페이지를 하나 골라 복제한다.
 그리고 나서 `make preview` 명령어를 실행할 경우, 모든 설정이 잘 된 경우 `index.html` 파일이 자동으로 생성되게 된다.
 
-~~~ {.shell}
+```{r ds-authoring-compile, eval=FALSE}
 $ git clone -b gh-pages https://github.com/statkclee/ds-authoring.git
 $ cd ds-authoring
 $ touch index.md
 $ make preview
-~~~
-
-~~~ {.output}
 pandoc -s -t html \
     --smart \
     --mathjax \
@@ -99,7 +121,5 @@ pandoc -s -t html \
 l)" -Vfooter="$(cat _includes/footer.html)" -Vjavascript="$(cat _includes/javasc
 ript.html)" \
     -o index.html index.md
-~~~
-
-[^windows-pip]: [http://blog.colab.kr/11](http://blog.colab.kr/11)
+```
 
