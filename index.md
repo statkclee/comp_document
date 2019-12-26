@@ -45,10 +45,12 @@ subtitle: 데이터 과학 문서
         - [자동 문서 생성 스크립트](tutorial/02_parameterized_rmd/automate-province-report.R)
     - [인터랙티브 문서](tutorial/03_interactive_rmd/election-interactive.html)
     - [$\LaTeX$ `PDF` 문서](comp_doc_pdf.html)
+1. Compendium ... R 프로젝트: (특정 주제에 대한) 개요서
+    - [개요서(Compendium) 시작하며](cd_compendium.html)
 1.  [데이터 과학 개발운영 아키텍처](devops-dev-vm-arch.html)
     * [객체 저장소 FTP 배포(Deployment)](devops-ftp-object-storage.html)
     * [개발운영(DevOps) 실습예제 - 컴퓨터 과학 언플러그드](devops-pracitce.html)
-1. [문서 프로그래밍 - 한글 LaTeX 사전준비](latex.html)
+1. [문서 프로그래밍 - 한글 $LaTeX$ 사전준비](latex.html)
     * [한글 LaTeX 소개](latex-intro.html)
     * [한글 LaTeX 윈도우 설치](latex-install-windows.html)
     * [한글 LaTeX 설치환경 가상화](latex-virtual.html)

@@ -1,0 +1,86 @@
+---
+layout: page
+title: "Computational Documents"
+subtitle: "개요서(Compendium) 시작하며"
+author:
+    name: xwMOOC
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+use_condaenv("anaconda3")
+# reticulate::repl_python()
+```
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+R packages can serve as **research compendia** (including code,
+data and outputs) for reproducible data analysis projects
+
+<br>
+
+R 팩키지는 재현가능한 데이터 분석 프로젝트를 위한 **연구 개요서(research compendia)**로 훌륭한 대안으로 역할을 수행할 수 있다. 연구 개요서는 코드, 데이터, 출력결과물 등이 포함된다.
+</div>
+
+# R 팩키지와 개요서 [^rrrpkg] [^project-as-packages] {#compendium-intro} 
+
+[^rrrpkg]: [jennybc, "Use of an R package to facilitate reproducible research"](https://github.com/ropensci/rrrpkg)
+
+[^project-as-packages]: [Francisco Rodriguez-Sanchez "Structuring data anlaysis projects as R packages"](https://github.com/Pakillo/template/blob/master/slides/Projects_as_Packages.pdf)
+
+R 프로젝트, R 팩키지, 개요서(compendium)가 서로 동일한 목표를 가지고 있지만, 다소 차이가 있는 것도 사실이다. 데이터 사이언스를 하면서 코드, 데이터, 결과물을 하나의 개요서(compendium) 아래 묶어 이를 통해 재현가능한 과학기술 발전을 도모하는 것이 무엇보다 필요하다.
+
+- 좋은 데이터 사이언스 프로젝트 구성
+    - 모든 파일은 동일한 디렉토리 아래 정돈되어 있음
+    - 원본 데이터(raw data)는 별도 폴더에 잘 저장되어 있어야 함.
+    - 정제된 데이터는 R 스크립트를 통해서 만들어져야 함.
+    - 함수는 분석 스크립트와 독립되어 저장되어야 함.
+    - 함수는 문서화가 잘 되어야 하면 (단위) 테스트도 되어 ㅎ함.
+    - 산출물은 코드와 격리되어야 하며 일회용으로 한번 사용하고 버림.
+    - `Makefile`은 적절한 순서로 분석을 실행해야 함.
+    - README 파일은 프로젝트 개요를 담고 있어야 함.
+    - `git`을 사용해서 R 코드와 Rmd 문서 파일은 버전 제어를 해야 함.
+    
+```{r project-organization, eval=FALSE}
++ project/
+    + data-raw/   # 원본 데이터
+    + data/       # (R 스크립트로부터 생성된) 정제된 데이터
+    + R/          # 함수(Functions)
+    + man/        # (Roxygen으로 생성된) 함수 문서(Function documentation)
+    + tests/      # 테스트 (functions, Rmd)
+    + vignettes/  # (Rmd로 작성된) 분석결과, 원고, 보고서 등
+    + Makefile    # 자동화 시키는 마스터 스크립트
+    + DESCRIPTION # 메타데이터와 의존성
+    + README      # 프로젝트 개요서
+```
+
+상기와 같이 개요서를 R 팩키지를 통해 구현하게 되면 어떤 점이 좋은지 살펴보자.
+
+* 재현가능성: Reproducibility
+* 일관되고, 표준적이며, 물흐르는 듯한 프로젝트 구조: Consistent, standard, streamlined organisation
+* 모듈화, 문서화, 테스트 주도 철학을 증진: Promotes modular, well-documented and tested code
+* 공유하기 쉬움: Easy to share (zip, GitHub repo)
+* 설치와 실행이 쉬움: Easy to install & run (Dependencies)
+* R 팩키지 제작 기계: Use R package development machinery:
+* R CMD CHECK
+* 지속 개발/지속 배포: Continuous integration (Travis-CI)
+* [goodpractice](https://github.com/MangoTheCat/goodpractice)로 자동화된 코드리뷰: Automatic code review with goodpractice
+* [pkgdown](https://github.com/r-lib/pkgdown)으로 프로젝트 웹사이트 제작: Easily create project websites with pkgdown
+
