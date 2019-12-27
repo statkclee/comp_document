@@ -1,0 +1,108 @@
+---
+layout: page
+title: "Computational Documents"
+subtitle: "팩키지 개발"
+author:
+    name: xwMOOC
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+use_condaenv("anaconda3")
+# reticulate::repl_python()
+```
+
+# 함수 재사용 {#cd-pkg-dev}
+
+기본 구조에 더해서 함수를 더 추가하게 된다. 이를 위해서 `R/`, `man/` 디렉토리가 추가된다. `R/` 디렉토리에 재사용되는 자주 호출되는 함수가 포함되어 있다면,  `man/` 디렉토리에는 함수에 대한 기술이 포함된다. 
+
+`NAMESPACE`와 `LICENSE`도 팩키지를 구성하는 주요한 요소로 포함된다. 
+
+```{r cd-r-function, eval = FALSE}
+project
+|- DESCRIPTION          # project metadata and dependencies 
+|- README.md            # top-level description of content and guide to users
+|- NAMESPACE            # exports R functions in the package for repeated use
+|- LICENSE              # specify the conditions of use and reuse of the code, data & text
+|
+|- data/                # raw data, not changed once created
+|  +- my_data.csv       # data files in open formats such as TXT, CSV, TSV, etc.
+|
+|- analysis/            # any programmatic code 
+|  +- my_report.Rmd     # R markdown file with R code and narrative text interwoven
+|
+|- R/                   #  
+|  +- my_functions.R    # custom R functions that are used more than once in the project
+|
+|- man/
+|  +- my_functions.Rd   # documentation for the R functions (auto-generated when using devtools)
+```
+
+# 사례 {#intermediate-cd}
+
+[ORD LakeTrophicModelling](https://github.com/USEPA/LakeTrophicModelling)은 전형적인 단순한 R 분석 작업흐름을 넘어 함수를 활용한 팩키지 구현 사례를 보여주고 있다.
+
+`R/` 디렉토리와 `man/` 디렉토리는 짝을 지어 자동으로 생성되고, 문서는 `vignettes/` 디렉토리에 작성해서 넣어 둔다. `inst/` 디렉토리는 외부 데이터와 문서 등을 넣어둔다.
+
+
+```{r intermediate-decomposition, eval = FALSE}
+
+project
+|- DESCRIPTION
+|- NAMESPACE
+|- README.md
+|- LakeTrophicModelling.Rproj
+|
+|- R/
+|   +- LakeTrophicModelling-package.r
+|   +- class_prob_rf.R
+|   +- condAccuracy.R
+|   +- crossval_rf.R
+|   +- density_plot.R
+|   +- ecdf_ks_ci.R
+|   +- ecor_map.R
+|   +- getCyanoAbund.R
+|   +- getLakeIDs.R
+|   +- importancePlot.R
+|
+|- man/
+|   +- class_prob_rf.Rd
+|   +- condAccuracy.Rd
+|   +- crossval_rf.Rd
+|   +- density_plot.Rd
+|   +- ecdf_ks_ci.Rd
+|   +- ecor_map.Rd
+|   +- getCyanoAbund.Rd
+|   +- getLakeIDs.Rd
+|   +- importancePlot.Rd
+|
+|- data/                
+|   +- LakeTrophicModelling.rda
+|
+|- vignettes/
+|
+|- inst/
+|   +- doc/
+|      +- manuscript.pdf
+|   +- extdata/
+|      +- ltmData.csv
+|      +- data_def.csv
+
+```
+
+
+
