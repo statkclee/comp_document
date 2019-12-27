@@ -26,6 +26,17 @@ use_condaenv("anaconda3")
 # reticulate::repl_python()
 ```
 
+# 시작점 {#inception}
+
+Robert Gentleman과 Duncan Temple Lang이 2004년 발표한 논문에서 공식적인 시작점을 찾을 수 있다.[^duncan] [^robert]
+
+[^duncan]: "Statistical Analyses and Reproducible Research" Bioconductor Project Working Papers
+[^robert]: "Reproducible Research: A Bioinformatics Case Study" in Statistical Applications in Genetics and Molecular Biology
+
+> We introduce the concept of a compendium as both a container for the different elements that make up the 
+> document and its computations (i.e. text, code, data,...), and as a means for distributing, managing and 
+> updating the collection. - Gentleman, R. and Temple Lang, D. (2004)
+
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </style>
@@ -83,4 +94,7 @@ R 프로젝트, R 팩키지, 개요서(compendium)가 서로 동일한 목표를
 * 지속 개발/지속 배포: Continuous integration (Travis-CI)
 * [goodpractice](https://github.com/MangoTheCat/goodpractice)로 자동화된 코드리뷰: Automatic code review with goodpractice
 * [pkgdown](https://github.com/r-lib/pkgdown)으로 프로젝트 웹사이트 제작: Easily create project websites with pkgdown
+
+# 시작이 반이다 {#start-small}
+
 

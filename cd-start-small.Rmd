@@ -1,0 +1,451 @@
+---
+layout: page
+title: "Computational Documents"
+subtitle: "시작이 반이다 - `start small`"
+author:
+    name: xwMOOC
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+use_condaenv("anaconda3")
+# reticulate::repl_python()
+```
+
+# 간단한 사례 [^simple-conpendium] {#very-simple-case}
+
+[^simple-conpendium]: [GitHub, `duffymeg/BroodParasiteDescription`](https://github.com/duffymeg/BroodParasiteDescription)
+
+작게 시작하는 가장 간단한 방식으로 아래와 같이 프로젝트를 구성할 수 있다.
+즉, 데이터를 `data/` 폴더에 두고 분석 스크립트는 `analysis/` 폴더에 넣어 둔다. `README.md` 파일에 프로젝트에 대한 개요를 둔다. `DESCRIPTION` 파일에 프로젝트 메타 데이터와 의존성을 명기한다. 
+
+```{r compendium-simple, eval = FALSE}
+project
+|- DESCRIPTION          # project metadata and dependencies 
+|- README.md            # top-level description of content and guide to users
+|
+|- data/                # raw data, not changed once created
+|  +- my_data.csv       # data files in open formats such as TXT, CSV, TSV, etc.
+|
+|- analysis/            # any programmatic code 
+|  +- my_scripts.R      # R code used to analyse and visualise data 
+```
+
+
+# 논문 프로젝트 분해 {#decompse-simple-cd}
+
+[BroodParasiteDescription: First release of Bp code](https://zenodo.org/record/17804#.XgVP8hczZTY) 논문을 구성하는 분석 코드에 대한 프로젝트 `BroodParasiteDescription`를 살펴보자.
+
+논문에 사용된 R 코드와 데이터에 대한 프로젝트 개요는 다음과 같다.
+
+```{r compendium-simple-paper, eval = FALSE}
+project
+|- DESCRIPTION
+|- README.md  
+|- Metadata.txt
+|
+|- data/                
+|   +- 2014ParasiteSurveyJustBrood.csv
+|   +- CedarBPLifeTable2014.csv
+|   +- NorthBPLifeTable2013.txt
+|   +- NorthBPLifeTable2014.csv|
+|- analysis/
+|   +- CodeforBPpaper.R
+```
+
+
+## `README.md` {#simple-cd-readme}
+
+README 파일을 마크다운으로 간략히 기술한다.
+
+```{r compendium-simple-readme, eval = FALSE}
+# BroodParasiteDescription
+Code and data associated with Bp description manuscript
+https://zenodo.org/badge/doi/10.5281/zenodo.17804.svg
+```
+
+## `DESCRIPTION` {#simple-cd-description}
+
+`DESCRIPTION` 파일에 팩키지 제작에 필요한 메타 정보와 R 버전, 의존성이 있는 팩키지 내용을 기술한다.
+
+```{r compendium-simple-description, eval = FALSE}
+Package: BroodParasiteDescription
+Title: Brood Parasite Description 
+Version: 0.0.0.9000
+Authors@R: person("Meghan", "Duffy", email = "duffymeg@umich.edu", role = c("aut", "cre"))
+Description: Code and data associated with Duffy, James, and Longworth Applied and Environmental Microbiology paper describing the ecology, virulence, and phylogeny of a brood parasite of Daphnia, Blastulidium paedophthorum; http://dx.doi.org/10.5281/zenodo.17804
+Depends: R (>= 3.2.0),
+    survival,
+    stringr,
+    plyr,
+    ggplot2,
+    coin,
+    reshape2,
+    scales,
+    dplyr,
+    grid
+License: Unknown 
+```
+
+## `Metadata.txt` {#simple-cd-metadata}
+
+`Metadata.txt` 파일에 `data/` 폴더에 포함된 모든 원본 데이터(raw data)에 대한 설명을 기술한다. 
+
+```{r metadata-txt, eval = FALSE}
+Info on Data Files
+
+2014ParasiteSurveyJustBrood 
+This file contains the data for all host species (“Species”), Dates (also converted to Julian Day in both YEARDAY and DAY formats), the lake (“Lake”), the total number of animals scanned for infection (“Total”), the proportion of the entire population infected with Bp (“PropBrood”), the proportion of adult females (asexual and sexual) infected with Bp (“PropAdBrood), and the proportion of asexual adult females infected with Bp (“PropAsexAdBrood”). 
+
+NorthBPLifeTable2013
+This was done on just Daphnia dentifera, collected from North Lake in 2013 (see methods in text for more information). Hosts were infected or uninfected (“Treatment”). The file also includes the replicate (“Rep”), the day on which an animal died (“Day.Death”). If an individual survived to the end of the experiment, the “Censored” value is 0, and Day.Death=36. If the animal died prior to the end of the experiment, Censored=1. (See Crawley The R Book Edition 1 page 801 for more.) “Sum.Offspring” gives the total reproduction for each individual over the course of the experiment. Did.Clear=1 indicates that an animal was initially infected but then cleared infection. 
+
+NorthBPLifeTable2014
+This life table used Daphnia collected from North Lake in 2014 (see methods in text for more information). Two host species were used, D. dentifera and D. retrocurva. “Treatment” gives host species and infection status. All other columns are as for NorthBPLifeTable2013.
+
+CedarBPLifeTable2014
+This life table used Daphnia collected from Cedar Lake in 2014 (see methods in text for more information). All other columns are as for NorthBPLifeTable2014.
+```
+
+
+## `data/` 폴더 {#simple-cd-data}
+
+`data/` 폴더에는 분석 프로젝트에 사용된 모든 원본 파일들이 저장된다.
+
+```{r cd-simple-data, eval= FALSE}
+data/	
+|- 2014ParasiteSurveyJustBrood.csv
+|- CedarBPLifeTable2014.csv
+|- NorthBPLifeTable2013.txt
+|- NorthBPLifeTable2014.csv
+```
+
+## `analysis/` 폴더 {#simple-cd-code}
+
+원본데이터를 가지고 분석에 사용된 코드를 기술한다.
+
+```{r simple-cd-code, eval = FALSE}
+#=============================================================================================================#
+# Script created by Meghan Duffy, duffymeg@umich.edu
+# Script created in version R 3.1.2 
+# This script is for analyzing data related to the Duffy et al. paper re-describing
+# the Daphnia brood parasite Blastulidium paedophthorum (Bp)
+#=============================================================================================================#
+
+# Set working directory
+#use line below if working on pc
+# setwd("C:/Users/duffymeg/Box Sync/Parasites/BroodParasite/CodeforDuffyetalBPpaper")
+#use line below if working on mac
+
+# load all data
+# North Fall 2013 life table
+brooddataNorth2013 <- read.table("data/NorthBPLifeTable2013.txt", header=TRUE, sep="\t", na.strings="?", dec=".", strip.white=TRUE)
+# Now moving on to Fall 2014 data 
+# North Lake:
+brooddataNorth2014 <- read.csv("data/NorthBPLifeTable2014.csv", header=TRUE, na.strings="?", dec=".", strip.white=TRUE)
+brooddataNorth2014dentifera <- subset(brooddataNorth2014,Treatment=="Infected Dent" | Treatment=="Uninfected Dent")
+brooddataNorth2014retrocurva <- subset(brooddataNorth2014,Treatment=="Infected Retro" | Treatment=="Uninfected Retro")
+# Cedar Lake:
+brooddataCedar2014 <- read.csv("data/CedarBPLifeTable2014.csv", header=TRUE, na.strings="?", dec=".", strip.white=TRUE)
+brooddataCedar2014dentifera <- subset(brooddataCedar2014,Treatment=="Infected Dent" | Treatment=="Uninfected Dent")
+brooddataCedar2014retrocurva <- subset(brooddataCedar2014,Treatment=="Infected Retro" | Treatment=="Uninfected Retro")
+
+# Survival analyses
+library(survival)
+#Note "Censored" column is whether or not the animal died before experimental takedown 1= yes, it died during the experiment, 0 = no, it survived until the end
+
+# North 2013 data:
+model1 <- survfit(Surv(brooddataNorth2013$Day.Death, brooddataNorth2013$Censored) ~ brooddataNorth2013$Treatment)
+plot(model1, lty=c(5,1),lwd=3)
+
+tapply(brooddataNorth2013$Day.Death,brooddataNorth2013$Treatment,mean,na.rm=TRUE)
+
+# Cox's proportional hazard model 
+coxfit1 <- coxph(Surv(brooddataNorth2013$Day.Death, brooddataNorth2013$Censored) ~ brooddataNorth2013$Treatment)  
+summary(coxfit1)   
+
+# North 2014 dentifera data:
+model2 <- survfit(Surv(brooddataNorth2014dentifera$Day.Death, brooddataNorth2014dentifera$Censored) ~ brooddataNorth2014dentifera$Treatment)
+plot(model2, lty=c(5,1),lwd=3)
+
+tapply(brooddataNorth2014dentifera$Day.Death,brooddataNorth2014dentifera$Treatment,mean,na.rm=TRUE)
+
+coxfit2 <- coxph(Surv(brooddataNorth2014dentifera$Day.Death, brooddataNorth2014dentifera$Censored) ~ brooddataNorth2014dentifera$Treatment)  
+summary(coxfit2)   
+
+# North 2014 retrocurva data:
+model3 <- survfit(Surv(brooddataNorth2014retrocurva$Day.Death, brooddataNorth2014retrocurva$Censored) ~ brooddataNorth2014retrocurva$Treatment)
+plot(model3, lty=c(5,1),lwd=3)
+
+tapply(brooddataNorth2014retrocurva$Day.Death,brooddataNorth2014retrocurva$Treatment,mean,na.rm=TRUE)
+
+coxfit3 <- coxph(Surv(brooddataNorth2014retrocurva$Day.Death, brooddataNorth2014retrocurva$Censored) ~ brooddataNorth2014retrocurva$Treatment)  
+summary(coxfit3)   
+
+# Cedar 2014 dentifera data:
+model4 <- survfit(Surv(brooddataCedar2014dentifera$Day.Death, brooddataCedar2014dentifera$Censored) ~ brooddataCedar2014dentifera$Treatment)
+plot(model4, lty=c(1,5),lwd=3)
+
+tapply(brooddataCedar2014dentifera$Day.Death,brooddataCedar2014dentifera$Treatment,mean,na.rm=TRUE)
+
+coxfit4 <- coxph(Surv(brooddataCedar2014dentifera$Day.Death, brooddataCedar2014dentifera$Censored) ~ brooddataCedar2014dentifera$Treatment)  
+summary(coxfit4)   
+
+# Cedar 2014 retrocurva data:
+model5 <- survfit(Surv(brooddataCedar2014retrocurva$Day.Death, brooddataCedar2014retrocurva$Censored) ~ brooddataCedar2014retrocurva$Treatment)
+plot(model5, lty=c(5,1),lwd=3)
+
+tapply(brooddataCedar2014retrocurva$Day.Death,brooddataCedar2014retrocurva$Treatment,mean,na.rm=TRUE)
+
+coxfit5 <- coxph(Surv(brooddataCedar2014retrocurva$Day.Death, brooddataCedar2014retrocurva$Censored) ~ brooddataCedar2014retrocurva$Treatment)  
+summary(coxfit5)  
+
+
+# One big figure with all the survival plots:
+par(mfrow=c(3,2))
+plot(model1, lty=c(1,1),lwd=3, col=c("gray","black"))
+plot(model1, lty=c(1,1),lwd=3, col=c("gray","black")) # placeholder; will delete when export
+plot(model2, lty=c(1,1),lwd=3, col=c("gray","black"))
+plot(model3, lty=c(1,1),lwd=3, col=c("gray","black"))
+plot(model4, lty=c(1,1),lwd=3, col=c("gray","black"))
+plot(model5, lty=c(1,1),lwd=3, col=c("gray","black"))
+
+## Now combining all the data into one big dataset to plot reproduction:
+brooddataNorth2013$LakeYear <- "North2013"
+brooddataNorth2013$Host <- "dentifera"
+brooddataNorth2013$Infection <- brooddataNorth2013$Treatment
+
+library(stringr)
+library(plyr)
+
+list <- str_split(brooddataNorth2014$Treatment, " ", n = 2)
+df <- ldply(list)
+colnames(df) <- c("Infection", "Host")
+
+brooddataNorth2014$Infection <- df$Infection
+brooddataNorth2014$Host <- df$Host
+
+list <- str_split(brooddataCedar2014$Treatment, " ", n = 2)
+df <- ldply(list)
+colnames(df) <- c("Infection", "Host")
+
+brooddataCedar2014$Infection <- df$Infection
+brooddataCedar2014$Host <- df$Host
+
+brooddataNorth2014$LakeYear <- "North2014"
+brooddataCedar2014$LakeYear <- "Cedar2014"
+
+brooddataNorth2013$Other.Infect <- NULL
+
+allbrooddata <- rbind(brooddataNorth2013,brooddataNorth2014,brooddataCedar2014)
+
+allbrooddata$Host <- str_replace(allbrooddata$Host,"dentifera","Dent")
+
+allbrooddata$Dummy <- "Q"
+allbrooddata$Dummy[1:25] <- "A"
+allbrooddata$Dummy[26:58] <- "B"
+allbrooddata$Dummy[59:71] <- "C"
+allbrooddata$Dummy[72:85] <- "D"
+allbrooddata$Dummy[86:100] <- "G"
+allbrooddata$Dummy[101:115] <- "H"
+allbrooddata$Dummy[116:123] <- "E"
+allbrooddata$Dummy[124:133] <- "F"
+allbrooddata$Dummy[134:137] <- "I"
+allbrooddata$Dummy[138:147] <- "J"
+
+library(ggplot2)
+ggplot(allbrooddata, aes(x=Dummy, y=Sum.Offspring)) + 
+  geom_boxplot() + theme_bw() +
+  labs(x=" ", y=expression(paste("Total offspring"))) + theme(
+    axis.title.y = element_text(size=18,vjust=0.9),
+    axis.text.x = element_text(size=14),
+    axis.text.y = element_text(size=14)
+  ) 
+
+# now analyzing 
+#For North 2013
+#get mean reproduction of the two treatments
+tapply(brooddataNorth2013$Sum.Offspring,brooddataNorth2013$Treatment,mean,na.rm=TRUE)
+
+# non-parametric permutation test using the coin package:
+library(coin)
+
+# North 2013:
+oneway_test(Sum.Offspring ~ Treatment, data=brooddataNorth2013,
+            distribution=approximate(B=9999))
+
+#For North 2014
+#get mean reproduction of the two treatments
+tapply(brooddataNorth2014$Sum.Offspring,brooddataNorth2014$Treatment,mean,na.rm=TRUE)
+
+#test North 2014 dentifera using the coin package:
+oneway_test(Sum.Offspring ~ Treatment, data=brooddataNorth2014dentifera,
+            distribution=approximate(B=9999))
+
+#North 2014 retrocurva
+oneway_test(Sum.Offspring ~ Treatment, data=brooddataNorth2014retrocurva,
+            distribution=approximate(B=9999))
+
+#For Cedar 2014
+#get mean reproduction of the treatments
+tapply(brooddataCedar2014$Sum.Offspring,brooddataCedar2014$Treatment,mean,na.rm=TRUE)
+
+#test Cedar 2014 dentifera using the coin package:
+oneway_test(Sum.Offspring ~ Treatment, data=brooddataCedar2014dentifera,
+            distribution=approximate(B=9999))
+
+# test Cedar 2014 retrocurva:
+oneway_test(Sum.Offspring ~ Treatment, data=brooddataCedar2014retrocurva,
+            distribution=approximate(B=9999))
+
+
+# looking at recovery of infected hosts
+tapply(allbrooddata$Did.Clear,list(allbrooddata$LakeYear,allbrooddata$Host,allbrooddata$Infection),mean,na.rm=TRUE)
+tapply(allbrooddata$Did.Clear,list(allbrooddata$LakeYear,allbrooddata$Host,allbrooddata$Infection),sum,na.rm=TRUE)
+tapply(allbrooddata$Sum.Offspring,list(allbrooddata$LakeYear,allbrooddata$Host,allbrooddata$Infection,allbrooddata$Did.Clear),mean,na.rm=TRUE)
+
+#######################CODE FOR FIELD DATA ANALYSES#####################################
+library(reshape2)
+library(scales)
+
+parasitedata <- read.csv("data/2014ParasiteSurveyJustBrood.csv")
+
+colnames(parasitedata)
+
+#remove species-lake-date combinations where scanned fewer than 20 individuals of a given species
+parasitedata <- subset(parasitedata,Total>19)
+
+#remove ambigua and mendotae
+shortdata <- subset(parasitedata,!Species%in%c("Ambigua","Mendotae"))
+
+#format dates correctly
+shortdata <- mutate(shortdata,Date=as.Date(Date,format="%d-%b-%y"))
+
+shortdata$Lake <- str_replace(shortdata$Lake,"Little Appleton","LittleAppleton")
+shortdata$Lake <- factor(shortdata$Lake)
+shortdata$Lake2 <- shortdata$Lake
+shortdata$Lake2 <- mapvalues(shortdata$Lake2, from = c("Appleton", "Bishop", "Bruin", "Cedar", "CrookedP", "CrookedW", "Gosling", "LittleAppleton", "Mill", "North", "Pickerel", "Sullivan", "Walsh", "Whitmore", "Woodland"), to = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"))
+shortdata$Species <- factor(shortdata$Species)
+shortdata$Species2 <- shortdata$Species
+shortdata$Species2 <- mapvalues(shortdata$Species2, from = c("Ceriodaphnia", "Dentifera", "Dubia", "Parvula", "Pulicaria", "Retrocurva"), to = c("Cdu", "Dde", "Ddu", "Dpa", "Dpu", "Dre"))
+
+#Looking at proportion of dates where brood was present
+sum(shortdata$PropBrood!=0)/length(shortdata$PropBrood)
+
+library(dplyr)
+proppresent<-shortdata %>% group_by(Species2, Lake2) %>% summarize(prop = mean(PropBrood > 0), count = n())
+enoughdates <- subset(proppresent,count>4)
+enoughdates$perc <- enoughdates$prop*100
+summarypresent <- enoughdates %>% group_by(Species2) %>% summarize (minprop = min(prop),maxprop = max(prop),medprop=median(prop))
+summarypresentbylake <- enoughdates %>% group_by(Lake2) %>% summarize (minprop = min(prop),maxprop = max(prop),medprop=median(prop))
+
+summarypresent
+summarypresentbylake
+
+#Plotting presence/absence data:
+give.n <- function(x){
+  return(c(y = 95, label = length(x)))
+}
+
+panela <- ggplot(enoughdates, aes(x=Species2, y=perc)) + 
+  geom_boxplot() + theme_bw() + 
+  stat_summary(fun.data = give.n, geom = "text") + 
+  labs(y="Percent of sampling\ndates present") + theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_text(size=16,vjust=-1.9),
+    axis.text.x = element_blank(),
+    axis.text.y = element_text(size=14)
+  ) 
+
+panelb <- ggplot(enoughdates, aes(x=Lake2, y=perc)) + 
+  geom_boxplot() + theme_bw() + 
+  stat_summary(fun.data = give.n, geom = "text") + theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank()
+  ) 
+
+#Plotting maxima
+MaxAdBrood <- ddply(shortdata,.(Species2,Lake2),summarise,max.adbrood= max(PropAdBrood, na.rm = TRUE))
+MaxAsexAdBrood <- ddply(shortdata,.(Species2,Lake2),summarise,max.asexadbrood= max(PropAsexAdBrood, na.rm = TRUE))
+MaxBrood <- ddply(shortdata,.(Species2,Lake2),summarise,max.brood= max(PropBrood, na.rm = TRUE))
+MaxAdBrood$max.percadbrood <- MaxAdBrood$max.adbrood*100
+MaxAsexAdBrood$max.percasexadbrood <- MaxAsexAdBrood$max.asexadbrood*100
+MaxBrood$max.percbrood <- MaxBrood$max.brood*100
+
+#updating give.n function so that the output is at the right point on the next set of panels
+give.n <- function(x){
+  return(c(y = 9.5, label = length(x)))
+}
+
+panelc <- ggplot(MaxBrood, aes(x=Species2, y=max.percbrood)) + 
+  geom_boxplot() + theme_bw() + 
+  stat_summary(fun.data = give.n, geom = "text") +
+  labs(y=expression(paste("Maximum\nprevalence (%)"))) + theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_text(size=16),
+    axis.text.x = element_blank(),
+    axis.text.y = element_text(size=14)
+  ) 
+
+paneld <- ggplot(MaxBrood, aes(x=Lake2, y=max.percbrood)) + 
+  geom_boxplot() + theme_bw() + 
+  stat_summary(fun.data = give.n, geom = "text") + theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank()
+  ) 
+
+#updating give.n function so that the output is at the right point on the next set of panels
+give.n <- function(x){
+  return(c(y = 21.5, label = length(x)))
+}
+
+panele <- ggplot(MaxAsexAdBrood, aes(x=Species2, y=max.percasexadbrood)) + 
+  geom_boxplot() + theme_bw() +
+  stat_summary(fun.data = give.n, geom = "text") +
+  labs(x="Host species", y=expression(paste("Maximum prevalence in\nasexual adults (%)"))) + theme(
+    axis.title.x = element_text(size=16,vjust=-0.35),
+    axis.title.y = element_text(size=16,vjust=0.9),
+    axis.text.x = element_text(size=14),
+    axis.text.y = element_text(size=14)
+  ) 
+
+panelf <- ggplot(MaxAsexAdBrood, aes(x=Lake2, y=max.percasexadbrood)) + 
+  geom_boxplot() + theme_bw() +
+  stat_summary(fun.data = give.n, geom = "text") +
+  labs(x="Lake") + theme(
+    axis.title.x = element_text(size=16,vjust=-0.35),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(size=14),
+    axis.text.y = element_blank()
+  ) 
+
+library(grid)
+grid.draw(rbind(ggplotGrob(panela),ggplotGrob(panelc),ggplotGrob(panele),size="last"))
+grid.draw(rbind(ggplotGrob(panelb),ggplotGrob(paneld),ggplotGrob(panelf),size="last"))
+
+
+tapply(MaxBrood$max.brood,list(MaxBrood$Species),max,na.rm=TRUE)
+tapply(MaxAsexAdBrood$max.asexadbrood,list(MaxBrood$Species),max,na.rm=TRUE)
+
+tapply(MaxBrood$max.brood,list(MaxBrood$Lake),max,na.rm=TRUE)
+tapply(MaxAsexAdBrood$max.asexadbrood,list(MaxBrood$Lake),max,na.rm=TRUE)
+```
+
