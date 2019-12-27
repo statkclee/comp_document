@@ -70,16 +70,17 @@ R 프로젝트, R 팩키지, 개요서(compendium)가 서로 동일한 목표를
     - `git`을 사용해서 R 코드와 Rmd 문서 파일은 버전 제어를 해야 함.
     
 ```{r project-organization, eval=FALSE}
-+ project/
-    + data-raw/   # 원본 데이터
-    + data/       # (R 스크립트로부터 생성된) 정제된 데이터
-    + R/          # 함수(Functions)
-    + man/        # (Roxygen으로 생성된) 함수 문서(Function documentation)
-    + tests/      # 테스트 (functions, Rmd)
-    + vignettes/  # (Rmd로 작성된) 분석결과, 원고, 보고서 등
-    + Makefile    # 자동화 시키는 마스터 스크립트
-    + DESCRIPTION # 메타데이터와 의존성
-    + README      # 프로젝트 개요서
+project/
+|-+ data-raw/   # 원본 데이터
+|-+ data/       # (R 스크립트로부터 생성된) 정제된 데이터
+|-+ R/          # 함수(Functions)
+|-+ man/        # (Roxygen으로 생성된) 함수 문서(Function documentation)
+|-+ tests/      # 테스트 (functions, Rmd)
+|-+ vignettes/  # (Rmd로 작성된) 분석결과, 원고, 보고서 등
+|
+|- Makefile    # 자동화 시키는 마스터 스크립트
+|- DESCRIPTION # 메타데이터와 의존성
+|- README      # 프로젝트 개요서
 ```
 
 상기와 같이 개요서를 R 팩키지를 통해 구현하게 되면 어떤 점이 좋은지 살펴보자.
