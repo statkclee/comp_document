@@ -7,11 +7,10 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
-<meta name="date" content="2019-12-27" />
+<meta name="date" content="2019-12-28" />
 
 <title>Computational Documents</title>
 
@@ -69,6 +68,8 @@ overflow: auto;
 margin-left: 2%;
 position: fixed;
 border: 1px solid #ccc;
+webkit-border-radius: 6px;
+moz-border-radius: 6px;
 border-radius: 6px;
 }
 
@@ -96,14 +97,9 @@ font-size: 12px;
 .tocify-subheader .tocify-subheader {
 text-indent: 30px;
 }
+
 .tocify-subheader .tocify-subheader .tocify-subheader {
 text-indent: 40px;
-}
-.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
-text-indent: 50px;
-}
-.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
-text-indent: 60px;
 }
 
 .tocify .tocify-item > a, .tocify .nav-list .nav-header {
@@ -507,13 +503,13 @@ float: none;
 
           item.append($("<a/>", {
 
-            "html": self.html()
+            "text": self.text()
 
           }));
 
         } else {
 
-          item.html(self.html());
+          item.text(self.text());
 
         }
 
@@ -1412,7 +1408,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -1543,12 +1539,56 @@ summary {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <style type="text/css">
 
@@ -1597,6 +1637,8 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -1643,7 +1685,7 @@ div.tocify {
 <h1 class="title toc-ignore">Computational Documents</h1>
 <h3 class="subtitle">개요서(Compendium) 시작하며</h3>
 <h4 class="author">xwMOOC</h4>
-<h4 class="date">2019-12-27</h4>
+<h4 class="date">2019-12-28</h4>
 
 </div>
 
@@ -1716,9 +1758,8 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <li><a href="https://github.com/MangoTheCat/goodpractice">goodpractice</a>로 자동화된 코드리뷰: Automatic code review with goodpractice</li>
 <li><a href="https://github.com/r-lib/pkgdown">pkgdown</a>으로 프로젝트 웹사이트 제작: Easily create project websites with pkgdown</li>
 </ul>
-</div>
-<div id="start-small" class="section level1">
-<h1><span class="header-section-number">4</span> 시작이 반이다</h1>
+<div id="start-small" class="section level2">
+<h2><span class="header-section-number">3.1</span> 시작이 반이다</h2>
 <ul>
 <li><a href="cd-start-small.html">시작이 반이다 - <code>start small</code></a></li>
 </ul>
@@ -1735,8 +1776,8 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="er">|</span><span class="op">-</span><span class="st"> </span>analysis<span class="op">/</span></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"><span class="er">|</span><span class="st">   </span><span class="op">+-</span><span class="st"> </span>CodeforBPpaper.R</a></code></pre></div>
 </div>
-<div id="pkg-development" class="section level1">
-<h1><span class="header-section-number">5</span> 팩키지 개발</h1>
+<div id="pkg-development" class="section level2">
+<h2><span class="header-section-number">3.2</span> 팩키지 개발</h2>
 <ul>
 <li><a href="cd-pkg-development.html">팩키지 개발</a></li>
 </ul>
@@ -1781,8 +1822,8 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <a class="sourceLine" id="cb3-39" data-line-number="39"><span class="er">|</span><span class="st">      </span><span class="op">+-</span><span class="st"> </span>ltmData.csv</a>
 <a class="sourceLine" id="cb3-40" data-line-number="40"><span class="op">|</span><span class="st">      </span><span class="op">+-</span><span class="st"> </span>data_def.csv</a></code></pre></div>
 </div>
-<div id="cicd-docker" class="section level1">
-<h1><span class="header-section-number">6</span> CI/CD와 도커</h1>
+<div id="cicd-docker" class="section level2">
+<h2><span class="header-section-number">3.3</span> CI/CD와 도커</h2>
 <p><code>Dockerfile</code> 파일을 추가하여 환경도 재현가능하게 만들 수 있고, <code>.travis.yml</code>을 추가하여 CI/CD 환경도 구축할 수 있다. <code>tests/</code>를 추가하여 테스트 주도 개발(test-driven development, TDD)를 시도할 수 있고, 이를 통해 수작업 검증을 자동화하여 생산성과 품질을 대폭 향상시킬 수도 있다.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">project</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="op">|-</span><span class="st"> </span>DESCRIPTION          <span class="co"># project metadata and dependencies </span></a>
@@ -1809,8 +1850,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <a class="sourceLine" id="cb4-23" data-line-number="23"><span class="er">|</span><span class="op">-</span><span class="st"> </span>tests<span class="op">/</span></a>
 <a class="sourceLine" id="cb4-24" data-line-number="24"><span class="er">|</span><span class="st">  </span><span class="op">+-</span><span class="st"> </span>testthat.R        <span class="co"># unit tests of R functions to ensure they perform as expected</span></a></code></pre></div>
 </div>
+</div>
 <div id="case-by-case-template" class="section level1">
-<h1><span class="header-section-number">7</span> 각 사례별 템플릿</h1>
+<h1><span class="header-section-number">4</span> 각 사례별 템플릿</h1>
 <ul>
 <li><a href="https://github.com/jhollist/manuscriptPackage">Jeff Hollister’s manuscriptPackage</a></li>
 <li><a href="https://github.com/cboettig/template">Carl Boettiger’s template</a></li>
@@ -1822,7 +1864,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </ul>
 </div>
 <div id="rrtools-workshop" class="section level1">
-<h1><span class="header-section-number">8</span> <code>rrtoools</code> 워크샵</h1>
+<h1><span class="header-section-number">5</span> <code>rrtoools</code> 워크샵</h1>
 <ul>
 <li><a href="https://annakrystalli.me/rrtools-repro-research/index.html">“Reproducible Research in R with rrtools”, 31st October, Northwest Universities R Day</a>
 <ul>
@@ -1861,54 +1903,6 @@ $(document).ready(function () {
 });
 
 
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -108,7 +108,7 @@ project/
 * [goodpractice](https://github.com/MangoTheCat/goodpractice)로 자동화된 코드리뷰: Automatic code review with goodpractice
 * [pkgdown](https://github.com/r-lib/pkgdown)으로 프로젝트 웹사이트 제작: Easily create project websites with pkgdown
 
-# 시작이 반이다 {#start-small}
+## 시작이 반이다 {#start-small}
 
 - [시작이 반이다 - `start small`](cd-start-small.html)
 
@@ -127,7 +127,7 @@ project
 |   +- CodeforBPpaper.R
 ```
 
-# 팩키지 개발 {#pkg-development}
+## 팩키지 개발 {#pkg-development}
 
 - [팩키지 개발](cd-pkg-development.html)
 
@@ -177,7 +177,7 @@ project
 ```
 
 
-# CI/CD와 도커 {#cicd-docker}
+## CI/CD와 도커 {#cicd-docker}
 
 `Dockerfile` 파일을 추가하여 환경도 재현가능하게 만들 수 있고, `.travis.yml`을 추가하여 CI/CD 환경도 구축할 수 있다. `tests/`를 추가하여 테스트 주도 개발(test-driven development, TDD)를 시도할 수 있고, 이를 통해 수작업 검증을 자동화하여 생산성과 품질을 대폭 향상시킬 수도 있다.
 
