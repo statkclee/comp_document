@@ -49,6 +49,7 @@ subtitle: 데이터 과학 문서
     - [개요서(Compendium) 시작하며](cd_compendium.html)
     - [시작이 반이다 - `start small`](cd-start-small.html)
     - [팩키지 개발](cd-pkg-development.html)
+    - [윈도우즈 stat545 - `Makefile`](automation-makefile.html)
 1.  [데이터 과학 개발운영 아키텍처](devops-dev-vm-arch.html)
     * [객체 저장소 FTP 배포(Deployment)](devops-ftp-object-storage.html)
     * [개발운영(DevOps) 실습예제 - 컴퓨터 과학 언플러그드](devops-pracitce.html)
