@@ -50,6 +50,10 @@ subtitle: 데이터 과학 문서
     - [시작이 반이다 - `start small`](cd-start-small.html)
     - [팩키지 개발](cd-pkg-development.html)
     - [윈도우즈 stat545 - `Makefile`](automation-makefile.html)
+    - **트위터 보고서**
+        - R 마크다운 보고서: [다양한 데이터 가져오기 - "트위터 데이터 과학"](https://statkclee.github.io/ingest-data/ingest-twitter-data-science.html)
+        - `Makefile` 자동화 보고서: [Computational Documents - "Makefile - PDF, HTML, DOCX"](compendium.html)
+            - [GitHub: Compendium 301](https://github.com/statkclee/compendium_301)
 1.  [데이터 과학 개발운영 아키텍처](devops-dev-vm-arch.html)
     * [객체 저장소 FTP 배포(Deployment)](devops-ftp-object-storage.html)
     * [개발운영(DevOps) 실습예제 - 컴퓨터 과학 언플러그드](devops-pracitce.html)
