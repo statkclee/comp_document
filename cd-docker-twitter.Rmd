@@ -1,0 +1,42 @@
+---
+layout: page
+title: "Computational Documents"
+subtitle: "`rocker` 도커 컨테이너"
+author:
+    name: xwMOOC
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+use_condaenv("anaconda3")
+# reticulate::repl_python()
+```
+
+# 도커 교재 {#prerequisite-docker}
+
+- [R 도커 - "재현가능한 과학연구를 위한 도커 학습교재"](http://statkclee.github.io/r-docker/)
+    - [도커 설치](http://statkclee.github.io/r-docker/00-install.html)
+    - [도커는 무엇이고 왜 사용하나](http://statkclee.github.io/r-docker/01-what-and-why.html)
+    - [도커 실행](http://statkclee.github.io/r-docker/02-Launching-Docker.html)
+    - [도커 이미지 생성 - 팩키지 설치 포함](http://statkclee.github.io/r-docker/03-install-packages.html)
+    - [도커허브(Dockerhub)](http://statkclee.github.io/r-docker/04-Dockerhub.html)
+    - [도커파일(Dockerfiles)](http://statkclee.github.io/r-docker/05-dockerfiles.html)
+    - [분석결과 공유](http://statkclee.github.io/r-docker/06-Sharing-all-your-analysis.html)
+
+
+
+
