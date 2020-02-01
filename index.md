@@ -55,6 +55,7 @@ subtitle: 데이터 과학 문서
         - `Makefile` 자동화 보고서: [Computational Documents - "Makefile - PDF, HTML, DOCX"](compendium.html)
             - [GitHub: Compendium 301](https://github.com/statkclee/compendium_301)
     - [`rocker` 도커 컨테이너](cd-docker-rstudio.html)
+    - [`rocker` 도커 컨테이너 - `Dockerfile` & `Docker Hub`](cd-docker-rstudio-dockerfile.html)
 1.  [데이터 과학 개발운영 아키텍처](devops-dev-vm-arch.html)
     * [객체 저장소 FTP 배포(Deployment)](devops-ftp-object-storage.html)
     * [개발운영(DevOps) 실습예제 - 컴퓨터 과학 언플러그드](devops-pracitce.html)
