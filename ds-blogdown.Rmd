@@ -1,20 +1,53 @@
 ---
 layout: page
-title: 데이터 과학을 위한 저작도구
-subtitle: 블로그 - blogdown
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "블로그 - `blogdown`"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     toc: yes
-mainfont: NanumGothic
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
 ---
 
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
 
-```{r, include=FALSE}
-source("tools/chunk-options.R") 
+library(reticulate)
+# use_condaenv("anaconda3")
+# reticulate::repl_python()
 ```
 
+# 왜 `blogdown`을 사용해야 하나? [^arm-blog] {-#why-blogdown}
 
-## 1. `blogdown` 팩키지 {#blogdown}
+[^arm-blog]: [`rstudio::conf 2019`, "Advanced R Markdown Workshop"](https://arm.rbind.io/)
+
+`WordPress`, `Tumblr`, `Medium.com`, `Blogger.com`은 R 마크다운 지원이 전무하고, 수학 수식도 없거나 지원도 그다지 만족스럽지 않다. 
+이와 비교하여 휴고(Hugo)를 사용할 경우 모든 웹사이트를 구성하는 파일이 정적 파일이라 PHP 혹은 데이터베이스도 필요없으며 로그인도 필요없고, 오프라인을 포함하여 어디에서나 잘 지원된다.
+특히 서버쪽에 컴퓨팅이 필요하지 않아 상당히 빠르고 CDN을 통해 속도도 매우 빠르다.
+
+데이터 사이언스 블로그를 만들어 인터넷에 퍼블리싱하기 위해서 다음과 같은 구성요소가 필요하다.
+
+1. Hugo: 정적 웹사이트 구축을 위해 필요한 프레임워크
+1. `blogdown`: Hugo를 R마크다운과 연결시켜 주는 역할
+1. GitHub: 버전 제어 및 소스 코드 관리
+1. Netlify: GitHub에서 변경내용을 빌드하고 배포는 물론이고 블로그를 호스팅하는 역할을 수행.  
+
+![데이터 사이언스 블로그 퍼블리싱 개요](fig/blogdown-hugo-netlify.png){#id .class width="100%"}
+
+# `blogdown` 팩키지  [^arm-blogdown] [^blogdown-allison] {#blogdown}
+
+[^blogdown-allison]: [Alison Hill (Jun 12, 2017), "Up & Running with blogdown"](https://alison.rbind.io/post/2017-06-12-up-and-running-with-blogdown/)
+
+[^arm-blogdown]: [Alison Hill | rstudio::conf | 2019-01-15, "Making Websites in R Markdown"](https://arm.rbind.io/slides/blogdown.html#1)
 
 [blogdown](https://github.com/rstudio/blogdown) 팩키지는 블로그 작성은 [R 마크다운](http://rmarkdown.rstudio.com/)에 기반하고 있고,
 [휴고(Hugo)](https://gohugo.io/)라는 정적 웹사이트 생성 도구를 활용하여 데이터 과학 블로그 작성과 배포 공유를 수월하게 하는 목표로 개발되었다.
@@ -23,14 +56,26 @@ source("tools/chunk-options.R")
 - [blogdown 문서 - Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/)
 - [GitHub - blogdown](https://github.com/rstudio/blogdown)
 
-<img src="fig/blogdown-overview.png" alt="blogdown 개요" width="57%" />
+![`blogdown` 개요](fig/blogdown-overview.png){#id .class width="77%"}
 
-## 2. 블로그 생성 {#build-blog}
+# 블로그 생성 {#build-blog}
 
 RStudio를 개발환경을 사용하는 것을 가정하면, R마크다운으로 블로그 콘텐츠를 작성하게 되고, 
 휴고를 활용하여 정적 웹사이트를 생성하게 된다. 정적 웹사이트는 단순히 생각하면 HTML과 CSS 파일 조합이다.
 
-### 1.1. `blogdown` 설치 {#install-blogdown}
+1. `blogdown` 작업의 시작은 `GitHub`에 저장소를 만드는 것부터 시작된다. 
+    - 예를 들어, <https://github.com/statkclee/github_blog>
+1. `Github` 저장소를 클로하여 로컬 컴퓨터에서 작업한다.
+1. `blogdown` 팩키지를 사용해서 휴고를 설치한 후, 블로그 사이트를 생성하고, 블로그 글을 작성한다.
+    - `install_hugo()`
+    - `new_site()`
+    - `new_post()`
+1. `netfify.com`웹사이트에 블로그 사이트를 배포한다.
+    - `GitHub` 저장소를 `netlify`사이트에 연결시켜 두면 로컬 컴퓨터에서 작성한 블로그 포스트를 `netlify` 블로그 호스팅 서버에서 빌드 및 배포가 되어 무척이나 편리하다.
+    
+![`blogdown` 작업흐름도](fig/blogdown-workflow.png){#id .class width="100%"}
+
+## `blogdown` 설치 {#install-blogdown}
 
 블로그다운을 `devtools::install_github("rstudio/blogdown")` 명령어를 통해 실행한다. 
 특히, 블로그다운은 R 마크다운으로 작성한 콘텐츠를 정적웹사이트 콘텐츠로 변환시키는데 휴고를 활용하기 때문에 
@@ -45,7 +90,7 @@ blogdown::install_hugo(force = TRUE)
 
 <img src="fig/blogdown-helloworld.png" alt="블로그다운 헬로월드" width="97%" />
 
-### 1.2. 블로그 헬로월드 {#blogdown-hello-world}
+## 블로그 헬로월드 {#blogdown-hello-world}
 
 RStudio를 R 통합개발도구로 사용하는 것을 가정하면 블로그 헬로월드를 생성하는 절차는 다음과 같다.
 
@@ -89,7 +134,7 @@ R마크다운으로 블로그를 작성하게 되면 휴고가 정적웹콘텐�
 
 <img src="fig/static-website-vs-dynamic-website.png" alt="동적, 정적 웹사이트" width="97%" />
 
-## 2. 정적 웹사이트와 동적 웹사이트 비교[^static-dynamic-comparison] {#static-web-vs-dynamic-web} 
+# 정적 웹사이트와 동적 웹사이트 비교[^static-dynamic-comparison] {#static-web-vs-dynamic-web} 
 
 [^static-dynamic-comparison]: [Website, https://www.javatpoint.com](https://www.javatpoint.com/website-static-vs-dynamic)
 
@@ -119,7 +164,7 @@ R마크다운으로 블로그를 작성하게 되면 휴고가 정적웹콘텐�
 | 많은 Plugin & 테마 지원       | 인기를 얻으면서 증가하고 있는 추세|
 
 
-## 3. 정적 웹콘텐츠 블로그 배포 [^blogdown-github] {#blog-deployment} 
+# 정적 웹콘텐츠 블로그 배포 [^blogdown-github] {#blog-deployment} 
 
 [^blogdown-github]: [Making a Website Using Blogdown, Hugo, and GitHub pages.](https://proquestionasker.github.io/blog/Making_Site/)
 
@@ -134,7 +179,7 @@ R마크다운으로 블로그를 작성하게 되면 휴고가 정적웹콘텐�
 
 <img src="fig/blogdown-deployment.png" alt="정적 웹콘텐츠 배포" width="97%" />
 
-### 3.1. PaaS 플랫폼 형태 - GitHub, Netlify
+## PaaS 플랫폼 형태 - GitHub, Netlify
 
 [Netlify](https://www.netlify.com/)에 대해서 `blogdown` 저자는 좋은 인상을 갖고 있는 듯 하다. 
 정적 웹사이트로 구축된 블로그 콘텐츠를 [Netlify](https://www.netlify.com/)에 설치하는 방법에 대해 나름 정성을 들여서 
@@ -146,7 +191,7 @@ R마크다운으로 블로그를 작성하게 되면 휴고가 정적웹콘텐�
 [GitHub](https://github.com/)도 유사한 방법이지만, 다소 복잡하다. 
 자세한 사항은 [Making a Website Using Blogdown, Hugo, and GitHub pages.](https://proquestionasker.github.io/blog/Making_Site/)를 참조한다.
 
-### 3.2. IDC 혹은 AWS 클라우드 배포 {#aws-blogdown-deployment}
+## IDC 혹은 AWS 클라우드 배포 {#aws-blogdown-deployment}
 
 자체 운영하는 IDC나 AWS 클라우드나 정적 웹사이트 블로그 콘텐츠를 배포하는 입장에서는 큰 차이는 없다.
 휴고를 통해 생성된 정적 웹콘텐츠가 `public/` 디렉토리에 모여있기 때문에,
@@ -166,3 +211,4 @@ main.css                                      100% 4307     4.2KB/s   00:00
 ...
 ...
 ```
+
