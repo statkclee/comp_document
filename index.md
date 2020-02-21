@@ -25,7 +25,7 @@ subtitle: 데이터 과학 문서
     * [마크다운 기초](http://statkclee.github.io/modern-scientific-authoring/02-markdown-kr.html)
     * [고급 마크다운](http://statkclee.github.io/modern-scientific-authoring/03-advanced-kr.html)
     * [R 마크다운 실무](rmarkdown-in-production.html)
-    * [이광춘, 주용우 (2020), "자동화에 따른 노동시간 변화 실증 분석", 한국디지털경영학회](automation-kasdba.html)
+    * [이광춘, 주용우 (2020), "자동화에 따른 노동시간 변화 분석", 한국디지털경영학회](automation-kasdba.html)
 1. **R**
     * [북다운(bookdown)](bookdown-intro.html)
         * [출판 자동화(DevOps)](bookdown-github-travis.html)
