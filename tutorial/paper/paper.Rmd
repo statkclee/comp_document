@@ -607,14 +607,18 @@ ai_comp_df %>%
 - [World Models](https://worldmodels.github.io/)
 - [Dylan's blog (June 06, 2018), "World Models applied to Sonic"](https://dylandjian.github.io/world-models/)
 
+# 참고문헌
 
-
-
-한글[참고 @brynjolfsson2014second}].
-\cite{Galyardt14mmm}.
-\ref{sec:1}
-
-한글  is best by~\cite{brynjolfsson2014second} 
+\cite{brynjolfsson2014second} 
+\cite{ford2015rise}
+\cite{kaplan2015humans}
+\cite{cummings2014man}
+\cite{brownlee_2019}
+\cite{chang_2017}
+\cite{ahlstrom_2019}
+\cite{wikipedia_2019}
+\cite{hui_2018}
+\cite{zdnet_2019}
 
 
 
