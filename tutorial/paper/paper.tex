@@ -300,6 +300,28 @@ Reserve Bank of ST. Louis} 웹사이트에서 API-KEY 발급받아
 인간의 어떤 영역은 자동화가 많이 진행되었고, 또 다른 영역은 자동화가
 진행되고 있거나, 어떤 영역은 거의 완전한 자동화가 진행된 부분도 있다.
 
+\begin{table}[H]
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{rl}
+\toprule
+자동화 수준 & 자동화 수준 설명\\
+\midrule
+\rowcolor{gray!6}  1 & 컴퓨터는 어떤 도움도 주고 있지 못함: 사람이 모든 결정을 해야하고 행동도 취해야 함\\
+2 & 컴퓨터가 대안이 될 수 있는 의사결정 목록과 행동목록을 제시함\\
+\rowcolor{gray!6}  3 & 선택지를 몇개로 줄여줌\\
+4 & 대안을 제시함\\
+\rowcolor{gray!6}  5 & 사람이 승인하면 제안된 것을 실행함.\\
+\addlinespace
+6 & 자동 실행하기 전에 사람에게 거부권을 행사할 시간을 부여함\\
+\rowcolor{gray!6}  7 & 자동으로 실행하고 나서, 필요할 때만 인간에게 통보함\\
+8 & 컴퓨터가 요청을 받을 때만 인간에게 통보함\\
+\rowcolor{gray!6}  9 & 컴퓨터가 결정을 내려야 될 때만, 인간에게 통보함\\
+10 & 인간을 배제하고, 컴퓨터가 모든 결정을 내리고 행동도 자율적으로 취함.\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
 \hypertarget{man-human-comparison}{%
 \subsection{사람과 기계 비교}\label{man-human-comparison}}
 
@@ -462,6 +484,14 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 것은 아니다. NHN에서 20년동안 학습한 바둑 프로그램 한돌과 2점 깔고 두는
 접바둑으로 마지막 대국을 남기고 평생을 함께 한 바둑을 놓으려고 한다.
 
+\hypertarget{uxcc38uxace0uxbb38uxd5cc}{%
+\section{참고문헌}\label{uxcc38uxace0uxbb38uxd5cc}}
+
+\cite{brynjolfsson2014second} \cite{ford2015rise}
+\cite{kaplan2015humans} \cite{cummings2014man} \cite{brownlee_2019}
+\cite{chang_2017} \cite{ahlstrom_2019} \cite{wikipedia_2019}
+\cite{hui_2018} \cite{zdnet_2019}
+
 \hypertarget{challenge-to-human}{%
 \section[기계에 대체되는 일자리]{\texorpdfstring{기계에 대체되는
 일자리\footnote{\href{https://medium.com/@jonathan_hui/gan-some-cool-applications-of-gans-4c9ecca35900}{Jonathan
@@ -472,35 +502,22 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 사람이 가지고 있는 오감(시각, 후각, 청각, 촉각, 미각) 중에서 시각을
 대부분의 사람들은 가장 중요한 감각이라고 꼽는데 이유는 아마도 감각기관을
 통해서 획득하는 정보의 90\% 이상이 시각을 통해서 얻어진다는 점에
-기인한다.
+기인한다. 이것이 의미하는 바는 그동안 기계에 대해 인간이 가지고 있는
+절대우위가 사실 시각지능에 기인한다는 점이다. 또한, 창작은 기계가 범접할
+수 없는 고유한 인간의 영역이라고 믿어졌지만, 생성적 적대 신경망라고
+번역으로 번역되는 \textbf{GAN(Generative Adversarial Network)}의
+등장으로 이 영역도 기계의 도적으로 새로운 인간의 응전이 요구되고 있다.
+GAN은 이안 굿펠로우(Ian Goodfellow)가 NIPS 학회에서 발표한 뒤로 딥러닝의
+대가인 얀 르쿤(Yann Lecun) 교수도 GAN을 최근 10년간 머신러닝 연구 중
+가장 혁신적인 아이디어로 극찬했다.
 
 \begin{figure}
-\hypertarget{id}{%
-\centering
-\includegraphics[width=0.5\textwidth,height=\textheight]{fig/sensory-visual.png}
-\caption{시각의 중요성 - 정보 처리 90\%이상}\label{id}
+
+{\centering \includegraphics[width=0.49\linewidth]{fig/generative-model} \includegraphics[width=0.49\linewidth]{fig/discriminative-model} 
+
 }
-\end{figure}
 
-\textbf{GAN(Generative Adversarial Network)}은 생성적 적대 신경망라고
-번역할 수 있다. 이안 굿펠로우(Ian Goodfellow)가 NIPS 학회에서 발표한
-뒤로 딥러닝의 대가인 얀 르쿤(Yann Lecun) 교수는 GAN을 최근 10년간
-머신러닝 연구 중 가장 혁신적인 아이디어로 극찬했다.
-
-\textbf{생성 모델링 과정}
-
-\begin{figure}
-\centering
-\includegraphics{fig/generative-model.png}
-\caption{생성 모델링 과정}
-\end{figure}
-
-\textbf{판별 모델링 과정}
-
-\begin{figure}
-\centering
-\includegraphics{fig/discriminative-model.png}
-\caption{판별 모델링 과정}
+\caption{GAN: 생성,판별 모델링 과정}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \hypertarget{challenge-to-human-paint}{%
@@ -597,14 +614,6 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
   \href{https://dylandjian.github.io/world-models/}{Dylan's blog (June
   06, 2018), ``World Models applied to Sonic''}
 \end{itemize}
-
-\hypertarget{uxcc38uxace0uxbb38uxd5cc}{%
-\section{참고문헌}\label{uxcc38uxace0uxbb38uxd5cc}}
-
-\cite{brynjolfsson2014second} \cite{ford2015rise}
-\cite{kaplan2015humans} \cite{cummings2014man} \cite{brownlee_2019}
-\cite{chang_2017} \cite{ahlstrom_2019} \cite{wikipedia_2019}
-\cite{hui_2018} \cite{zdnet_2019}
 
 \bibliographystyle{spbasic}
 \bibliography{bibliography.bib}
