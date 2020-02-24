@@ -141,10 +141,139 @@ Natural Language Processing) 기술의 발전에 힘입어 기사를 써주는 �
 \caption{세무 업무 변천사}\label{fig:unnamed-chunk-1}
 \end{figure}
 
+\hypertarget{challenge-to-human}{%
+\section[기계에 대체되는 일자리 ]{\texorpdfstring{기계에 대체되는 일자리
+\footnote{\href{https://medium.com/@jonathan_hui/gan-some-cool-applications-of-gans-4c9ecca35900}{Jonathan
+  Hui (2018), ``GAN -Some cool applications of GANs.''}}
+\footnote{\href{https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/}{Jason
+  Brownlee (June 14, 2019), ``18 Impressive Applications of Generative
+  Adversarial Networks (GANs)''}}}{기계에 대체되는 일자리  }}\label{challenge-to-human}}
+
+사람이 가지고 있는 오감(시각, 후각, 청각, 촉각, 미각) 중에서 시각을
+대부분의 사람들은 가장 중요한 감각이라고 꼽는데 이유는 아마도 감각기관을
+통해서 획득하는 정보의 90\% 이상이 시각을 통해서 얻어진다는 점에
+기인한다. 이것이 의미하는 바는 그동안 기계에 대해 인간이 가지고 있는
+절대우위가 사실 시각지능에 기인한다는 점이다. 또한, 창작은 기계가 범접할
+수 없는 고유한 인간의 영역이라고 믿어졌지만, 생성적 적대 신경망라고
+번역으로 번역되는 \textbf{GAN(Generative Adversarial Network)}의
+등장으로 이 영역도 기계의 도적으로 새로운 인간의 응전이 요구되고 있다.
+GAN은 이안 굿펠로우(Ian Goodfellow)가 NIPS 학회에서 발표한 뒤로 딥러닝의
+대가인 얀 르쿤(Yann Lecun) 교수도 GAN을 최근 10년간 머신러닝 연구 중
+가장 혁신적인 아이디어로 극찬했다.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.49\linewidth]{fig/generative-model} \includegraphics[width=0.49\linewidth]{fig/discriminative-model} 
+
+}
+
+\caption{GAN: 생성,판별 모델링 과정}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+그림을 그리는 것은 화가라는 전업 직업을 만들만큼 인간 고유의 영역으로
+생각되었으나 기계로부터 도전받는 가장 직관적인 설명이 가능한 분야중
+하나로 전락하고 말았다.
+\href{https://github.com/eriklindernoren/Keras-GAN}{Keras-GAN} GitHub
+사이트에는 \texttt{pix2pix}, \texttt{CycleGAN}을 포함한 다양한 시각적인
+사례를 살펴볼 수 있다. 이외에도 인간 시각지능과 관련된 분야로 다음을 들
+수 있다.
+
+\begin{itemize}
+\tightlist
+\item
+  이미지 생성(Image generation): GAN을 사용하여 이미지를 기계가 자동으로
+  생성할 수 있다. 예를 들어 자동 로고생성기 등.
+  \href{https://github.com/alex-sage/logo-gen}{GitHub:
+  alex-sage/logo-gen}
+\item
+  텍스트로 이미지 합성 (Text-to-image synthesis): 영화산업에서
+  시나리오가 있는 상태에서 텍스트를 기초로 하여 이미지를 자동 생성시킴.
+  \href{https://medium.com/datadriveninvestor/text-to-image-synthesis-6e5de1bf86ec}{Nikunj
+  Gupta, ``Text-to-Image Synthesis'', Medium},
+  \href{https://github.com/crisbodnar/text-to-image}{GitHub,
+  text-to-image}
+\item
+  얼굴 노화(Face Aging): 연애 산업과 보안산업에서 특히 유용한데 보안의
+  경우 얼굴 노화과정을 GAN을 통해 모델을 갖춤으로써 직원의 노화에 따라
+  신규 시스템으로 바꿀 필요가 없다.
+  \href{https://github.com/yuanzhaoYZ/Face-Aging-CAAE}{GitHub,
+  yuanzhaoYZ/Face-Aging-CAAE}
+\item
+  이미지를 다른 이미지로 번역(image-to-image-translation): 흑백이미지를
+  칼러 이미지로, 스케치 이미지를 색칠된 이미지로, 이미지를 피카소나
+  반고흐 스타일로 번역하는 것을 통해 시간을 상당히 줄일 수 있다.
+  \href{https://github.com/topics/image-to-image-translation}{GitHub
+  topics: image-to-image-translation}
+\item
+  고화질 이미지 생성(High-resolution image generation): 저해상도 카메라
+  이미지를 고화질 이미지로 변환.
+  \href{https://github.com/david-gpu/srez}{david-gpu/srez}
+\item
+  결측된 이미지 채워넣기(completing missing parts of images),
+  \href{https://github.com/topics/image-completion}{Github topic:
+  image-completion}: 이미지의 빠진 부분을 채워넣거나 불필요한 부분이
+  있다면 지워서 결측시킨 후에 이미지를 채워넣는다.
+\end{itemize}
+
+최근 딥러닝을 이용한 분야가 이미지에만 한정된 것이 아니라 자연스럽게
+사람들이 사용하는 자연어도 예외는 아니다. 인공지능을 활용한 저작
+관련하여 GitHub에는 별도 토픽으로 다룰 정도로 다양한 프로젝트가 진행되고
+있다. 텍스트를 생성하는 것말고도 기계가 음악도 만드는 것도 가능해졌는데,
+이런한 추세가 대세로 잡은 이면에는 빅데이터로 회자되는 데이터 축적의
+세대가 한동안 지속되면서 클라우드 기반위에서 이를 활용하여 모형을 만들
+수 있는 든든한 토대가 마련되었기 때문이다. 기계로 텍스트 생성도 가능하고
+그림도 생성하게 되고, 음악도 제작가능하게 되면 이를 조합한 연극/영화도
+당연히 가능하게 되었다.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://github.com/topics/text-generation}{GitHub topic:
+  text-generation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://github.com/Maluuba/newsqa}{Maluuba NewsQA dataset}
+  \item
+    \href{https://github.com/Maluuba/qgen-workshop}{Multi-task Question
+    and Answer Generation}
+  \end{itemize}
+\item
+  음악(music)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://salu133445.github.io/musegan/}{museGAN}
+  \item
+    \href{https://medium.com/@rachelchen_49210/generating-ambient-noise-from-wavenet-95aa7f0a8f77}{Rachel
+    Chen (Dec 13, 2017), ``Generating Ambient Music from WaveNet'',
+    Medium}
+  \item
+    \href{https://github.com/tensorflow/magenta}{tensorflow/magenta}
+  \item
+    \href{https://towardsdatascience.com/generating-pokemon-inspired-music-from-neural-networks-bc240014132}{Abraham
+    Khan(Dec 15, 2018), ``Generating Pokemon-Inspired Music from Neural
+    Networks'', Medium}
+  \end{itemize}
+\item
+  연극(play)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://worldmodels.github.io/}{World Models}
+  \item
+    \href{https://dylandjian.github.io/world-models/}{Dylan's blog (June
+    06, 2018), ``World Models applied to Sonic''}
+  \end{itemize}
+\end{itemize}
+
 \hypertarget{sec:1}{%
-\section[세무업무 자동화]{\texorpdfstring{세무업무
-자동화\footnote{\href{https://www.pcmag.com/roundup/167894/the-best-tax-software}{PC
-  매거진, ``The Best Tax Software for 2019''}}}{세무업무 자동화}}\label{sec:1}}
+\subsection[사례: 세무업무 자동화 ]{\texorpdfstring{사례: 세무업무
+자동화 \footnote{\href{https://www.pcmag.com/roundup/167894/the-best-tax-software}{PC
+  매거진, ``The Best Tax Software for 2019''}}}{사례: 세무업무 자동화 }}\label{sec:1}}
 
 \href{http://biz.newdaily.co.kr/site/data/html/2019/01/22/2019012200053.html}{등록세무사만
 1만3000명인데 합격자를 늘리다니\ldots{} 세무사회 불만 고조} 기사
@@ -172,8 +301,71 @@ Natural Language Processing) 기술의 발전에 힘입어 기사를 써주는 �
 (2018.10.10), ``세무사는 얼마나 벌까요'', Business Watch} 조사를 통해서
 세무사 1인당 매출과 연봉 추정을 살펴볼 수 있다.
 
+\hypertarget{play-go}{%
+\subsection{\texorpdfstring{이세돌 9단
+\cite{zdnet_2019}}{이세돌 9단 }}\label{play-go}}
+
+이창호를 누르고 바둑 최강자에 굴림해온 전설적인 이세돌 9단. 하지만
+알파고가 나온 이후 모든 것이 바뀌었다. 커제는 알파고와 대결에서 울기도
+했고, 5명의 프로기사가 때로 알파고에 덥비기도 했다. 그렇다고 결과가 바뀐
+것은 아니다. NHN에서 20년동안 학습한 바둑 프로그램 한돌과 2점 깔고 두는
+접바둑으로 마지막 대국을 남기고 평생을 함께 한 바둑을 놓려 놓았다.
+
+\hypertarget{wage-productivity-result}{%
+\section{일자리 변동의 결과}\label{wage-productivity-result}}
+
+\hypertarget{wage-productivity-gap}{%
+\subsection{생산성과 임금 격차}\label{wage-productivity-gap}}
+
+\href{https://www.epi.org/productivity-pay-gap/}{Economic Policy
+Institute, ``The Productivity - Pay Gap'', July 2019}
+
+생산성이 오르면 임금도 따라 오른 다는 것이 그동안의 믿음이었다. 하지만,
+생산성이 오른다고 임금도 따라 오르지 않는 현상이 1979년부터 심화되고
+있다. 이는 데이터\cite{bivens2014raising}를 통해서 확인되고 있으며
+시간당 임금은 1980년부터 별다른 변동이 없으나 순생산성은 1980년 이전과
+마찬가지로 꾸준히 오르고 있다. 따라서, 시간당 임금과 생산성의 차이는
+지속적으로 벌어지고 있다.
+
+\begin{center}\includegraphics[width=0.77\linewidth]{paper_files/figure-latex/productivity-gap-1} \end{center}
+
+\hypertarget{bowley-law}{%
+\subsection{보울리 법칙(Bowley's Law)}\label{bowley-law}}
+
+앞서 언급한 임금과 노동생산성 간 격차의 지속적 증가는 노동소득분배율
+(labour income share)의 감소로 연결되는데, 노동소득분배율은 총국민소득
+중 노동소득이 차지하는 비중으로 보울리의 법칙으로 불리며 경제성장이나
+발전과는 상관없이 기능적 소득분배((functional income distribution))가
+장기적으로 일정하다는 가설\cite{lee_2014}인데 이것이 최근 깨지고 있다.
+
+FRED Economic Data 중
+\href{https://fred.stlouisfed.org/series/W270RE1A156NBEA}{Shares of
+gross domestic income: Compensation of employees, paid: Wage and salary
+accruals: Disbursements: to persons (W270RE1A156NBEA)} 다운로드 받아
+시각화해보면 미국 노동소득분배율이 50\%대에서 40\%초반으로 훅 떨어진
+것이 시각적으로 확인된다. 이에 대해서 ILO 세계임금보고서와 다른
+\href{https://www.oecd.org/g20/topics/employment-and-social-policy/The-Labour-Share-in-G20-Economies.pdf}{OECD
+(2015), ``The Labour Share in G20 Economies''} 내용을 통해 다양한 원인을
+제시하고 있다. 산업구조 변화와 기술 변화, 세계화,
+금융화(financialization), 노동시장과 복지정책의 약화 등을 우선 꼽고
+있다.
+
+\begin{center}\includegraphics[width=0.77\linewidth]{paper_files/figure-latex/labor-share-us-1} \end{center}
+
+\hypertarget{labor-participation}{%
+\subsection{노동인력 참여율}\label{labor-participation}}
+
+\href{https://research.stlouisfed.org/docs/api/api_key.html}{Federal
+Reserve Bank of ST. Louis} 웹사이트에서 API-KEY 발급받아
+\texttt{usethis::edit\_r\_environ()} 명령어를 통해서 API 키를 잘
+관리별도 관리하고, \texttt{fredr} 팩키지를 활용하여 직접 웹사이트에서
+크롤링하는 번거러움없이 데이터를 받아 확인하면 노동참여율도 2000년을
+정점으로 하락한 것을 확인할 수 있다.
+
+\begin{center}\includegraphics[width=0.77\linewidth]{paper_files/figure-latex/fred-data-labor-participation-1} \end{center}
+
 \hypertarget{automation-job-statistics}{%
-\section{자동화와 직업 통계자료}\label{automation-job-statistics}}
+\section{일자리 변동 원인 - 산업}\label{automation-job-statistics}}
 
 급격한 자동화를 통한 직업변화를 하나의 요인만으로 살펴볼 수는 없다.
 대표적으로 그동안 세계화 전략을 통한 제조와 생산에 필요한 인력을
@@ -186,7 +378,11 @@ Natural Language Processing) 기술의 발전에 힘입어 기사를 써주는 �
 
 Kinetics consulting services / Automation Anywhere 자료에 의하면
 비정규직 인력아웃소싱 비용도 현재 시점에서 사무 로봇을 사용하게 되면
-더욱 줄일 수 있다는 조사결과를 제시하고 있다.
+더욱 줄일 수 있다는 조사결과를 제시하고 있다. 즉, 미국/영국/호주 등
+선진국은 업무지원 인력비용이 높아 이를 낮춰 경쟁력을 갖추고자 영어가
+가능하고 24시간 고객지원이 가능한 필리핀과 영국으로 대거 소싱전략을
+변경하였다. 이제 제3세계 업무지원 비용도 (사무)로봇을 활용하여 또 다른
+소싱 전략 변화를 실행에 옮기고 있다.
 
 \begin{figure}
 
@@ -194,14 +390,14 @@ Kinetics consulting services / Automation Anywhere 자료에 의하면
 
 }
 
-\caption{소싱 전략의 변화}\label{fig:unnamed-chunk-2}
+\caption{소싱 전략의 변화}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \hypertarget{industrial-robot}{%
-\subsection[산업용 로봇]{\texorpdfstring{산업용
-로봇\footnote{\href{https://www.visualcapitalist.com/industrial-robot-sales-sky-high/}{Ang
+\subsection[산업용 로봇 ]{\texorpdfstring{산업용 로봇
+\footnote{\href{https://www.visualcapitalist.com/industrial-robot-sales-sky-high/}{Ang
   Ahlstrom (May 24, 2018), ``Chart: Why Industrial Robot Sales are Sky
-  High''}}}{산업용 로봇}}\label{industrial-robot}}
+  High''}}}{산업용 로봇 }}\label{industrial-robot}}
 
 \href{https://www.visualcapitalist.com/industrial-robot-sales-sky-high/}{Ang
 Ahlstrom (May 24, 2018), ``Chart: Why Industrial Robot Sales are Sky
@@ -211,94 +407,19 @@ High''} 기사에 언급되었듯이 2010년을 기점으로 산업용 로봇은
 시각화해 보면 그 범위와 자동화를 통한 일자리 영향이 어느 정도될지 예측이
 가능하다.
 
-\begin{center}\includegraphics{paper_files/figure-latex/industrial-robot-1} \end{center}
-
-\hypertarget{wage-productivity-gap}{%
-\subsection{생산성과 임금 격차}\label{wage-productivity-gap}}
-
-\href{https://www.epi.org/productivity-pay-gap/}{Economic Policy
-Institute, ``The Productivity - Pay Gap'', July 2019}
-
-생산성이 오르면 임금도 따라 오른 다는 것이 그동안의 믿음이었다. 하지만,
-생산성이 오른다고 임금도 따라 오르지 않는 현상이 1979년부터 심화되고
-있다. 이를 데이터를 통해서 확인해보자.
-
-데이터 출처: EPI analysis of unpublished Total Economy Productivity data
-from Bureau of Labor Statistics (BLS) Labor Productivity and Costs
-program, wage data from the BLS Current Employment Statistics, BLS
-Employment Cost Trends, BLS Consumer Price Index, and Bureau of Economic
-Analysis National Income and Product Accounts Updated from Figure A in
-Raising America's Pay: Why It's Our Central Economic Policy Challenge
-(Bivens et al.~2014)
-
-\begin{center}\includegraphics{paper_files/figure-latex/productivity-gap-1} \end{center}
-
-\hypertarget{bowley-law}{%
-\subsection{보울리 법칙(Bowley's Law)}\label{bowley-law}}
-
-앞서 언급한 임금과 노동생산성 간 격차의 지속적 증가는 노동소득분배율
-(labour income share)의 감소로 연결되는데, 노동소득분배율은 총국민소득
-중 노동소득이 차지하는 비중으로 보울리의 법칙으로 불리며 경제성장이나
-발전과는 상관없이 기능적 소득분배((functional income distribution))가
-장기적으로 일정하다는 가설인데 이것이 최근 깨지고 있다.\footnote{\href{https://slownews.kr/24431}{이상혁(2014),
-  ``제네바에서 온 편지: 당신의 월급은 공정합니까?'', slow news}}
-
-FRED Economic Data 중
-\href{https://fred.stlouisfed.org/series/W270RE1A156NBEA}{Shares of
-gross domestic income: Compensation of employees, paid: Wage and salary
-accruals: Disbursements: to persons (W270RE1A156NBEA)} 다운로드 받아
-시각화한다. 미국 노동소득분배율이 50\%대에서 40\%초반으로 훅 떨어진 것이
-시각적으로 확인된다. 이에 대해서 ILO 세계임금보고서와 다른
-\href{https://www.oecd.org/g20/topics/employment-and-social-policy/The-Labour-Share-in-G20-Economies.pdf}{OECD
-(2015), ``The Labour Share in G20 Economies''} 내용을 통해 다양한 원인을
-살펴볼 수 있다.
-
-\begin{itemize}
-\tightlist
-\item
-  노동분배몫 하락 요인 (ILO 세계임금보고서, 2012)
-
-  \begin{itemize}
-  \tightlist
-  \item
-    산업구조 변화와 기술 변화
-  \item
-    세계화
-  \item
-    금융화(financialization)
-  \item
-    노동시장과 복지정책의 약화
-  \end{itemize}
-\end{itemize}
-
-\begin{center}\includegraphics{paper_files/figure-latex/labor-share-us-1} \end{center}
-
-\hypertarget{labor-participation}{%
-\subsection{노동인력 참여율}\label{labor-participation}}
-
-\href{https://research.stlouisfed.org/docs/api/api_key.html}{Federal
-Reserve Bank of ST. Louis} 웹사이트에서 API-KEY 발급받아
-\texttt{usethis::edit\_r\_environ()} 명령어를 통해서 API 키를 잘
-관리한다.
-
-\texttt{fredr} 팩키지를 활용하여 직접 웹사이트에서 크롤링하는 번거러움을
-해결한다. \texttt{fredr\_set\_key(FRED\_KEY)} 명령어로 API-KEY를
-설정한다.
-
-\begin{center}\includegraphics{paper_files/figure-latex/fred-data-labor-participation-1} \end{center}
+\begin{center}\includegraphics[width=0.77\linewidth]{paper_files/figure-latex/industrial-robot-1} \end{center}
 
 \hypertarget{automation-overview}{%
-\section[자동화]{\texorpdfstring{자동화\footnote{\href{https://hal.pratt.duke.edu/sites/hal.pratt.duke.edu/files/u10/IS-29-05-Expert\%20Opinion\%5B1\%5D_0.pdf}{Mary
-  (Missy) Cummings, ``Man versus Machine or Man + Machine?'', Ieee
-  INteLLIGeNt sYstems}}}{자동화}}\label{automation-overview}}
+\section{일자리 변동원인 - 자동화}\label{automation-overview}}
 
 기계(Machine)하면 우선 기계장치를 떠올릴 수 있지만, 영어로
 머신(machine)은 인공지능을 탑재한 컴퓨터도 의미하기 한다. 자동화 수준을
 전혀 컴퓨터, 즉 기계의 도움없이 모든 결정과 행동을 사람이 취하는
 수준부터, 인간을 배제하고 기계가 모든 의사결정을 내리고 자율적으로 운전,
-판결, 세금계산 등등을 하는 완전한 자동화까지로 수준을 나눌 수 있다.
-인간의 어떤 영역은 자동화가 많이 진행되었고, 또 다른 영역은 자동화가
-진행되고 있거나, 어떤 영역은 거의 완전한 자동화가 진행된 부분도 있다.
+판결, 세금계산 등등을 하는 완전한 자동화\cite{cummings2014man}까지로
+수준을 나눌 수 있다. 인간의 어떤 영역은 자동화가 많이 진행되었고, 또
+다른 영역은 자동화가 진행되고 있거나, 어떤 영역은 거의 완전한 자동화가
+진행된 부분도 있다.
 
 \begin{table}[H]
 \centering
@@ -353,7 +474,9 @@ Reserve Bank of ST. Louis} 웹사이트에서 API-KEY 발급받아
 \end{tabular}}
 \end{table}
 
-\textbf{모라벡의 역설(Moravec's paradox)}
+\hypertarget{uxbaa8uxb77cuxbca1uxc758-uxc5eduxc124moravecs-paradox}{%
+\subsection{모라벡의 역설(Moravec's
+paradox)}\label{uxbaa8uxb77cuxbca1uxc758-uxc5eduxc124moravecs-paradox}}
 
 미국 카네기 멜론 대학 (CMU) 로봇 공학자 한스 모라벡(Hans Moravec)이
 1970년대에 `it is comparatively easy to make computers exhibit adult
@@ -369,20 +492,21 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 있다.
 
 \begin{figure}
-\centering
-\includegraphics{fig/moravec-paradox.png}
-\caption{모라벡의 역설: 치와와와 머핀, 아이스크림과 고양이}
+
+{\centering \includegraphics[width=1\linewidth]{fig/moravec-paradox} 
+
+}
+
+\caption{모라벡의 역설: 치와와와 머핀, 아이스크림과 고양이}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 \hypertarget{chinese-room}{%
-\subsection[중국어 방 주장]{\texorpdfstring{중국어 방
-주장\footnote{\href{http://ko.experiments.wikidok.net/wp-d/592f718da44f1a4153e80611/View}{중국어
-  방 역설 (Chinese room argument) - 대체 누가 중국어를 이해하고 있는가?}}\footnote{\href{https://ko.wikipedia.org/wiki/\%EC\%A4\%91\%EA\%B5\%AD\%EC\%96\%B4_\%EB\%B0\%A9}{위키백과,
-  ``중국어 방''}}}{중국어 방 주장}}\label{chinese-room}}
+\subsection{중국어 방 주장
+{[}\^{}wiki-chinese-room{]}}\label{chinese-room}}
 
-중국어 방 혹은 중국인 방(영어: Chinese room)은 존 설(John Searle)이 튜링
-테스트로 기계의 인공지능 여부를 판정할 수 없다는 것을 논증하기 위해
-고안한 사고실험이다.
+중국어 방 혹은 중국인 방(영어: Chinese room) \cite{wikipedia_2019}은 존
+설(John Searle)이 튜링 테스트로 기계의 인공지능 여부를 판정할 수 없다는
+것을 논증하기 위해 고안한 사고실험이다.
 
 \begin{quote}
 우선 방 안에 영어만 할 줄 아는 사람이 들어간다. 그 방에 필담을 할 수
@@ -402,11 +526,12 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 없다는 주장이다.
 
 \begin{figure}
-\hypertarget{id}{%
-\centering
-\includegraphics[width=0.77\textwidth,height=\textheight]{fig/chinese-room-argument.jpg}
-\caption{중국어 방 주장을 모사한 도해}\label{id}
+
+{\centering \includegraphics[width=1\linewidth]{fig/chinese-room-argument} 
+
 }
+
+\caption{중국어 방 주장을 모사한 도해}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 결국 다음과 같이 컴퓨터, 인간, 인공지능을 비교할 수 있다. 중국어 방이
@@ -444,11 +569,12 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 되어왔고 오늘날까지 이어지고 있다.
 
 \begin{figure}
-\hypertarget{id}{%
-\centering
-\includegraphics[width=1\textwidth,height=\textheight]{fig/man-machine-role-allocation.png}
-\caption{아폴로 계획에 대한 역할 구분}\label{id}
+
+{\centering \includegraphics[width=0.77\linewidth]{fig/man-machine-role-allocation} 
+
 }
+
+\caption{아폴로 계획에 대한 역할 구분}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 듀크 대학과 MIT 매리 커밍스(Mary Cummings) 교수는 기존 S-R-K 틀에 E를 더
@@ -456,9 +582,29 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 되는 영역과 자동화의 도움을 받는 영역으로 범주화 시켰다. 매리 커밍스
 교수가 F-18 여성 조종사 경력을 바탕으로 항공 사례를 예시로 들고 있다.
 
-\textbf{인지작업과 자동화 정도}
+\begin{table}[H]
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{ll}
+\toprule
+인지 작업 (cognitive behavior/task) & 자동화 정도(degree of automation)\\
+\midrule
+\rowcolor{gray!6}  기량(skill-based) & 자동화에 최적화됨. 물론 내외부 상태와 오류 피드백에 대한 신뢰성있는 센서를 가정\\
+규칙(rule-based) & 자동화 가능한 대상. 물론 규칙집합이 잘 만들어지고 테스트된 것을 가정\\
+\rowcolor{gray!6}  지식(knowledge-based) & 일부 자동화를 통해 데이터를 조직화하고, 필터링하고, 합성하는데 도움을 줌\\
+전문적 식견(expertise) & 사람이 가장 잘 할 수 있지만, 팀동료로 자동화 기계를 통해 도움을 받을 수 있음\\
+\bottomrule
+\end{tabular}}
+\end{table}
 
-\textbf{Skill-Rule-Knowledge-Experties}
+\begin{figure}
+
+{\centering \includegraphics[width=0.77\linewidth]{fig/role-allocation-skill-rules-experties} 
+
+}
+
+\caption{S-R-K-E 비행기 적용 업무분장}\label{fig:unnamed-chunk-7}
+\end{figure}
 
 최근 자동화 기계는 드론, 무인 자동차, 무인 화물자동차, 무인 비행기, 무인
 선박 모두 센서와 액추에이터를 통해서 자동으로 설정한 목표를 달성하게
@@ -466,23 +612,20 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 사람이 화면을 보고 제어 로직을 심어둔 것으로 크게 볼 수 있다.
 
 \begin{figure}
-\hypertarget{id}{%
-\centering
-\includegraphics[width=1\textwidth,height=\textheight]{fig/human-supervisory-control.png}
-\caption{human-supervisory-control}\label{id}
+
+{\centering \includegraphics[width=0.77\linewidth]{fig/human-supervisory-control} 
+
 }
+
+\caption{Human Supervisory Control}\label{fig:unnamed-chunk-8}
 \end{figure}
 
-\hypertarget{play-go}{%
-\subsection[이세돌 9단]{\texorpdfstring{이세돌
-9단\footnote{\href{https://n.news.naver.com/article/092/0002175655}{이균성(2019.11.28),
-  ``이세돌 9단의 프로기사 포기는 `노동의 미래'다'', ZDNET Korea}}}{이세돌 9단}}\label{play-go}}
+\hypertarget{conclusion}{%
+\section{결어}\label{conclusion}}
 
-이창호를 누르고 바둑 최강자에 굴림해온 전설적인 이세돌 9단. 하지만
-알파고가 나온 이후 모든 것이 바뀌었다. 커제는 알파고와 대결에서 울기도
-했고, 5명의 프로기사가 때로 알파고에 덥비기도 했다. 그렇다고 결과가 바뀐
-것은 아니다. NHN에서 20년동안 학습한 바둑 프로그램 한돌과 2점 깔고 두는
-접바둑으로 마지막 대국을 남기고 평생을 함께 한 바둑을 놓으려고 한다.
+인간과 기계의 경쟁구도로 일자리를 바라봤다면 기계를 통한 자동화의 본질을
+살펴보고 기계와 인간이 공존하며 만들어내는 새로운 패러다임을 받아들일
+준비를 할 시점이 된 듯 하다.
 
 \hypertarget{uxcc38uxace0uxbb38uxd5cc}{%
 \section{참고문헌}\label{uxcc38uxace0uxbb38uxd5cc}}
@@ -490,130 +633,7 @@ it comes to perception and mobility'라는 표현으로 컴퓨터와 인간의 �
 \cite{brynjolfsson2014second} \cite{ford2015rise}
 \cite{kaplan2015humans} \cite{cummings2014man} \cite{brownlee_2019}
 \cite{chang_2017} \cite{ahlstrom_2019} \cite{wikipedia_2019}
-\cite{hui_2018} \cite{zdnet_2019}
-
-\hypertarget{challenge-to-human}{%
-\section[기계에 대체되는 일자리]{\texorpdfstring{기계에 대체되는
-일자리\footnote{\href{https://medium.com/@jonathan_hui/gan-some-cool-applications-of-gans-4c9ecca35900}{Jonathan
-  Hui (2018), ``GAN -Some cool applications of GANs.''}}\footnote{\href{https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/}{Jason
-  Brownlee (June 14, 2019), ``18 Impressive Applications of Generative
-  Adversarial Networks (GANs)''}}}{기계에 대체되는 일자리}}\label{challenge-to-human}}
-
-사람이 가지고 있는 오감(시각, 후각, 청각, 촉각, 미각) 중에서 시각을
-대부분의 사람들은 가장 중요한 감각이라고 꼽는데 이유는 아마도 감각기관을
-통해서 획득하는 정보의 90\% 이상이 시각을 통해서 얻어진다는 점에
-기인한다. 이것이 의미하는 바는 그동안 기계에 대해 인간이 가지고 있는
-절대우위가 사실 시각지능에 기인한다는 점이다. 또한, 창작은 기계가 범접할
-수 없는 고유한 인간의 영역이라고 믿어졌지만, 생성적 적대 신경망라고
-번역으로 번역되는 \textbf{GAN(Generative Adversarial Network)}의
-등장으로 이 영역도 기계의 도적으로 새로운 인간의 응전이 요구되고 있다.
-GAN은 이안 굿펠로우(Ian Goodfellow)가 NIPS 학회에서 발표한 뒤로 딥러닝의
-대가인 얀 르쿤(Yann Lecun) 교수도 GAN을 최근 10년간 머신러닝 연구 중
-가장 혁신적인 아이디어로 극찬했다.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.49\linewidth]{fig/generative-model} \includegraphics[width=0.49\linewidth]{fig/discriminative-model} 
-
-}
-
-\caption{GAN: 생성,판별 모델링 과정}\label{fig:unnamed-chunk-3}
-\end{figure}
-
-\hypertarget{challenge-to-human-paint}{%
-\subsection{페인트(paint)}\label{challenge-to-human-paint}}
-
-\href{https://github.com/eriklindernoren/Keras-GAN}{Keras-GAN} GitHub
-사이트에는 \texttt{pix2pix}, \texttt{CycleGAN}을 포함한 다양한 시각적인
-사례를 살펴볼 수 있다.
-
-\begin{itemize}
-\tightlist
-\item
-  이미지 생성(Image generation): GAN을 사용하여 이미지를 기계가 자동으로
-  생성할 수 있다. 예를 들어 자동 로고생성기 등.
-  \href{https://github.com/alex-sage/logo-gen}{GitHub:
-  alex-sage/logo-gen}
-\item
-  텍스트로 이미지 합성 (Text-to-image synthesis): 영화산업에서
-  시나리오가 있는 상태에서 텍스트를 기초로 하여 이미지를 자동 생성시킴.
-  \href{https://medium.com/datadriveninvestor/text-to-image-synthesis-6e5de1bf86ec}{Nikunj
-  Gupta, ``Text-to-Image Synthesis'', Medium},
-  \href{https://github.com/crisbodnar/text-to-image}{GitHub,
-  text-to-image}
-\item
-  얼굴 노화(Face Aging): 연애 산업과 보안산업에서 특히 유용한데 보안의
-  경우 얼굴 노화과정을 GAN을 통해 모델을 갖춤으로써 직원의 노화에 따라
-  신규 시스템으로 바꿀 필요가 없다.
-  \href{https://github.com/yuanzhaoYZ/Face-Aging-CAAE}{GitHub,
-  yuanzhaoYZ/Face-Aging-CAAE}
-\item
-  이미지를 다른 이미지로 번역(image-to-image-translation): 흑백이미지를
-  칼러 이미지로, 스케치 이미지를 색칠된 이미지로, 이미지를 피카소나
-  반고흐 스타일로 번역하는 것을 통해 시간을 상당히 줄일 수 있다.
-  \href{https://github.com/topics/image-to-image-translation}{GitHub
-  topics: image-to-image-translation}
-\item
-  고화질 이미지 생성(High-resolution image generation): 저해상도 카메라
-  이미지를 고화질 이미지로 변환.
-  \href{https://github.com/david-gpu/srez}{david-gpu/srez}
-\item
-  결측된 이미지 채워넣기(completing missing parts of images): 이미지의
-  빠진 부분을 채워넣거나 불필요한 부분이 있다면 지워서 결측시킨 후에
-  이미지를 채워넣는다.
-  \href{https://github.com/topics/image-completion}{Github topic:
-  image-completion}
-\end{itemize}
-
-\hypertarget{writing-machine}{%
-\subsection{자작(write)}\label{writing-machine}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://github.com/topics/text-generation}{GitHub topic:
-  text-generation}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://github.com/Maluuba/newsqa}{Maluuba NewsQA dataset}
-  \item
-    \href{https://github.com/Maluuba/qgen-workshop}{Multi-task Question
-    and Answer Generation}
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{music-machine}{%
-\subsection{음악(music)}\label{music-machine}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://salu133445.github.io/musegan/}{museGAN}
-\item
-  \href{https://medium.com/@rachelchen_49210/generating-ambient-noise-from-wavenet-95aa7f0a8f77}{Rachel
-  Chen (Dec 13, 2017), ``Generating Ambient Music from WaveNet'',
-  Medium}
-\item
-  \href{https://github.com/tensorflow/magenta}{tensorflow/magenta}
-\item
-  \href{https://towardsdatascience.com/generating-pokemon-inspired-music-from-neural-networks-bc240014132}{Abraham
-  Khan(Dec 15, 2018), ``Generating Pokemon-Inspired Music from Neural
-  Networks'', Medium}
-\end{itemize}
-
-\hypertarget{play-machine}{%
-\subsection{연극(play)}\label{play-machine}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://worldmodels.github.io/}{World Models}
-\item
-  \href{https://dylandjian.github.io/world-models/}{Dylan's blog (June
-  06, 2018), ``World Models applied to Sonic''}
-\end{itemize}
+\cite{hui_2018}
 
 \bibliographystyle{spbasic}
 \bibliography{bibliography.bib}

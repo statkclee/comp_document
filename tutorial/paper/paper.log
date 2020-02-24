@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.25)  23 FEB 2020 13:31
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.25)  24 FEB 2020 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -669,14 +669,7 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-) (./paper.aux
-
-LaTeX Warning: Label `id' multiply defined.
-
-
-LaTeX Warning: Label `id' multiply defined.
-
-)
+) (./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
@@ -840,40 +833,26 @@ File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 ) [1]
 File: fig/tax-preparation.png Graphic file (type bmp)
 <fig/tax-preparation.png>
+File: fig/generative-model.png Graphic file (type bmp)
+<fig/generative-model.png>
+File: fig/discriminative-model.png Graphic file (type bmp)
+<fig/discriminative-model.png>
 [2]
-File: fig/the-end-of-outsourcing.png Graphic file (type bmp)
-<fig/the-end-of-outsourcing.png>
-File: paper_files/figure-latex/industrial-robot-1.pdf Graphic file (type pdf)
-<use paper_files/figure-latex/industrial-robot-1.pdf>
-
-Overfull \hbox (123.72388pt too wide) in paragraph at lines 214--214
- [] 
+Overfull \hbox (7.72002pt too wide) in paragraph at lines 252--254
+[][]\TU/lmr/m/n/10 Rachel Chen (Dec 13, 2017), “Generating Ambient Music from W
+aveNet”,
  []
 
-
-Underfull \vbox (badness 5203) has occurred while \output is active []
-
-[3]
+[3] [4]
 File: paper_files/figure-latex/productivity-gap-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/productivity-gap-1.pdf>
-
-Overfull \hbox (112.68263pt too wide) in paragraph at lines 234--234
- [] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[4] [5]
 File: paper_files/figure-latex/labor-share-us-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/labor-share-us-1.pdf>
 
-Overfull \hbox (53.46153pt too wide) in paragraph at lines 274--274
- [] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Overfull \hbox (84.7742pt too wide) in paragraph at lines 280--283
+[5]
+Overfull \hbox (84.7742pt too wide) in paragraph at lines 359--364
 []\TU/lmr/m/n/10 Federal Reserve Bank of ST. Louis[] \TU/NanumMyeongjo(0)/m/n/1
 0 웹 사 이 트 에 서 \TU/lmr/m/n/10 API-KEY \TU/NanumMyeongjo(0)/m/n/10 발 급 받 아 \TU/lm
 tt/m/n/10 usethis::edit_r_environ()
@@ -882,116 +861,64 @@ tt/m/n/10 usethis::edit_r_environ()
 File: paper_files/figure-latex/fred-data-labor-participation-1.pdf Graphic file
  (type pdf)
 <use paper_files/figure-latex/fred-data-labor-participation-1.pdf>
-
-Overfull \hbox (53.46153pt too wide) in paragraph at lines 288--288
- [] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[6] [7]
+[6]
+File: fig/the-end-of-outsourcing.png Graphic file (type bmp)
+<fig/the-end-of-outsourcing.png>
+File: paper_files/figure-latex/industrial-robot-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/industrial-robot-1.pdf>
+[7] [8]
 File: fig/moravec-paradox.png Graphic file (type bmp)
 <fig/moravec-paradox.png>
-
-Overfull \hbox (288.28668pt too wide) in paragraph at lines 373--374
- [][] 
- []
-
-[8]
 File: fig/chinese-room-argument.jpg Graphic file (type bmp)
 <fig/chinese-room-argument.jpg>
-
-LaTeX Warning: Float too large for page by 15.62813pt on input line 410.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[9] [10]
+[9]
 File: fig/man-machine-role-allocation.png Graphic file (type bmp)
 <fig/man-machine-role-allocation.png>
-
-LaTeX Warning: Float too large for page by 25.12299pt on input line 452.
-
+[10]
+File: fig/role-allocation-skill-rules-experties.jpg Graphic file (type bmp)
+<fig/role-allocation-skill-rules-experties.jpg>
 File: fig/human-supervisory-control.png Graphic file (type bmp)
 <fig/human-supervisory-control.png>
 
-LaTeX Warning: Float too large for page by 25.21559pt on input line 474.
+Underfull \vbox (badness 1303) has occurred while \output is active []
 
+[11]
+Overfull \hbox (10.61002pt too wide) in paragraph at lines 633--637
+\TU/lmr/m/n/10 [[]] [[]] [[]] [[]]
+ []
 
-LaTeX Warning: Citation `brynjolfsson2014second' on page 11 undefined on input 
-line 490.
-
-
-LaTeX Warning: Citation `ford2015rise' on page 11 undefined on input line 490.
-
-
-LaTeX Warning: Citation `kaplan2015humans' on page 11 undefined on input line 4
-91.
-
-
-LaTeX Warning: Citation `cummings2014man' on page 11 undefined on input line 49
-1.
-
-
-LaTeX Warning: Citation `brownlee_2019' on page 11 undefined on input line 491.
-
-
-
-LaTeX Warning: Citation `chang_2017' on page 11 undefined on input line 492.
-
-
-LaTeX Warning: Citation `ahlstrom_2019' on page 11 undefined on input line 492.
-
-
-
-LaTeX Warning: Citation `wikipedia_2019' on page 11 undefined on input line 492
-.
-
-
-LaTeX Warning: Citation `hui_2018' on page 11 undefined on input line 493.
-
-
-LaTeX Warning: Citation `zdnet_2019' on page 11 undefined on input line 493.
-
-[11] [12] [13]
-File: fig/generative-model.png Graphic file (type bmp)
-<fig/generative-model.png>
-File: fig/discriminative-model.png Graphic file (type bmp)
-<fig/discriminative-model.png>
-[14] (./paper.bbl
+(./paper.bbl
 Missing character: There is no 중 in font [lmmono8-regular]:!
 Missing character: There is no 국 in font [lmmono8-regular]:!
 Missing character: There is no 어 in font [lmmono8-regular]:!
 Missing character: There is no 방 in font [lmmono8-regular]:!
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--32
+Underfull \hbox (badness 10000) in paragraph at lines 34--37
 [][][][][][] [][] [][][] [][] [][] [][] [][][][][] [][] [][][] [][] [][][][][] 
 [][] [][][][] [][] [][][] [][] [][][][] [][] [][][][] [][] [][][][] [][] [][] [
 ][] [][][][] [][] [][] [][] [][][][][][] [][]
  []
 
+Invalid UTF-8 byte or sequence at line 59 replaced by U+FFFD.
+Missing character: There is no � in font [lmroman8-regular]:mapping=tex-text;!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 621.
-[15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 621.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 641.
+[12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 641.
 (./paper.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 621.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 621.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 641.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 641.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 2A0887D054AC9C16348B832658ADDAA5;394.
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 621.
+(rerunfilecheck)             Checksum: EFD8233EC47083E180485DCF3EED8206;465.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 641.
  ) 
 Here is how much of TeX's memory you used:
- 28470 strings out of 492472
- 503347 string characters out of 6129298
- 596016 words of memory out of 5000000
- 32630 multiletter control sequences out of 15000+600000
+ 28511 strings out of 492472
+ 504723 string characters out of 6129298
+ 596857 words of memory out of 5000000
+ 32669 multiletter control sequences out of 15000+600000
  540473 words of font info for 93 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  68i,10n,76p,419b,2559s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (15 pages).
+Output written on paper.pdf (12 pages).
