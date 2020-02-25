@@ -1,5 +1,5 @@
 ---
-title: "자동화에 따른 노동시간 변화 분석"
+title: "사람과 기계 일자리 경쟁 요인과 협업 방안"
 subtitle: 
 titlerunning: 
 authorrunning: 
@@ -19,14 +19,14 @@ keywords:
 - 기계와 사람의 업무분장
 abstract: |
   알파고가 2016년 바둑 인간 챔피언 이세돌 9단을 현격한 기량차이로 격파하면서 인공지능에 대한 
-  관심이 급격히 증가하였다. 그와 동시에 인공지능이 인간의 일자리를 대체하면서 막연한 불안감이 
+  관심이 급격히 증가하였다. 그와 동시에 기계가 인간의 일자리 잠식을 가속화하면서 막연한 불안감이 
   삽시간에 전파되었다. 기계와의 일자리 경쟁은 컴퓨터의 출현이전부터 시작되었지만 인간만의
   고유한 영역으로 알고 있던 인지, 창작 등 다양한 분야에서 오히려 인간보다 더 우수한 
-  성능을 보여주면서 인간의 일자리가 기계에 대체되는 것은 가시권에 들어섰다.
+  성능과 저렴한 가격 경쟁력을 보여주면서 기존 인간의 일자리가 기계에 대체되는 것이 가시권에 들었다.
   이번 문헌조사와 실증 데이터 분석을 통해서 기계가 인간의 일자리를 대체하는 자동화의 본질에
   대해서 살펴보고, 인간과 기계의 업무 분장을 통해 더 생산성을 높일 수 있는 방안을 제시하고자 한다.
 bibliography: bibliography.bib
-# biblio-style: spmpsci # bibstyle options spbasic(default), spphys, spmpsci
+# biblio-style: spmpsci K# bibstyle options spbasic(default), spphys, spmpsci
 link-citations: yes
 output: 
   rticles::springer_article:
@@ -35,6 +35,7 @@ output:
 mainfont: NanumBarunpen
 header-includes:
   - \usepackage{kotex}
+  - \usepackage{cite}
 editor_options: 
   chunk_output_type: console
 ---
@@ -65,33 +66,60 @@ read_markdown <- function(file, trim_ws = TRUE, ...){
                       trim_ws = trim_ws, ...)
 }
 
-
 ```
 
 
 # 들어가며  {#intro}
 
-과거 숫자를 다룰 수 있는 소수의 사람만이 숫자의 계산을 암산에서 벗어나  주판의 도움으로 생산성을 주판을 사용하지 못한 사람과 비교하여 수십배에서 수천배의 정확도와 함께 빠른 계산을 달성하게 되었다. 이러한 주판은 중간에 기계장치 계산기(찰스 배비지)도 있었지만, 일제 전자계산기로 자리를 내어주지만 사칙연산만 이해하면 기존 주판과 비교하여 어마어마한 생산성을 향상과 정확도를 높인 것은 분명하다.
+과거 숫자를 다룰 수 있는 소수의 사람만이 숫자 계산을 암산으로 할 수 있었으나, 주판의 도움으로 생산성을 주판을 사용하지 못한 사람과 비교하여 수십배에서 수천배의 정확도와 함께 빠른 계산을 달성하게 되었다. 이러한 주판은 중간에 기계장치 계산기(찰스 배비지)도 있었지만, 전자계산기에 자리를 내어주었지만 사칙연산만 이해하면 기존 주판과 비교하여 어마어마한 생산성을 향상과 정확도를 높인 것은 분명하다. 
 
-이후, 개인용 컴퓨터의 보급으로 비지칼크와 로터스 1-2-3가 그 가능성을 열었다면 마이크로소프트 엑셀 스프레드쉬트 프로그램이 세무사 업무의 생산성을 또한 엄창나게 올린 것도 사실이다. 
+이후, 개인용 컴퓨터의 보급으로 비지칼크와 로터스 1-2-3가 그 가능성을 열었다면 마이크로소프트 엑셀 스프레드쉬트 프로그램이 세무사 업무의 생산성을 또한 엄창나게 올린 것도 사실이다. 이제 문제가 되는 것은 PC 매거진\cite{yakal_2020}에 소개된 세금관련 프로그램이 $39 달러에 불과하다는 점이다. 1년 세무업무가 개인의 경우 4만원에 불과한데 세무사가 이런 자동화된 기계와 경쟁에서 승리할 수 있는가? 결과는 명확하다.
 
-이제 문제가 되는 것은 [PC 매거진, "The Best Tax Software for 2019"](https://www.pcmag.com/roundup/167894/the-best-tax-software)에 소개된 세금관련 프로그램이 $39 달러에 불과하다는 점이다. 1년 세무업무가 개인의 경우 4만원에 불과한데 세무사가 이런 자동화된 기계와 경쟁에서 승리할 수 있는가? 결과는 명확하다.
 
-그렇다면 세무사와 유사한 직업군으로 회계사를 들 수 있는데, 최근 인공지능의 발전은 단순히 숫자에만 머무르지 않고, 자연어 처리(NLP, Natural Language Processing) 기술의 발전에 힘입어 기사를 써주는 로봇을 비롯하여 문자를 주로 다루는 대표적인 직업군인 법률/변호사 일자리도 위협하고 있다.
-물론 이미지를 인식하는 인공지능 기술도 급격히 향상되어 의사를 비롯한 시각 인지 기술이 직업에 중요한 역할을 수행하는 직업군에도 향후 상당한 변화를 줄 것으로 예상된다.
+먼저 세무업무에 투입되는 기계의 확산에 영향을 받는 세무사를 추정해보자. 인터넷 기사\cite{tax_2019}내용에도 언급되었듯이 2008년부터 11년간 630명가량을 다소 편차가 있지만 꾸준히 뽑아왔다. 현재 한국세무사회에 등록된 [개인 및 법인현황](http://www.kacpta.or.kr/)을 통해 12,973명이 개업하여 활동하고 있는 것으로 집계된 것이 확인된다. 
+세무사 살림살이 조사\cite{lim_2018}를 통해서 세무사 1인당 매출과 연봉 추정을 살펴볼 수도 있다. 
+
+
+
+
+```{r tax-exam}
+library(tidyverse)
+library(rvest)
+
+tax_url <- "http://www.wcpa.co.kr/cta/info_ystats.php"
+
+# Sys.setlocale("LC_ALL", "C")
+
+exam_df <- tax_url %>% 
+  read_html() %>% 
+  html_node(xpath = '/html/body/div[1]/div[2]/div/div[2]/div[2]/div/ul[2]/li/div/table') %>% 
+  html_table(fill = TRUE)
+
+# Sys.setlocale("LC_ALL", "Korean")
+
+exam_df %>% 
+  gather(year, value, -`구분`) %>% 
+  filter(구분 == "합격자") %>% 
+  select(연도=year, 합격자=value) %>% 
+  knitr::kable(format = "latex", booktabs = TRUE)
+```
+
+
+그렇다면 세무사와 유사한 직업군으로 회계사를 들 수 있는데, 최근 인공지능의 발전이 단순히 숫자에만 머무르지 않고, 자연어 처리(NLP, Natural Language Processing) 기술의 발전에 힘입어 기사를 써주는 로봇을 비롯하여 문자를 주로 다루는 대표적인 직업군인 법률/변호사 일자리도 위협하고 있다.
+물론 이미지를 인식하는 인공지능 기술도 급격히 향상되어 의사를 비롯한 시각 인지업무가 직업에 중요한 역할을 수행하는 직업군에도 향후 상당한 변화를 줄 것으로 예상된다.
 
 ```{r, out.width = "100%", dpi = 200, fig.cap="세무 업무 변천사"}
 knitr::include_graphics("fig/tax-preparation.png")
 ```
 
-# 기계에 대체되는 일자리 [^GAN-applications] [^machine-learning-mastery] {#challenge-to-human}
 
-[^GAN-applications]: [Jonathan Hui (2018), "GAN -Some cool applications of GANs."](https://medium.com/@jonathan_hui/gan-some-cool-applications-of-gans-4c9ecca35900)
+# 기계에 대체되는 일자리  {#challenge-to-human}
 
-[^machine-learning-mastery]: [ Jason Brownlee (June 14, 2019), "18 Impressive Applications of Generative Adversarial Networks (GANs)"](https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/)
+이창호를 누르고 바둑 최강자에 굴림해온 전설적인 이세돌 9단이다. 하지만 알파고가 나온 이후 모든 것이 바뀌었다. 커제는 알파고와 대결에서 패배하여 울분을 참지못하고 눈물을 흘리기도 했고, 5명의 프로기사가 그룹을 이뤄 집단지성을 적극 활용하여 알파고에 덥비기도 했다. 그렇다고 결과가 바뀐 것은 아니다. NHN에서 20년동안 학습한 바둑 프로그램 한돌과 2점 깔고 두는 접바둑으로 마지막 대국\cite{zdnet_2019}을 두고 평생을 함께 한 바둑을 놓려 놓았다. 기계\cite{brynjolfsson2014second, ford2015rise, kaplan2015humans, chang_2017}는 빠르게 부상하고 있다.
+바둑뿐만 아니라 다르게 빨리 기계로 대체되는 일자리는 어떤 것이 있을지 인공지능 기술 중심으로 살펴보자.
 
 사람이 가지고 있는 오감(시각, 후각, 청각, 촉각, 미각) 중에서 시각을 대부분의 사람들은 가장 중요한 감각이라고 꼽는데 이유는 아마도 감각기관을 통해서 획득하는 정보의 90% 이상이 시각을 통해서 얻어진다는 점에 기인한다. 이것이 의미하는 바는 그동안 기계에 대해 인간이 가지고 있는 절대우위가 사실 시각지능에 기인한다는 점이다. 
-또한, 창작은 기계가 범접할 수 없는 고유한 인간의 영역이라고 믿어졌지만, 생성적 적대 신경망라고 번역으로 번역되는 **GAN(Generative Adversarial Network)**의 등장으로 이 영역도 기계의 도적으로 새로운 인간의 응전이 요구되고 있다. GAN은 이안 굿펠로우(Ian Goodfellow)가 NIPS 학회에서 발표한 뒤로 딥러닝의 대가인 얀 르쿤(Yann Lecun) 교수도 GAN을 최근 10년간 머신러닝 연구 중 가장 혁신적인 아이디어로 극찬했다.
+또한, 창작은 기계가 범접할 수 없는 고유한 인간의 영역이라고 믿어졌지만, 생성적 적대 신경망라고 번역으로 번역되는 **GAN(Generative Adversarial Network)**\cite{brownlee_2019, hui_2018}의 등장으로 이 영역도 기계의 도적으로 새로운 인간의 응전이 요구되고 있다. GAN은 이안 굿펠로우(Ian Goodfellow)가 NIPS 학회에서 발표한 뒤로 딥러닝의 대가인 얀 르쿤(Yann Lecun) 교수도 GAN을 최근 10년간 머신러닝 연구 중 가장 혁신적인 아이디어로 극찬했다.
 
 ```{r, dpi = 200, fig.cap="GAN: 생성,판별 모델링 과정", out.width="49%", fig.show='hold',fig.align='center'}
 knitr::include_graphics(c("fig/generative-model.png", "fig/discriminative-model.png"))
@@ -122,52 +150,18 @@ knitr::include_graphics(c("fig/generative-model.png", "fig/discriminative-model.
     - [World Models](https://worldmodels.github.io/)
     - [Dylan's blog (June 06, 2018), "World Models applied to Sonic"](https://dylandjian.github.io/world-models/)
 
-## 사례: 세무업무 자동화 [^evolution-tax] {#sec:1}
-
-[^evolution-tax]: [PC 매거진, "The Best Tax Software for 2019"](https://www.pcmag.com/roundup/167894/the-best-tax-software)
-
-[등록세무사만 1만3000명인데 합격자를 늘리다니… 세무사회 불만 고조](http://biz.newdaily.co.kr/site/data/html/2019/01/22/2019012200053.html) 기사 내용에도 언급되었어듯이 2008년부터 11년간 630명가량을 다소 편차가 있지만 뽑아왔다. 현재 한국세무사회에 등록된 [개인 및 법인현황](http://www.kacpta.or.kr/)을 통해 12,973명이 개업하여 활동하고 있는 것으로 집계되어 있다.
-
-```{r tax-exam}
-library(tidyverse)
-library(rvest)
-
-tax_url <- "http://www.wcpa.co.kr/cta/info_ystats.php"
-
-# Sys.setlocale("LC_ALL", "C")
-
-exam_df <- tax_url %>% 
-  read_html() %>% 
-  html_node(xpath = '/html/body/div[1]/div[2]/div/div[2]/div[2]/div/ul[2]/li/div/table') %>% 
-  html_table(fill = TRUE)
-
-# Sys.setlocale("LC_ALL", "Korean")
-
-exam_df %>% 
-  gather(year, value, -`구분`) %>% 
-  filter(구분 == "합격자") %>% 
-  select(연도=year, 합격자=value) %>% 
-  knitr::kable(format = "latex", booktabs = TRUE)
-```
-
-
-[임명규 (2018.10.10), "세무사는 얼마나 벌까요", Business Watch](http://news.bizwatch.co.kr/article/tax/2018/10/05/0010) 조사를 통해서 세무사 1인당 매출과 연봉 추정을 살펴볼 수 있다.
-
-## 이세돌 9단 \cite{zdnet_2019} {#play-go}
-
-이창호를 누르고 바둑 최강자에 굴림해온 전설적인 이세돌 9단. 하지만 알파고가 나온 이후 모든 것이 바뀌었다. 커제는 알파고와 대결에서 울기도 했고, 5명의 프로기사가 때로 알파고에 덥비기도 했다. 그렇다고 결과가 바뀐 것은 아니다. NHN에서 20년동안 학습한 바둑 프로그램 한돌과 2점 깔고 두는 접바둑으로 마지막 대국을 남기고 평생을 함께 한 바둑을 놓려 놓았다. 
-
 # 일자리 변동의 결과 {#wage-productivity-result}
+
+생산성과 임금격차, 보울리의 법칙, 노동인력 참여율을 통해 확인되는 공통된 사항은 1980년 이후 일자리에 구조적인 변동이 생겼다는 점이다. 데이터 과학을 활용하여 생산성과 임금격차 데이터, 노동소득 분배율 데이터, 노동인력 참여율 데이터를 받아 시각화하게 되면 이러한 변화를 직관적으로 확인할 수 있다.
 
 ## 생산성과 임금 격차 {#wage-productivity-gap}
 
-[Economic Policy Institute, "The Productivity - Pay Gap", July 2019](https://www.epi.org/productivity-pay-gap/)
+경제 정책 연구소(Economic Policy Institute)\cite{economic_policy_institute_2019} 최근 연구에 따르면,
+생산성이 오르면 임금도 따라 오른 다는 것이 그동안의 믿음이 있었지만, 
+생산성이 오른다고 임금도 따라 오르지 않는 현상이 1979년부터 심화되고 있다. 이는 데이터\cite{bivens2014raising}를 통해서 확인되고 있으며 시간당 임금은 1980년부터 별다른 변동이 없으나 순생산성은 1980년 이전과 마찬가지로 꾸준히 오르고 있다. 따라서, 시간당 임금과 생산성의 차이는 지속적으로 벌어지고 있다. 
 
-생산성이 오르면 임금도 따라 오른 다는 것이 그동안의 믿음이었다. 
-하지만, 생산성이 오른다고 임금도 따라 오르지 않는 현상이 1979년부터 심화되고 있다. 이는 데이터\cite{bivens2014raising}를 통해서 확인되고 있으며 시간당 임금은 1980년부터 별다른 변동이 없으나 순생산성은 1980년 이전과 마찬가지로 꾸준히 오르고 있다. 따라서, 시간당 임금과 생산성의 차이는 지속적으로 벌어지고 있다. 
 
-
-```{r productivity-gap, dev="cairo_pdf", out.width="77%"}
+```{r productivity-gap, dev="cairo_pdf", out.width="100%"}
 productivity_gap <- tribble(~"Year",~"Hourly compensation", ~"Net productivity",
 "1948", "0.00%"  ,"0.00%",
 "1949", "6.24%"  ,"1.55%",
@@ -263,17 +257,17 @@ productivity_gap_long_df %>%
     facet_wrap(~metric)
 ```
 
-
 ## 보울리 법칙(Bowley's Law) {#bowley-law}
 
 앞서 언급한 임금과 노동생산성 간 격차의 지속적 증가는 노동소득분배율 (labour income share)의 감소로 연결되는데, 노동소득분배율은 총국민소득 중 노동소득이 차지하는 비중으로 보울리의 법칙으로 불리며 경제성장이나 발전과는 상관없이 기능적 소득분배((functional income distribution))가 장기적으로 일정하다는 가설\cite{lee_2014}인데 이것이 최근 깨지고 있다.
 
-FRED Economic Data 중 [Shares of gross domestic income: Compensation of employees, paid: Wage and salary accruals: Disbursements: to persons (W270RE1A156NBEA)](https://fred.stlouisfed.org/series/W270RE1A156NBEA) 다운로드 받아 시각화해보면 
+FRED Economic Data [^share-income] 다운로드 받아 시각화해보면 
 미국 노동소득분배율이 50%대에서 40%초반으로 훅 떨어진 것이 시각적으로 확인된다.
-이에 대해서 ILO 세계임금보고서와 다른 [OECD (2015), "The Labour Share in G20 Economies"](https://www.oecd.org/g20/topics/employment-and-social-policy/The-Labour-Share-in-G20-Economies.pdf) 내용을 통해 다양한 원인을 제시하고 있다. 산업구조 변화와 기술 변화, 세계화, 금융화(financialization), 노동시장과 복지정책의 약화 등을 우선 꼽고 있다.
+ILO 세계임금보고서\cite{ilo2015labour}에서는 이에 대한 다양한 원인을 제시하고 있다; 산업구조 변화와 기술 변화, 세계화, 금융화(financialization), 노동시장과 복지정책의 약화 등을 우선 꼽고 있다.
 
+[^share-income]: [Shares of gross domestic income: Compensation of employees, paid: Wage and salary accruals: Disbursements: to persons (W270RE1A156NBEA)](https://fred.stlouisfed.org/series/W270RE1A156NBEA)
 
-```{r labor-share-us, dev="cairo_pdf", out.width="77%"}
+```{r labor-share-us, dev="cairo_pdf", out.width="100%"}
 labor_share <- tribble(~"date",	~"share",
 "1948-01-01",	"49.3",
 "1949-01-01",	"49.7",
@@ -369,10 +363,9 @@ labor_share_df %>%
 
 ## 노동인력 참여율 {#labor-participation}
 
-[Federal Reserve Bank of ST. Louis](https://research.stlouisfed.org/docs/api/api_key.html) 웹사이트에서 API-KEY 발급받아 `usethis::edit_r_environ()` 명령어를 통해서 API 키를 잘 관리별도 관리하고, `fredr` 팩키지를 활용하여 직접 웹사이트에서 크롤링하는 번거러움없이 데이터를 받아 확인하면 노동참여율도 2000년을 정점으로 하락한 것을 확인할 수 있다.
+[Federal Reserve Bank of ST. Louis](https://research.stlouisfed.org/docs/api/api_key.html) 웹사이트에서 API-KEY 발급받고 직접 웹사이트에서 크롤링하는 번거러움없이 `fredr` 데이터 팩키지를 활용하여 데이터를 받아 확인하면 노동참여율도 2000년을 정점으로 하락한 것도 확인할 수 있다.
 
-
-```{r fred-data-labor-participation, dev="cairo_pdf", out.width="77%"}
+```{r fred-data-labor-participation, dev="cairo_pdf", out.width="100%"}
 library(fredr)
 library(xts)
 fredr_set_key(FRED_KEY)
@@ -397,7 +390,7 @@ labor_participation %>%
 
 # 일자리 변동 원인 - 산업 {#automation-job-statistics} 
 
-급격한 자동화를 통한 직업변화를 하나의 요인만으로 살펴볼 수는 없다. 대표적으로 그동안 세계화 전략을 통한 제조와 생산에 필요한 인력을 인건비가 저렴한 해외에서 찾았으나 인공지능의 발전에 따라 글로벌 생산거점을 두고 생산하던 것보다 훨씬 경쟁력있게 됨에 따라 일자리에도 커다란 변화의 조짐이 일어나고 있다.
+이러한 급격한 노동시장의 변화를 단순히 산업적인 요인만으로 설명에 한계가 있으며 기술적인 면도 함께 살펴봐야 한다. 대표적으로 과거 세계화 전략을 통한 제조와 생산에 필요한 인력을 인건비가 저렴한 해외에서 찾았으나 인공지능 기술의 발전에 따라 글로벌 생산거점을 두고 생산하던 것과 비교하여 기계를 활용하여 훨씬 경쟁력있게 생산과 제조, 유통은 물론 마케팅과 고객 서비스까지 함에 따라 됨에 따라 일자리에도 커다란 변화가 생겼다.
 
 ## 소싱전략의 변화 {#strategy-change}
 
@@ -408,14 +401,12 @@ Kinetics consulting services / Automation Anywhere 자료에 의하면 비정규
 knitr::include_graphics("fig/the-end-of-outsourcing.png")
 ```
 
-## 산업용 로봇  [^industrial-robot] {#industrial-robot}
+## 산업용 로봇  {#industrial-robot}
 
-[^industrial-robot]: [Ang Ahlstrom (May 24, 2018), "Chart: Why Industrial Robot Sales are Sky High"](https://www.visualcapitalist.com/industrial-robot-sales-sky-high/)
-
-[Ang Ahlstrom (May 24, 2018), "Chart: Why Industrial Robot Sales are Sky High"](https://www.visualcapitalist.com/industrial-robot-sales-sky-high/) 기사에 언급되었듯이 2010년을 기점으로 산업용 로봇은 엄청난 성장세를 타고 있다. 특히, 2008년 금융위기를 기점으로 산업용 로봇 공급은 급격히 늘어나고 있다.
+산업용 로봇에 대한 기사\cite{ahlstrom_2019}에 언급되었듯이 2010년을 기점으로 산업용 로봇은 엄청난 성장세를 타고 있다. 특히, 2008년 금융위기를 기점으로 산업용 로봇 공급은 급격히 늘어나고 있다.
 기사가 반영하지 못한 가장 최근 추세를 추가해서 시각화해 보면 그 범위와 자동화를 통한 일자리 영향이 어느 정도될지 예측이 가능하다.
 
-```{r industrial-robot, dev="cairo_pdf", out.width="77%"}
+```{r industrial-robot, dev="cairo_pdf", out.width="100%"}
 robot_url <- "https://en.wikipedia.org/wiki/Industrial_robot"
 
 robot_dat <- robot_url %>%
@@ -437,12 +428,12 @@ robot_dat %>%
 ```
 
 
-
 # 일자리 변동원인 - 자동화  {#automation-overview}
 
+앞서 소싱 전략의 변화와 전세계 산업용 로봇 공급대수의 확대를 일자리 변동의 원인으로 살펴봤다. 
+이제 일자리 변동을 가져올 본질적인 변화요인으로 기계에 대해서 자세히 살펴보자.
 
-기계(Machine)하면 우선 기계장치를 떠올릴 수 있지만, 영어로 머신(machine)은 인공지능을 탑재한 컴퓨터도 의미하기 한다.
-자동화 수준을 전혀 컴퓨터, 즉 기계의 도움없이 모든 결정과 행동을 사람이 취하는 수준부터,
+기계(Machine)하면 우선 기계장치를 떠올릴 수 있지만, 영어로 머신(machine)은 인공지능을 탑재한 컴퓨터도 의미하기 한다. 자동화 수준을 전혀 컴퓨터, 즉 기계의 도움없이 모든 결정과 행동을 사람이 취하는 수준부터,
 인간을 배제하고 기계가 모든 의사결정을 내리고 자율적으로 운전, 판결, 세금계산 등등을 하는 완전한 자동화\cite{cummings2014man}까지로 수준을 나눌 수 있다. 
 인간의 어떤 영역은 자동화가 많이 진행되었고, 또 다른 영역은 자동화가 진행되고 있거나, 어떤 영역은 거의 완전한 자동화가 진행된 부분도 있다.
 
@@ -467,7 +458,7 @@ read_markdown(auto_tbl) %>%
 
 ## 사람과 기계 비교 {#man-human-comparison}
 
-사람과 기계는 서로 다른 잘하는 영역이 나눠져 있었다.
+얼마전까지도 사람과 기계는 서로 다른 잘하는 영역이 나눠져 있었다.
 단어를 세고 가장 많이 사용되는 단어를 찾는 것은 컴퓨터에게는 무척이나 쉬운 작업인 반면, 논문이나 책에서 텍스트를 읽고 이해하는 것은 컴퓨터에게 어렵다. 사람은 지루하고 반복되는 문제를 해결하는데 적합하지 않은 반면에 컴퓨터는 추상적이고 일반화하는 작업에는 적합지 않았다. 
 이런 사실은 1970년대 미국 카네기 멜론 대학 (CMU) 로봇 공학자 한스 모라벡(Hans Moravec) 교수의 **모라벡의 역설(Moravec's paradox)**로 잘 알려져 있다.
 
@@ -491,16 +482,20 @@ read_markdown(md_tbl) %>%
 
 ## 모라벡의 역설(Moravec's paradox)
 
-미국 카네기 멜론 대학 (CMU) 로봇 공학자 한스 모라벡(Hans Moravec)이 1970년대에 ‘it is comparatively easy to make computers exhibit adult level performance on intelligence tests or playing checkers, and difficult or impossible to give them the skills of a one-year-old when it comes to perception and mobility’라는 표현으로 컴퓨터와 인간의 능력 차이를 역설적으로 표현하였다.
+미국 카네기 멜론 대학 (CMU) 로봇 공학자 한스 모라벡(Hans Moravec)이 1970년대에 다소 직설적인 표현[^moravec]으로 컴퓨터와 인간의 능력 차이를 역설적으로 표현하였다.
 
 즉, 인간은 걷기, 느끼기, 듣기, 보기, 의사소통 등의 일상적인 행위는 매우 쉽게 할 수 있는 반면 복잡한 수식 계산 등을 하기 위해서는 많은 시간과 에너지를 소비하여야 하는 반면, 컴퓨터는 인간이 하는 일상적인 행위를 수행하기 매우 어렵지만 수학적 계산, 논리 분석 등은 순식간에 해낼 수 있다.
+
+[^moravec]: ‘it is comparatively easy to make computers exhibit adult level performance on intelligence tests or playing checkers, and difficult or impossible to give them the skills of a one-year-old when it comes to perception and mobility’
+
+모라벡 역설의 사례로 최근 인공지능 학습의 난제중의 하나를 꼽으라면 여전히 다음과 같은 분류문제를 들 수 있다. 치와와와 머핀 사진 혹은 고양이와 아이스크림 을 두고 사람에게 분류하라고 하면 쉽게 분류작업을 수행한다. 반면에 기계로 분류작업을 학습시키게 되면 기대했던 성능이 나오지 않고 있다.
 
 ```{r, out.width = "100%", dpi = 200, fig.cap="모라벡의 역설: 치와와와 머핀, 아이스크림과 고양이"}
 knitr::include_graphics("fig/moravec-paradox.png")
 ```
 
 
-## 중국어 방 주장 [^wiki-chinese-room] {#chinese-room}
+## 중국어 방 주장 {#chinese-room}
 
 중국어 방 혹은 중국인 방(영어: Chinese room) \cite{wikipedia_2019}은 존 설(John Searle)이 튜링 테스트로 기계의 인공지능 여부를 판정할 수 없다는 것을 논증하기 위해 고안한 사고실험이다.
 
@@ -508,9 +503,6 @@ knitr::include_graphics("fig/moravec-paradox.png")
 
 안에 어떤 사람이 있는지 모르는 중국인이 보면 안에 있는 사람은 중국어를 할 줄 아는 것처럼 보인다. 그러나, 안에 있는 사람은 실제로는 중국어를 전혀 모르는 사람이고, 중국어 질문을 이해하지 않고 주어진 표에 따라 대답할 뿐이다. 이로부터 중국어로 질문과 답변을 완벽히 한다고 해도 안에 있는 사람이 중국어를 진짜로 이해하는지 어떤지 판정할 수 없다는 결론을 얻는다. 이와 마찬가지로 지능이 있어서 질문 답변을 수행할 수 있는 기계가 있어도 그것이 지능을 가졌는지는 **튜링 테스트**로는 판정할 수 없다는 주장이다.
 
-```{r, out.width = "100%", dpi = 200, fig.cap="중국어 방 주장을 모사한 도해"}
-knitr::include_graphics("fig/chinese-room-argument.jpg")
-```
 
 결국 다음과 같이 컴퓨터, 인간, 인공지능을 비교할 수 있다. 
 중국어 방이 하드웨어, 인간의 외형적인 몸체라면, 질문과 답변을 입출력으로 정의할 수 있고,
@@ -518,16 +510,16 @@ knitr::include_graphics("fig/chinese-room-argument.jpg")
 
 
 ```{r latex-table-info}
-ai_comp_df <- tribble(~"인공지능", ~"컴퓨터", ~"인간",             
-"중국어 방",      "하드웨어", "인간의 외형적인 몸체  ",
-"영어만 할 줄 아는 사람", "소프트웨어", "인간의 지능 ",
-"중국어로 된 질문", "입력(Input)", "인간이 외부에서 접할 수 있는 자극 ",
-"중국어로 된 답변", "출력(Output)", "인간이 외부에서 접한 자극에 대한 반응 ",
-"질문&대답 목록", "데이터베이스(Database)", "습득된 기억 "
-)
+ai_comp_tbl <- '|  인공지능 |       컴퓨터      |       인간            |
+|:---------:|:-----------------:|:---------------------:|
+| 중국어 방 |      하드웨어     | 인간의 외형적인 몸체  |
+| 영어만 할 줄 아는 사람| 소프트웨어| 인간의 지능 |
+| 중국어로 된 질문 | 입력(Input) | 인간이 외부에서 접할 수 있는 자극 |
+| 중국어로 된 답변 | 출력(Output) | 인간이 외부에서 접한 자극에 대한 반응 |
+| 질문&대답 목록 | 데이터베이스(Database) | 습득된 기억 |'
 
-ai_comp_df %>% 
-  knitr::kable(format = "latex") %>% 
+read_markdown(ai_comp_tbl) %>% 
+  knitr::kable(format = "latex", booktabs = TRUE) %>% 
   kable_styling(latex_options = c("striped", "scale_down"))
 ```
 
@@ -536,11 +528,7 @@ ai_comp_df %>%
 
 앞서 자동화 수준을 1-10 사이로 구분했다면, 사람과 기계 사이의 업무 분장 경계를 적당히 지어야만 해당 문제를 자동화를 통해서 최선의 결과를 낼 수 있다. 오랜동안 논란이 되었지만, 대표적으로 달에 사람을 보내는 아폴로 계획에서 사람과 기계의 역할을 어떻게 구분하는 것이 좋은지는 항상 논란이 되어왔고 오늘날까지 이어지고 있다.
 
-```{r, out.width = "77%", dpi = 200, fig.cap="아폴로 계획에 대한 역할 구분"}
-knitr::include_graphics("fig/man-machine-role-allocation.png")
-```
-
-듀크 대학과 MIT 매리 커밍스(Mary Cummings) 교수는 기존 S-R-K 틀에 E를 더 붙이는 등 확장을 하여 다음과 같은 기계와 사람이 잘하는 분야, 즉 자동화가 되는 영역과 자동화의 도움을 받는 영역으로 범주화 시켰다. 매리 커밍스 교수가 F-18 여성 조종사 경력을 바탕으로 항공 사례를 예시로 들고 있다.
+듀크 대학과 MIT 소속 매리 커밍스(Mary Cummings) 교수는 기존 (Skill-Rule-Knowledge, S-R-K) 틀에 E(Expertise)를 더 붙이는 등 확장을 통해 다음과 같이 기계와 사람이 잘하는 분야, 즉 자동화가 되는 영역과 자동화의 도움을 받아 더 효과를 볼 수 있는 영역으로 범주화 시켰다. 매리 커밍스 교수가 F-18 여성 조종사 경력이 있어 이를 일반인들이 이해하기 쉽도록 항공 사례를 예시로 들고 있다.
 
 ```{r test-rmarkdown}
 srke_tbl <- "| 인지 작업 (cognitive behavior/task) | 자동화 정도(degree of automation) |
@@ -560,31 +548,18 @@ read_markdown(srke_tbl) %>%
 knitr::include_graphics("fig/role-allocation-skill-rules-experties.jpg")
 ```
 
+매리 커밍스 교수는 이를 '사람 감독 아래 제어'(Human Supervisory Control)로 명명하였다.
+최근 자동화 기계는 드론, 무인 자동차, 무인 화물자동차, 무인 비행기, 무인 선박 모두 센서와 액추에이터를 통해서 자동으로 설정한 목표를 달성하게 되어 있지만 이는 중앙 컴퓨터의 제어를 받는다. 중앙 컴퓨터 제어는 결국 사람이 화면을 보고 제어 로직을 심어둔 것으로 크게 볼 수 있다. 
 
-
-
-최근 자동화 기계는 드론, 무인 자동차, 무인 화물자동차, 무인 비행기, 무인 선박 모두 센서와 액추에이터를 통해서 자동으로 설정한 목표를 달성하게 되어 있지만 이는 중앙 컴퓨터의 제어를 받는다. 중앙 컴퓨터 제어는 결국 사람이 화면을 보고 제어 로직을 심어둔 것으로 크게 볼 수 있다.
-
-```{r, out.width = "77%", dpi = 200, fig.cap="Human Supervisory Control"}
+```{r, out.width = "77%", dpi = 200, fig.cap="사람 감독 아래 제어(Human Supervisory Control)"}
 knitr::include_graphics("fig/human-supervisory-control.png")
 ```
 
 # 결어 {#conclusion}
 
-인간과 기계의 경쟁구도로 일자리를 바라봤다면 기계를 통한 자동화의 본질을 살펴보고 기계와 인간이 공존하며 만들어내는 새로운 패러다임을 받아들일 준비를 할 시점이 된 듯 하다. 
-
-
-# 참고문헌
-
-\cite{brynjolfsson2014second} 
-\cite{ford2015rise}
-\cite{kaplan2015humans}
-\cite{cummings2014man}
-\cite{brownlee_2019}
-\cite{chang_2017}
-\cite{ahlstrom_2019}
-\cite{wikipedia_2019}
-\cite{hui_2018}
-
+문헌조사와 실증 데이터 분석을 통해서 일자리 구조에 근본적인 변화가 일어난 것을 확인했다.
+이러한 구조 변화의 원인으로 소싱전략의 변화 등 산업적인 요인도 작용했으나 그보다는 근본적으로 인공지능 기계의 부상으로 인해 인지기능을 장착한 기계가 앞으로 인간의 일자리 대체를 가속화시킬 것으로 예상된다.
+하지만, 기계가 가지고 있는 본질적인 한계가 존재하는 바, 이를 인간이 상대우위를 갖는 점을 적극 활용하여 사람 주도하에 기계를 제어하는 체계가 열어가는 일자리에 좀더 많은 관심을 가져야 된다.
+과거 인간과 기계의 경쟁구도로 일자리를 제로썸 게임으로 바라봤다면, 이제는 기계를 통한 자동화의 본질을 직시하고, 기계와 인간이 공존하며 만들어가는 새로운 패러다임을 받아들일 준비를 할 시점이 되었다. 
 
 

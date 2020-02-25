@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.25)  24 FEB 2020 19:59
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.25)  25 FEB 2020 13:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -510,7 +510,11 @@ Package: xetexko-vertical 2019/12/01 v2.22 Vertical environment for XeTeX-ko
 \verticalem=\dimen164
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/cjk-ko/kolabels-utf.sty
 Package: kolabels-utf 2015/03/20 v1.5 UTF-8 Hangul item labels
-))) (/usr/local/texlive/2015/texmf-dist/tex/latex/booktabs/booktabs.sty
+))) (/usr/local/texlive/2015/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen165
 \lightrulewidth=\dimen166
@@ -672,28 +676,28 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 Unknown journal: specify \journalname{<name of your journal>} in preambel
 
 \AtBeginShipoutBox=\box71
-Package hyperref Info: Link coloring OFF on input line 51.
+Package hyperref Info: Link coloring OFF on input line 52.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/latex/refcount/refcount.sty
@@ -705,9 +709,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count319
 )
-LaTeX Info: Redefining \ref on input line 51.
-LaTeX Info: Redefining \pageref on input line 51.
-LaTeX Info: Redefining \nameref on input line 51.
+LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \nameref on input line 52.
 (./paper.out) (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
@@ -718,56 +722,56 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 51.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 51.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 51.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 51.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 51.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 51.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 51.
-LaTeX Font Info:    Redeclaring math accent \check on input line 51.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 51.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 51.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 51.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 51.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 52.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 52.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 52.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 52.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 52.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 52.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 52.
+LaTeX Font Info:    Redeclaring math accent \check on input line 52.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 52.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 52.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 52.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 52.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 51.
+(Font)              `operators' in the math version `normal' on input line 52.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 51.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 52.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 51.
+(Font)              `operators' in the math version `bold' on input line 52.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 51.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 52.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 51.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 51.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 51.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 51.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 51.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 52.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 51.
+(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 51.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 51.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 51.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 52.
 
 Package fontspec Info: Could not resolve font "NanumMyeongjoExtraBold/I" (it
 (fontspec)             probably doesn't exist).
@@ -820,10 +824,10 @@ Package fontspec Info: Font family 'NanumGothic(0)' created for font
 \symmathhangul=\mathgroup5
 LaTeX Font Info:    Overwriting symbol font `mathhangul' in version `bold'
 (Font)                  TU/NanumMyeongjo(0)/m/n --> TU/NanumMyeongjo(0)/bx/n on
- input line 51.
+ input line 52.
 SVJour3 warning: Missing \journalname
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--96
+Underfull \hbox (badness 10000) in paragraph at lines 81--98
 
  []
 
@@ -833,31 +837,26 @@ File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 ) [1]
 File: fig/tax-preparation.png Graphic file (type bmp)
 <fig/tax-preparation.png>
+[2]
 File: fig/generative-model.png Graphic file (type bmp)
 <fig/generative-model.png>
 File: fig/discriminative-model.png Graphic file (type bmp)
 <fig/discriminative-model.png>
-[2]
-Overfull \hbox (7.72002pt too wide) in paragraph at lines 252--254
+[3]
+Overfull \hbox (7.72002pt too wide) in paragraph at lines 280--282
 [][]\TU/lmr/m/n/10 Rachel Chen (Dec 13, 2017), “Generating Ambient Music from W
 aveNet”,
  []
 
-[3] [4]
 File: paper_files/figure-latex/productivity-gap-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/productivity-gap-1.pdf>
+[4]
 File: paper_files/figure-latex/labor-share-us-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/labor-share-us-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [5]
-Overfull \hbox (84.7742pt too wide) in paragraph at lines 359--364
-[]\TU/lmr/m/n/10 Federal Reserve Bank of ST. Louis[] \TU/NanumMyeongjo(0)/m/n/1
-0 웹 사 이 트 에 서 \TU/lmr/m/n/10 API-KEY \TU/NanumMyeongjo(0)/m/n/10 발 급 받 아 \TU/lm
-tt/m/n/10 usethis::edit_r_environ()
- []
-
 File: paper_files/figure-latex/fred-data-labor-participation-1.pdf Graphic file
  (type pdf)
 <use paper_files/figure-latex/fred-data-labor-participation-1.pdf>
@@ -866,59 +865,57 @@ File: fig/the-end-of-outsourcing.png Graphic file (type bmp)
 <fig/the-end-of-outsourcing.png>
 File: paper_files/figure-latex/industrial-robot-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/industrial-robot-1.pdf>
-[7] [8]
+
+Underfull \vbox (badness 2941) has occurred while \output is active []
+
+[7]
+Underfull \vbox (badness 1308) has occurred while \output is active []
+
+[8]
 File: fig/moravec-paradox.png Graphic file (type bmp)
 <fig/moravec-paradox.png>
-File: fig/chinese-room-argument.jpg Graphic file (type bmp)
-<fig/chinese-room-argument.jpg>
-[9]
-File: fig/man-machine-role-allocation.png Graphic file (type bmp)
-<fig/man-machine-role-allocation.png>
-[10]
+[9] [10]
 File: fig/role-allocation-skill-rules-experties.jpg Graphic file (type bmp)
 <fig/role-allocation-skill-rules-experties.jpg>
 File: fig/human-supervisory-control.png Graphic file (type bmp)
 <fig/human-supervisory-control.png>
-
-Underfull \vbox (badness 1303) has occurred while \output is active []
-
-[11]
-Overfull \hbox (10.61002pt too wide) in paragraph at lines 633--637
-\TU/lmr/m/n/10 [[]] [[]] [[]] [[]]
- []
-
-(./paper.bbl
+[11] (./paper.bbl
 Missing character: There is no 중 in font [lmmono8-regular]:!
 Missing character: There is no 국 in font [lmmono8-regular]:!
 Missing character: There is no 어 in font [lmmono8-regular]:!
 Missing character: There is no 방 in font [lmmono8-regular]:!
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--37
+Underfull \hbox (badness 10000) in paragraph at lines 38--41
 [][][][][][] [][] [][][] [][] [][] [][] [][][][][] [][] [][][] [][] [][][][][] 
 [][] [][][][] [][] [][][] [][] [][][][] [][] [][][][] [][] [][][][] [][] [][] [
 ][] [][][][] [][] [][] [][] [][][][][][] [][]
  []
 
-Invalid UTF-8 byte or sequence at line 59 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 71 replaced by U+FFFD.
+Missing character: There is no � in font [lmroman8-regular]:mapping=tex-text;!
+Invalid UTF-8 byte or sequence at line 75 replaced by U+FFFD.
+Missing character: There is no � in font [lmroman8-regular]:mapping=tex-text;!
+[12]
+Invalid UTF-8 byte or sequence at line 79 replaced by U+FFFD.
 Missing character: There is no � in font [lmroman8-regular]:mapping=tex-text;!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 641.
-[12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 641.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 618.
+[13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 618.
 (./paper.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 641.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 641.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 618.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 618.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: EFD8233EC47083E180485DCF3EED8206;465.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 641.
+(rerunfilecheck)             Checksum: F10F71E77C01472B50FAEFA7E50C3D24;417.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 618.
  ) 
 Here is how much of TeX's memory you used:
- 28511 strings out of 492472
- 504723 string characters out of 6129298
- 596857 words of memory out of 5000000
- 32669 multiletter control sequences out of 15000+600000
- 540473 words of font info for 93 fonts, out of 8000000 for 9000
+ 28551 strings out of 492472
+ 504702 string characters out of 6129298
+ 599589 words of memory out of 5000000
+ 32718 multiletter control sequences out of 15000+600000
+ 538600 words of font info for 84 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 68i,10n,76p,419b,2559s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,10n,76p,415b,2559s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (12 pages).
+Output written on paper.pdf (13 pages).
