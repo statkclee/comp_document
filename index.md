@@ -38,6 +38,7 @@ subtitle: 데이터 과학 문서
     * [Github - 블로그](ds-github-blog.html)
     * [블로그 - blogdown](ds-blogdown.html)
     * [이력서(Resume)](ds-resume.html)
+1. [대쉬보드(Dashboard)](cd-dashboard.html)
 1. Computational Documents Tutorial
     - [R 마크다운](tutorial/01_rmarkdown/bmi.html)
     - **Parameterized Documents**

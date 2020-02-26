@@ -1,0 +1,56 @@
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "대쉬보드(Dashboard)"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+# use_condaenv("anaconda3")
+# reticulate::repl_python()
+```
+
+# 대쉬보드 [^dashboard] {#dashboard}
+
+[^dashboard]: [Marlorie Hughes (2019. 12. 3), "Dashboarding Like a Boss", DC R Conference](https://www.youtube.com/watch?v=yott4quKN6s)
+
+**A 12 Step Program to Quick Emailing Plots & Csvs**
+
+1. Basic Layout
+    - [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/)
+1. Printing Tables, Descriptive Statistics, Model Summaries
+    - `printr`, `summarytools::dfSummary`, `stargazer::stargazer`
+    - [list of statistic codes](https://rdrr.io/cran/stargazer/man/stargazer_stat_code_list.html)
+1. Interactive Datasets
+    - `DT`
+1. Interactive Plots
+    - `highcharter`
+    -  지도(`leaflet`), 시계열(`dygraphs`), `ggplots`(`plotly`)
+1. Exporting
+    - Datasets with `DT`
+    - Highcharter Plots
+1. CSS basics
+1. Branding: Logos, Fonts, Colors
+1. Header/Footer
+1. Hosting
+1. Automate-ish (Render + System())
+1. Replicate (Render with arguments)
+1. Automate or App it (cron, shiny runtime)
+
+
