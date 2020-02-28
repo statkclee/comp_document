@@ -22,12 +22,6 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
                       comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
 
 library(reticulate)
-# use_condaenv("anaconda3")
-# reticulate::repl_python()
-library(here)
-
-here()
-
 ```
 
 # 대쉬보드 [^dashboard] [^blog-dashboard] {#dashboard}
@@ -99,7 +93,29 @@ coronavirus
 
 ![`flexdashboard` 배치도(layout)](fig/flexdashboard-layout.png)
 
-```{r dashboard-layout, eval=FALSE}
+상기 `flexdashboard` 배치도(layout)를 작성하기 위한 R마크다운 대쉬보드 코드는 다음과 같다.
+`valueBox`를 상단에 배치하고 아래 두 그래프 역영에 각기 필요한 그래프를 넣어준다.
+
+<pre><code>
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "대쉬보드(Dashboard)"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
 전세계 {data-icon="fa-globe"}
 ===================================
 
@@ -143,5 +159,9 @@ Column {data-height=350}
 한국 {data-icon="fa-map"}
 ===================================
 
-```
+</code></pre>
+
+
+
+
 

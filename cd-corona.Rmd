@@ -6,6 +6,8 @@ output:
     theme: readable
     orientation: rows
     vertical_layout: scroll
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -20,27 +22,45 @@ library(tidyverse)
 Row {data-width=150} 
 --------------------------------------------
 
+
+```{r ingest-corona}
+library(coronavirus)
+data('coronavirus')
+
+coronavirus <- coronavirus %>% 
+  janitor::clean_names()
+
+cv_stat <- coronavirus %>% 
+  group_by(type) %>% 
+  summarise(합계 = sum(cases))
+
+```
+
 ### 확진자수
 
-```{r}
-infected <- 100
-valueBox(infected, icon = "fa-procedures")
+```{r infected}
+infected <- cv_stat %>% filter(type=='confirmed') %>% pull
+valueBox(scales::comma(infected), 
+         icon = "fa-procedures",
+         color = "warning")
 ```
 
 ### 사망자수
 
-```{r}
-death <- 20
-valueBox(death, icon = "fa-skull")
+```{r death}
+death <- cv_stat %>% filter(type=='death') %>% pull
+valueBox(scales::comma(death), 
+         icon = "fa-skull",
+         color = "danger")
 ```
 
 ### 회복자수
 
-```{r}
-recovered <- 30
-valueBox(recovered, 
+```{r recovered}
+recovered <- cv_stat %>% filter(type=='recovered') %>% pull
+valueBox(scales::comma(recovered), 
          icon = "fa-walking",
-         color = ifelse(recovered > 10, "warning", "primary"))
+         color = "success")
 ```
 
 Column {data-height=350}
@@ -48,7 +68,53 @@ Column {data-height=350}
 
 ### Chart 1
 
+참고: https://evamaerey.github.io/little_flipbooks_library/racing_bars/racing_barcharts.html
+
+```{r time-series-plot}
+
+coronavirus %>% 
+  filter(type == 'confirmed') %>% 
+  group_by(country_region, date) %>% 
+  summarise(cases = sum(cases)) %>% 
+  arrange(date, -cases) %>% 
+  ungroup() %>%
+  filter(str_detect(country_region, "Mainland|Korea|Japan")) %>%
+  ggplot(aes(x=country_region, y=cases, fill=country_region)) +
+    geom_col(show.legend = TRUE) +
+    coord_flip() +
+    facet_wrap(~date)
+
+# corona_by_country %>% 
+#   facet_null() %>% 
+#   aes(group = country_region) +  
+#   gganimate::transition_time(date)
+
+```
+
 ### Chart 2
+
+```{r corona-leaflet}
+library(leaflet)
+library(janitor)
+
+coronavirus %>% 
+  mutate(geo_name = glue::glue("{country_region} {province_state}")) %>% 
+  select(-country_region, -province_state) %>% 
+  group_by(geo_name, lat, long, type) %>%
+    summarise(cases = sum(cases, na.rm = TRUE)) %>% 
+    spread(type, cases, fill=0) %>% 
+    leaflet() %>%
+    addTiles() %>% 
+    addProviderTiles(providers$OpenStreetMap) %>% 
+    addMarkers(lng=~long, lat=~lat, clusterOptions = markerClusterOptions(),
+                     popup = ~ as.character(paste0("<strong> 코로나19 현황: ", geo_name, "</strong><br>",
+    "-----------------------------------------------------------<br>",
+                                                   "&middot; 감염: ", scales::comma(confirmed), "<br>",
+                                                   "&middot; 사망: ", scales::comma(death), "<br>",
+                                                   "&middot; 회복: ", scales::comma(recovered), "<br>")))
+```
+
+
 
 한국 {data-icon="fa-map"}
 ===================================
