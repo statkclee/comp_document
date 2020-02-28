@@ -3,35 +3,52 @@ title: "코로나19"
 subtitle: "대쉬보드"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    theme: readable
+    orientation: rows
+    vertical_layout: scroll
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(tidyverse)
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
 
-### Chart A
+전세계 {data-icon="fa-globe"}
+===================================
+
+Row {data-width=150} 
+--------------------------------------------
+
+### 확진자수
 
 ```{r}
-
+infected <- 100
+valueBox(infected, icon = "fa-procedures")
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
+### 사망자수
 
 ```{r}
-
+death <- 20
+valueBox(death, icon = "fa-skull")
 ```
 
-### Chart C
+### 회복자수
 
 ```{r}
-
+recovered <- 30
+valueBox(recovered, 
+         icon = "fa-walking",
+         color = ifelse(recovered > 10, "warning", "primary"))
 ```
 
+Column {data-height=350}
+-------------------------------------
+
+### Chart 1
+
+### Chart 2
+
+한국 {data-icon="fa-map"}
+===================================

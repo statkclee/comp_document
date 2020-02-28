@@ -24,11 +24,17 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
 library(reticulate)
 # use_condaenv("anaconda3")
 # reticulate::repl_python()
+library(here)
+
+here()
+
 ```
 
-# 대쉬보드 [^dashboard] {#dashboard}
+# 대쉬보드 [^dashboard] [^blog-dashboard] {#dashboard}
 
 [^dashboard]: [Marlorie Hughes (2019. 12. 3), "Dashboarding Like a Boss", DC R Conference](https://www.youtube.com/watch?v=yott4quKN6s)
+
+[^blog-dashboard]: [Sagar Kulkarni (Sep 20, 2019), "Building an HR Dashboard in R using Flexdashboard", towrds data science](https://towardsdatascience.com/building-an-hr-dashboard-in-r-using-flexdashboard-76d14ed3f32)
 
 **A 12 Step Program to Quick Emailing Plots & Csvs**
 
@@ -53,4 +59,89 @@ library(reticulate)
 1. Replicate (Render with arguments)
 1. Automate or App it (cron, shiny runtime)
 
+# 코로나19 대쉬보드 {#corona-virus-dashboard}
+
+코로나19 대쉬보드를 제작하기 위해서 먼저 [코로나19 데이터](https://github.com/RamiKrispin/coronavirus)를 가져온다. 이를 [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/)를 주요 엔진삼아 대쉬보드를 제작하고 이를 `gh-pages` 웹사이트에 배포한다.
+
+다행히 코로나19 데이터의 경우 [`coronavirus`](https://ramikrispin.github.io/coronavirus/) 데이터 팩키지가 제작되어 데이터 입수에 따른 공수를 절약할 수 있다.
+
+![대쉬보드 제작 흐름](fig/corona-flexdashboard.png)
+
+## 데이터셋 {#corona-dashboard-dataset}
+
+```{r install-dataset}
+# install.packages("coronavirus") 
+# devtools::install_github("RamiKrispin/coronavirus")
+
+library(coronavirus)
+
+data("coronavirus")
+coronavirus
+```
+
+## 대쉬보드 디자인 {#corona-dashboard-design}
+
+데이터 과학 요소가 들어간 대쉬보드 제작을 위한 UI 설계안을 작성한다.
+
+![코로나19 대쉬보드 UI 설계](fig/corona-dashboard-ui.png){#id .class width="77%"}
+
+
+## `flexdashboard` 배치도(layout) {#corona-dashboard-layout}
+
+- [Font Awesome](https://fontawesome.com/icons?from=io)
+- [Ionicons](https://ionicons.com/)
+- [](https://getbootstrap.com/docs/4.4/components/alerts/)
+
+
+![코로나19 대쉬보드 UI 설계](fig/corona-dashboard-ui.png){#id .class width="77%"}
+
+`wireframe` 작성한 것을 `flexdashboard` 문법에 맞춰 대쉬보드 구성요소를 적절히 배치시킨다.
+
+![`flexdashboard` 배치도(layout)](fig/flexdashboard-layout.png)
+
+```{r dashboard-layout, eval=FALSE}
+전세계 {data-icon="fa-globe"}
+===================================
+
+Row {data-width=150} 
+--------------------------------------------
+
+### 확진자수
+
+```{r, eval=FALSE}
+infected <- 100
+valueBox(infected, icon = "fa-procedures")
+```
+
+### 사망자수
+
+```{r, eval=FALSE}
+death <- 20
+valueBox(death, icon = "fa-skull")
+```
+
+### 회복자수
+
+```{r, eval=FALSE}
+recovered <- 30
+valueBox(recovered, 
+         icon = "fa-walking",
+         color = ifelse(recovered > 10, "warning", "primary"))
+```
+
+
+Column {data-height=350}
+-------------------------------------
+
+### Chart 1
+
+
+
+### Chart 2
+
+
+한국 {data-icon="fa-map"}
+===================================
+
+```
 
