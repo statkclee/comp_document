@@ -5,7 +5,7 @@ output:
   flexdashboard::flex_dashboard:
     theme: readable
     orientation: rows
-    vertical_layout: scroll
+    vertical_layout: fill
 editor_options: 
   chunk_output_type: console
 ---
@@ -13,6 +13,9 @@ editor_options:
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
+library(extrafont)
+loadfonts()
+
 ```
 
 
@@ -37,6 +40,15 @@ cv_stat <- coronavirus %>%
   summarise(합계 = sum(cases))
 
 ```
+
+### 검사자수
+
+```{r tested}
+valueBox(NA, 
+         icon = "fa-vial",
+         color = "primary")
+```
+
 
 ### 확진자수
 
@@ -172,3 +184,126 @@ coronavirus %>%
 
 한국 {data-icon="fa-map"}
 ===================================
+
+Row {data-width=150} 
+--------------------------------------------
+
+
+```{r ingest-corona-google, warning=FALSE, eval=FALSE}
+## 데이터셋 --------------------
+library(googlesheets4)
+library(tidyverse)
+library(lubridate)
+
+cv_kor <- read_sheet('https://docs.google.com/spreadsheets/d/1fODH5PZJw9jxwV2GRe85BRQgc3mxdyyIpQ0I6MDJKXc/edit#gid=0')
+
+cv_kor_df <- cv_kor %>% 
+  select(날짜, 확진자=`누적 확진자수`, 검사자 = `누적 검사자수`, 사망자, 회복자=`누적 격리해제`) %>% 
+  arrange(날짜) %>% 
+  mutate(일자 = as.Date(날짜)) %>% 
+  group_by(일자) %>% 
+  summarise(검사자 = last(검사자),
+               확진자 = last(확진자),
+               사망자 = last(사망자),
+               회복자 = last(회복자)
+            )  %>% 
+  padr::pad(.)
+
+cv_kor_df %>% 
+  write_rds("data/cv_kor_df.rds")
+```
+
+### 검사자수
+
+```{r kor-tested}
+cv_kor_df  <-  
+  read_rds("data/cv_kor_df.rds")
+
+kor_tested <- cv_kor_df %>% 
+  select(검사자) %>% 
+  slice(n()) %>% pull
+
+valueBox(scales::comma(kor_tested), 
+         icon = "fa-vial",
+         color = "primary")
+```
+
+### 확진자수
+
+```{r kor-infected}
+kor_infected <- cv_kor_df %>% 
+  select(확진자) %>% 
+  slice(n()) %>% pull
+
+valueBox(scales::comma(kor_infected), 
+         icon = "fa-procedures",
+         color = "warning")
+```
+
+### 사망자수
+
+```{r kor-death}
+kor_death <- cv_kor_df %>% 
+  select(사망자) %>% 
+  slice(n()) %>% pull
+valueBox(scales::comma(kor_death), 
+         icon = "fa-skull",
+         color = "danger")
+```
+
+### 회복자수
+
+```{r kor-recovered}
+kor_recovered <- cv_kor_df %>% 
+  select(회복자) %>% 
+  slice(n()) %>% pull
+
+valueBox(scales::comma(kor_recovered), 
+         icon = "fa-walking",
+         color = "success")
+```
+
+
+Column {data-height=350}
+-------------------------------------
+
+### Chart 1
+
+```{r kor-df}
+cv_kor_df %>%
+  arrange(desc(일자)) %>% 
+  DT::datatable(filter = 'top',  
+          options = list(   searchHighlight = TRUE, pageLength = 15,
+                            dom = 'Bfrtip',
+                            buttons = c('copy', 'csv', 'excel', 'pdf', 'print')),
+          extensions = 'Buttons') %>% 
+  DT::formatRound(c("검사자", "확진자", "사망자", "회복자"), digits=0)
+```
+
+### Chart 2
+
+
+```{r kor-df-viz}
+
+korea_theme <- theme_classic(base_family = "NanumGothic") +
+  theme(legend.position = "none") +
+  theme(legend.background = element_rect(fill = "gainsboro")) +
+  theme(plot.background = element_rect(fill = "gainsboro")) +
+  theme(panel.background = element_rect(fill = "gainsboro"))
+
+cv_kor_plot <- cv_kor_df %>% 
+  gather(유형, 사람수, -일자) %>% 
+  mutate(유형 = factor(유형, levels=c("검사자", "확진자", "회복자", "사망자"))) %>% 
+  ggplot(aes(x=일자, y=사람수, color=유형)) +
+    geom_line() +  
+    geom_point() +
+    facet_wrap(~유형, scale="fixed") +
+    scale_y_continuous(labels = scales::comma_format(scale = 1)) +
+    korea_theme +
+    labs(x="", y="") +
+    scale_color_viridis_d(option = "magma",
+                     direction = -1) 
+
+plotly::ggplotly(cv_kor_plot)
+```
+
