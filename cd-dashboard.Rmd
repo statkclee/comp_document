@@ -64,13 +64,18 @@ library(reticulate)
 ## 데이터셋 {#corona-dashboard-dataset}
 
 ```{r install-dataset}
+library(tidyverse)
 # install.packages("coronavirus") 
 # devtools::install_github("RamiKrispin/coronavirus")
 
 library(coronavirus)
 
 data("coronavirus")
-coronavirus
+coronavirus <- coronavirus %>% 
+  janitor::clean_names() %>% 
+  rename(country = country_region,
+         province = province_state)
+
 ```
 
 ## 대쉬보드 디자인 {#corona-dashboard-design}
@@ -161,7 +166,201 @@ Column {data-height=350}
 
 </code></pre>
 
+# 시각화 구성요소 {#dashboard-graph}
+
+## 경주하는 막대 그래프 [^racing-barchart] {#draw-racing-barchart}
+
+[^racing-barchart]: [Gina Reynolds (April 2019), "Racing Barchart with gganimate - a quick flipbook | made with Xaringan", R-Ladies](https://evamaerey.github.io/little_flipbooks_library/racing_bars/racing_barcharts.html#1)
+
+**경주하는 막대 그래프(Racing Barchart)**는 [GDP 상위 15국 (1970-2017)](https://www.youtube.com/embed/jCNSqEwh7GQ), [글로벌 브랜드 가치 상위 15사 (2000-2018)](https://www.youtube.com/embed/BQovQUga0VE)를 보면 시각적으로 변화를 파악하는데 편리하다. 이를 R로 시각화하며 어떨까? Gina Reynolds가 R-Ladies에서 이를 해냈습니다. 코드도 간결하고 애니메이션도 부드럽고 아름답습니다.
+
+![`gapminder`: 경주하는 막대그래프](fig/racing-barchart.png)
+
+[`gapminder`](https://cran.r-project.org/web/packages/gapminder/index.html) 데이터셋을 사용하여 경주하는 막대그래프를 제작하려면 연도별 국가순위(Rank)를 계산하는 전처리 작업이 필요하다.
+그 다음 `facet_wrap()` 함수를 사용하여 년도별 변경사항을 시각화한다. 그리고 나서 `gganimate`로 시각화면 되는 어쩌면 매우 단순한 과정이다.
+
+### 데이터셋 {#racing-barchart-data}
+
+`gapminder` 데이터 팩키지에서 데이터를 가져온다. 그리고 나서 년도별 인구가 많은 상위 10개국을 추려낸다.
+
+```{r gapminder}
+library(gapminder)
+
+ranked_by_year <- gapminder %>%  
+  select(country, pop, year, continent) %>%  
+  group_by(year) %>%  
+  arrange(year, -pop) %>%  
+  mutate(rank = 1:n()) %>%  
+  filter(rank <= 10) 
+```
 
 
+### 정적그래프 {#racing-barchart-ggplot}
+
+정적 그래프 시각화에 사용될 테마(theme)을 한글 폰트와 함께 색상을 적절히 지정한다.
+
+```{r gapminder-theme}
+library(extrafont)
+loadfonts()
+
+gapminder_theme <- theme_classic(base_family = "NanumGothic") +
+  theme(axis.text.y = element_blank()) +
+  theme(axis.ticks.y = element_blank()) +
+  theme(axis.line.y = element_blank()) +
+  theme(legend.background = element_rect(fill = "gainsboro")) +
+  theme(plot.background = element_rect(fill = "gainsboro")) +
+  theme(panel.background = element_rect(fill = "gainsboro"))
+```
+
+`geom_rect()`를 사용해서 국가별 상위 10국에 대한 인구를 막대그래프로 표현하고, 
+`facet_wrap`을 활용하여 년도별 인구변화를 작은 그래프로 만들어낸다. 그리고 국가명도 순서에 맞춰 붙여낸다.
+
+```{r gapminder-ggplot}
+gapminder_plot <- ranked_by_year %>%  
+  ggplot() +  
+  aes(xmin = 0 ,  
+      xmax = pop / 1000000) +  
+  aes(ymin = rank - .45,  
+      ymax = rank + .45,  
+      y = rank) +  
+  facet_wrap(~ year) +  
+  geom_rect(alpha = .7) +  
+  aes(fill = continent) +  
+  scale_fill_viridis_d(option = "magma",  
+                       direction = -1) +  
+  scale_x_continuous(  
+    limits = c(-355, 1400),  
+    breaks = c(0, 400, 800, 1200)) +  
+  geom_text(col = "gray13",  
+            hjust = "right",  
+            aes(label = country),  
+            x = -50) +  
+  scale_y_reverse() +  
+  labs(fill = NULL) +  
+  labs(x = '인구 (백만)') +  
+  labs(y = "") +  
+  gapminder_theme
+
+gapminder_plot
+```
+
+
+### 막대그래프 애니 {#racing-barchart-animation}
+
+```{r gapminder-animation}
+library(gganimate) 
+options(gganimate.nframes = 20)
+
+gapminder_plot +
+  facet_null() +  
+  geom_text(x = 1000 , y = -10,  
+            family = "Times",  
+            aes(label = as.character(year)),  
+            size = 30, col = "grey18") +  
+  aes(group = country) +  
+  gganimate::transition_time(year)
+```
+
+
+## 코로나19 {#corona-19}
+
+[`coronavirus`](https://ramikrispin.github.io/coronavirus/) 데이터 팩키지에서 가져온 코로나 관련 데이터를 "경주하는 막대그프"로 생성하여 그래프 구성요소로 넣기 위해서 앞선 `gapminder` 경주 막대그래프 사례를 참조하여 데이터를 준비하고, 정적그래프에 이어서 애니메이션을 작성하여 `.gif`로 떨구고 이를 대쉬보드에서 불러 그래프 영역에 채워넣는다.
+
+
+```{r corona19-running-barchart}
+
+library(gganimate) 
+options(gganimate.nframes = 100)
+
+## 데이터 
+corona_ranked_by_date <- coronavirus %>% 
+  filter(type == 'confirmed') %>% 
+  group_by(country, date) %>% 
+  summarise(confirmed = sum(cases)) %>% 
+  ungroup() %>% 
+  group_by(country) %>% 
+  arrange(date) %>% 
+  mutate(cum_confirmed = cumsum(confirmed)) %>% # 국가별 누적환자수
+  ungroup() %>% 
+  group_by(date) %>% 
+  arrange(date, -cum_confirmed) %>% # 일별 상위 국가 선정
+  mutate(rank = 1:n()) %>% 
+  filter(rank <=7) %>% 
+  ungroup()
+
+## 테마
+library(extrafont)
+loadfonts()
+
+corona_theme <- theme_classic(base_family = "NanumGothic") +
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_blank()) +
+  theme(axis.ticks.y = element_blank()) +
+  theme(axis.line.y = element_blank()) +
+  theme(legend.background = element_rect(fill = "gainsboro")) +
+  theme(plot.background = element_rect(fill = "gainsboro")) +
+  theme(panel.background = element_rect(fill = "gainsboro"))
+
+corona_plot <- corona_ranked_by_date %>% 
+  ggplot() +
+    aes(xmin = 0 ,  
+        xmax = cum_confirmed) +  
+    aes(ymin = rank - .45,  
+        ymax = rank + .45,  
+        y = rank) +
+    facet_wrap(~date) +
+    geom_rect(alpha = .7) +
+    aes(fill = country) +
+    scale_fill_viridis_d(option = "magma",
+                       direction = -1) +
+    scale_x_continuous(
+      limits = c(-15000, 80000)) +
+    geom_text(col = "gray13",  
+          hjust = "right",  
+          aes(label = country),  
+          x = -50) +
+    labs(fill = NULL) +  
+    labs(x = '감염자수') +  
+    labs(y = "") +  
+    scale_y_reverse() +
+    corona_theme
+
+corona_gif <- corona_plot +
+  facet_null() +
+  aes(group = country) +
+  geom_text(x = 55000 , y = -7,  
+          family = "NanumGothic",  
+          aes(label = as.character(date) ),  
+          size = 10, col = "grey18")  +
+  gganimate::transition_time(date)
+
+corona_gif # anim_save("fig/corona.gif", corona_gif, duration=0.1)
+```
+
+
+## 코로나19 {#corona-19-leaflet}
+
+공간정보 시각화를 위해서 `leaflet`을 활용하여 `coronavirus`에 포함된 위경도 정보에 매칭시켜 인터랙티브 시각화 정보를 완성한다.
+
+```{r corona-19-leaflet}
+library(leaflet)
+library(janitor)
+
+coronavirus %>% 
+  mutate(geo_name = glue::glue("{country} {province}")) %>% 
+  select(-country, -province) %>% 
+  group_by(geo_name, lat, long, type) %>%
+    summarise(cases = sum(cases, na.rm = TRUE)) %>% 
+    spread(type, cases, fill=0) %>% 
+    leaflet() %>%
+    addTiles() %>% 
+    addProviderTiles(providers$OpenStreetMap) %>% 
+    addMarkers(lng=~long, lat=~lat, clusterOptions = markerClusterOptions(),
+                     popup = ~ as.character(paste0("<strong> 코로나19 현황: ", geo_name, "</strong><br>",
+    "-----------------------------------------------------------<br>",
+                                                   "&middot; 감염: ", scales::comma(confirmed), "<br>",
+                                                   "&middot; 사망: ", scales::comma(death), "<br>",
+                                                   "&middot; 회복: ", scales::comma(recovered), "<br>")))
+```
 
 
