@@ -63,6 +63,13 @@ library(reticulate)
 
 ## 데이터셋 {#corona-dashboard-dataset}
 
+`r Sys.Date()` 두가지 데이터셋이 대쉬보드를 개발하는데 R 데이터 팩키지로 작성을 진행중에 있다.
+
+- [`coronavirus`: The coronavirus dataset ](https://github.com/RamiKrispin/coronavirus)
+    - [`COVID-19`: Novel Coronavirus (COVID-19) Cases, provided by JHU CSSE](https://github.com/CSSEGISandData/COVID-19)
+- [`covid`: Novel Coronavirus(2019-nCoV) updates from WHO daily reports](https://github.com/javierluraschi/covid)
+    - [PDF WHO 보고서](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports)
+
 ```{r install-dataset}
 library(tidyverse)
 # install.packages("coronavirus") 
@@ -89,7 +96,7 @@ coronavirus <- coronavirus %>%
 
 - [Font Awesome](https://fontawesome.com/icons?from=io)
 - [Ionicons](https://ionicons.com/)
-- [](https://getbootstrap.com/docs/4.4/components/alerts/)
+- [Bootstrap](https://getbootstrap.com/docs/4.4/components/alerts/)
 
 
 ![코로나19 대쉬보드 UI 설계](fig/corona-dashboard-ui.png){#id .class width="77%"}
@@ -168,7 +175,7 @@ Column {data-height=350}
 
 # 시각화 구성요소 {#dashboard-graph}
 
-## 경주하는 막대 그래프 [^racing-barchart] {#draw-racing-barchart}
+## 막대 그래프: `gapminder` [^racing-barchart] {#draw-racing-barchart}
 
 [^racing-barchart]: [Gina Reynolds (April 2019), "Racing Barchart with gganimate - a quick flipbook | made with Xaringan", R-Ladies](https://evamaerey.github.io/little_flipbooks_library/racing_bars/racing_barcharts.html#1)
 
@@ -262,12 +269,12 @@ gapminder_plot +
 ```
 
 
-## 코로나19 {#corona-19}
+## 막대그래프: 코로나19 {#corona-19}
 
 [`coronavirus`](https://ramikrispin.github.io/coronavirus/) 데이터 팩키지에서 가져온 코로나 관련 데이터를 "경주하는 막대그프"로 생성하여 그래프 구성요소로 넣기 위해서 앞선 `gapminder` 경주 막대그래프 사례를 참조하여 데이터를 준비하고, 정적그래프에 이어서 애니메이션을 작성하여 `.gif`로 떨구고 이를 대쉬보드에서 불러 그래프 영역에 채워넣는다.
 
 
-```{r corona19-running-barchart}
+```{r corona19-running-barchart, eval=FALSE}
 
 library(gganimate) 
 options(gganimate.nframes = 100)
@@ -337,8 +344,12 @@ corona_gif <- corona_plot +
 corona_gif # anim_save("fig/corona.gif", corona_gif, duration=0.1)
 ```
 
+```{r corona-gif}
+knitr::include_graphics('fig/corona.gif') 
+```
 
-## 코로나19 {#corona-19-leaflet}
+
+## 공간정보 시각화 {#corona-19-leaflet}
 
 공간정보 시각화를 위해서 `leaflet`을 활용하여 `coronavirus`에 포함된 위경도 정보에 매칭시켜 인터랙티브 시각화 정보를 완성한다.
 
@@ -363,4 +374,101 @@ coronavirus %>%
                                                    "&middot; 회복: ", scales::comma(recovered), "<br>")))
 ```
 
+# 한국 {#corona-korea}
+
+## 데이터셋 {#corona-korea-dataset}
+
+한국 코로나19관련 데이터를 MBC 장슬기 기자의 도움으로 [이성규, "미디어고토사"](https://www.mediagotosa.com/korona19-hwagsan-ilbyeol-hyeonhwang-jeongri/)에서 찾을 수 있었다. 문제는 데이터를 `google sheet`에 정리해 두어서 [`googlesheets4`](https://github.com/tidyverse/googlesheets4)의 도움으로 수월하게 입수할 수 있다.
+
+문제는 일자별로 데이터 정리가 체계적으로 되어 있지 않고, 최근에야 코로나 관련 데이터를 모으게 되어서 대쉬보드를 구성할 때 한계가 있다.
+
+```{r mediagotoa-dataset, eval=FALSE}
+## 데이터셋 --------------------
+library(googlesheets4)
+library(tidyverse)
+library(lubridate)
+
+cv_kor <- read_sheet('https://docs.google.com/spreadsheets/d/1fODH5PZJw9jxwV2GRe85BRQgc3mxdyyIpQ0I6MDJKXc/edit#gid=0')
+
+cv_kor_df <- cv_kor %>% 
+  select(날짜, 확진자=`누적 확진자수`, 검사자 = `누적 검사자수`, 사망자, 회복자=`누적 격리해제`) %>% 
+  arrange(날짜) %>% 
+  mutate(일자 = as.Date(날짜)) %>% 
+  group_by(일자) %>% 
+  summarise(검사자 = last(검사자),
+               확진자 = last(확진자),
+               사망자 = last(사망자),
+               회복자 = last(회복자)
+            )  %>% 
+  padr::pad(.)
+```
+
+## 대쉬보드 구성 {#corona-korea-dashboard}
+
+전세계 코로나 사례와 다르게 검사자수가 포함되어 있어 이를 `valueBox`에 포함시킨다. 지역정보가 없기 때문에 이를 `DT` 표로 대신하는데 몇가지 인터랙티브 기능을 추가해서 기본 정렬에 추가하여 칼럼별 검색 및 다양한 파일 형태로 다운로드 가능하도록 한다. 일자별로 구성된 시계열 데이터 특성을 적극 활용하여 선그래프를 인터랙티브하게 구성한다.
+
+![한국 대쉬보드 구성](fig/corona-korea.png)
+
+## 시각화 구성요소 {#corona-korea-dashboard-component}
+
+시각화 구성요소로 `valueBox`, `DT`, `plotly`를 선택했기 때문에 이를 순차적으로 모듈화시켜 개발한 후에 대쉬보드에 적용시킨다.
+
+### `valueBox()` {#corona-korea-valueBox}
+
+검사자, 확진자, 사망자, 회복자를 `valueBox`로 만들어 현황을 파악하기 편하게 구성한다. `webshot`을 사용하면 굳이 화면을 캡쳐하지 않아도 R마크다운 코드에서 직접 가능하게 된다.
+
+```{r interactive-valueBox, eval=FALSE}
+library(webshot)
+
+webshot("https://statkclee.github.io/comp_document/cd-corona.html",
+        "fig/korea-valueBox.png", selector = c("#row"))
+```
+
+![`valueBox`](fig/korea-valueBox.png)
+
+### 인터랙티브 표 {#corona-korea-table}
+
+인터랙티브 표를 사용하게 되면 일단 기본기능으로 들어가 있는 정렬외에 `searchHighlight`를 사용해서 검색 기능을 넣고, `dom = 'Bfrtip'`을 통해 다양한 형태로 데이터를 내려받을 수 있도록 한다.
+
+```{r kor-df-table}
+cv_kor_df  <-  
+  read_rds("data/cv_kor_df.rds")
+
+cv_kor_df %>%
+  arrange(desc(일자)) %>% 
+  DT::datatable(filter = 'top',  
+          options = list(   searchHighlight = TRUE, pageLength = 15,
+                            dom = 'Bfrtip',
+                            buttons = c('copy', 'csv', 'excel', 'pdf', 'print')),
+          extensions = 'Buttons') %>% 
+  DT::formatRound(c("검사자", "확진자", "사망자", "회복자"), digits=0)
+```
+
+### 시각화 {#corona-korea-table-viz}
+
+`plotly`를 사용해서 정적 그래프를 간단히 인터랙티브 그래프로 변환시킨다.
+
+
+```{r kor-df-viz}
+korea_theme <- theme_classic(base_family = "NanumGothic") +
+  theme(legend.position = "none") +
+  theme(legend.background = element_rect(fill = "gainsboro")) +
+  theme(plot.background = element_rect(fill = "gainsboro")) +
+  theme(panel.background = element_rect(fill = "gainsboro"))
+
+cv_kor_plot <- cv_kor_df %>% 
+  gather(유형, 사람수, -일자) %>% 
+  mutate(유형 = factor(유형, levels=c("검사자", "확진자", "회복자", "사망자"))) %>% 
+  ggplot(aes(x=일자, y=사람수, color=유형)) +
+    geom_line() +  
+    geom_point() +
+    facet_wrap(~유형, scale="fixed") +
+    scale_y_continuous(labels = scales::comma_format(scale = 1)) +
+    korea_theme +
+    labs(x="", y="") +
+    scale_color_viridis_d(option = "magma",
+                     direction = -1) 
+
+plotly::ggplotly(cv_kor_plot)
+```
 
