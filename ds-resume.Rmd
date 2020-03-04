@@ -3,7 +3,7 @@ layout: page
 title: "데이터 사이언스: 저작(Authoring)"
 subtitle: "이력서(Resume)"
 author:
-    name: xwMOOC
+    name: "[Tidyverse Korea](https://web.facebook.com/groups/tidyverse/)"
 date: "`r Sys.Date()`"
 output:
   html_document: 
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
                       comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
 
 library(reticulate)
-use_condaenv("anaconda3")
+# use_condaenv("anaconda3")
 # reticulate::repl_python()
 ```
 
@@ -75,7 +75,7 @@ R마크다운으로 이력서를 제작하는 붐이 한때 일었다. 이에 �
 <img src="fig/rmarkdown-resume-workflow.png" alt="작업흐름" width="100%" />
 
 
-# awesome-CV [^awesome-CV] {#document-resume-rmd} 
+# awesome-CV [^awesome-CV] {#document-resume-rmd2} 
 
 [^awesome-CV]: [Awesome CV is LaTeX template for a CV(Curriculum Vitae), Résumé or Cover Letter](https://github.com/posquit0/Awesome-CV)
 
