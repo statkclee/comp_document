@@ -355,7 +355,7 @@ FRED Economic Data [^share-income] 데이터를 분석해본 결과 미국은 19
 
 ## 노동인력 참여율 {#labor-participation}
 
-```{r fred-data-labor-participation, dev="cairo_pdf", out.width="100%", fig.cap="미국 노동참여율 연도별 추이 (1948 - 2018)", eval=FALSE}
+```{r fred-data-labor-participation, dev="cairo_pdf", out.width="100%", fig.cap="미국 노동참여율 연도별 추이 (1948 - 2018)", eval=TRUE}
 library(fredr)
 library(xts)
 fredr_set_key(FRED_KEY)
