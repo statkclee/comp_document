@@ -129,7 +129,7 @@ GitHub 저장소를 정적 웹사이트(`gh-pages`)를 통해 일반에 서비�
 ```{r webshot-bundang-github}
 library(webshot2)
 
-webshot('https://statkclee.github.io/bundang/')
+webshot('https://statkclee.github.io/bundang/', 'fig/bundang-mask.png')
 ```
 
 ### CD 작업 {#real-time-dashboard-hosting-cd}
@@ -157,6 +157,96 @@ RStudio IDE에서 `.Rmd` 파일을 컴파일 해서 `.html` 대쉬보드를 만�
 `Route53`를 통해서 도메인 생성 후, 즉 도메인 구입 후,  S3 정적 웹사이트(static website) 연결 작업을 수행하여 웹서비스를 제공할 수 있도록 한다.
 
 
+## 대쉬보드 자동화 {#real-time-dashboard-automation}
 
+### `pandoc` 설치 {#real-time-dashboard-automation-pandoc}
+
+`flexdashboard`로 제작한 R 대쉬보드를 쉘 스크립트로 자동화할 경우 `Rscript -e` 명령어를 쉘에서 사용한다. `rmarkdown::render()` 명령어로 `output_dir=`를 지정하여 특정 디렉토리(`docs/`)에 대쉬보드를 배포한다. 
+
+```{r rscript-bash, eval = FALSE}
+$ Rscript -e "rmarkdown::render('/home/rstudio/bundang/index.Rmd', output_dir = 'docs/')"
+```
+
+다만, 사전 전제조건을 충족시켜야 한다. RStudio IDE 내부에는 `pandoc`이 설치되어 있지만, `ubuntu`에는 기본 설치가 되어 있지 않아 `rmarkdown::render()` 명령어가 제대로 실행되려면 `pandoc`을 우분투에 설치해줘야 한다. [^install-pandoc]
+
+[^install-pandoc]: [ask ubuntu, "Install Pandoc (required for docverter)"](https://askubuntu.com/questions/341295/install-pandoc-required-for-docverter)
+
+```{r install-pandoc, eval = FALSE}
+sudo apt-get install pandoc
+```
+
+### `awscli` 설치 {#real-time-dashboard-automation-awscli}
+
+`flexdashboard`를 컴파일한 정적 웹사이트 HTML 파일을 EC2에서 S3로 옮기는 것이 필요하다. 이를 위해서 필요한 것이 `awscli` 툴이다. [^awscli-install]
+
+[^awscli-install]: [AWS CLI 설치 및 구성](https://docs.aws.amazon.com/ko_kr/streams/latest/dev/kinesis-tutorial-cli-installation.html)
+
+```{r install-awscli, eval = FALSE}
+sudo pip install awscli
+```
+
+`awscli`를 설치하면 AWS EC2에서 S3로 파일을 보내려면 인증작업을 거쳐야 한다. 이를 위해서 `aws configure` 명령어를 입력한 후에 AWS `IAM`에서 생성한 Access Key와 Secret Access Key로 인증작업을 대신한다.
+
+```{r aws-configure-output, eval = FALSE}
+$ aws configure
+AWS Access Key ID [****************77777]:
+AWS Secret Access Key [****************1111111]:
+Default region name [ap-northeast-2]:
+Default output format [json]:
+```
+
+이를 통해서 앞서 `flexdashboard`로 제작된 `/home/rstudio/bundang/docs/` HTML 웹사이트가 담겨진 파일들을 `s3://byungwook.kim/` S3 버킷으로 복사를 할 수 있게 된다.
+
+
+```{r aws-configure-output-run, eval = FALSE}
+aws s3 sync /home/rstudio/bundang/docs/ s3://byungwook.kim/
+```
+
+
+# 자동화 {#real-time-dashboard-automation-run}
+
+자동화는 어쩌면 코로나19 마스크의 경우 정해진 것이 명확하다. 약국 마스크 재고는 10분정도 지연이 있지만 재고상황이 거의 실시간으로 공공데이터 포털을 통해서 제공되고 있다. 따라서 매 10~15분마다 데이터를 받아 `flexdashboard`를 새로 제작하여 웹사이트에 제공하면 된다. 
+
+## 배포 쉘스크립트 제작  {#real-time-dashboard-automation-shell}
+
+이를 위해서 `run_covid.sh`이름으로 배쉬 쉘 스크립트를 제작한다.
+
+1. `aws` 명령어를 쉘에서 찾을 수 있도록 경로명을 추가한다.
+    - `export PATH=/home/rstudio/.local/bin:$PATH`
+1. GitHub 저장소 최신 `flexdashboard` `.Rmd` 파일 가져온다.
+    - `git clone https://github.com/statkclee/bundang.git`
+    - `index.Rmd` 파일에 공공데이터 포털에서 데이터를 가져오는 로직도 포함됨
+1. 데이터를 가져와서 새로 대쉬보드 생성
+    - `Rscript -e "rmarkdown::render('/home/rstudio/bundang/index.Rmd', output_dir = 'docs/')"`
+1. 생성된 대쉬보드 HTML 웹사이트를 S3 버킷으로 배포
+    - `aws s3 sync /home/rstudio/bundang/docs/ s3://byungwook.kim/`
+
+```{r run-bash-script, eval = FALSE}
+#!/bin/bash
+
+export PATH=/home/rstudio/.local/bin:$PATH
+
+cd ~
+
+rm -rf /home/rstudio/bundang
+
+git clone https://github.com/statkclee/bundang.git
+
+cd bundang
+
+rm docs/data/*.csv
+
+Rscript -e "rmarkdown::render('/home/rstudio/bundang/index.Rmd', output_dir = 'docs/')"
+
+aws s3 sync /home/rstudio/bundang/docs/ s3://byungwook.kim/
+```
+
+## 크론잡(cronjob) 생성  {#real-time-dashboard-automation-cron}
+
+`crontab -e` 명령어를 통해 크론잡을 추가한다. 앞서 제작한 쉘스크립트를 매15분마다 돌려 대쉬보드를 최신화시킨다.
+
+```{r run-bash-script-cron, eval = FALSE}
+*/15 * * * * bash /home/rstudio/run_covid.sh
+```
 
 
