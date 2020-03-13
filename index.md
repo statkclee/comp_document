@@ -41,6 +41,7 @@ subtitle: 데이터 과학 문서
 1. [대쉬보드(Dashboard)](cd-dashboard.html)
     - [코로나19](cd-corona.html)
     - [`GitHub` 호스팅](cd-github-hosting.html)
+    - [약국 마스크 실시간 대쉬보드](cd-realtime-mask.html)
 1. Computational Documents Tutorial
     - [R 마크다운](tutorial/01_rmarkdown/bmi.html)
     - **Parameterized Documents**
