@@ -137,14 +137,26 @@ webshot('https://statkclee.github.io/bundang/')
 새로운 기능을 구현하여 통합하여 올리는 것 까지는 문제가 없으나 코로나19 마스크의 경우 데이터가 10분마다 새롭게 갱신되어 올라오고 있다. 이를 위해서 10분마다 [공공데이터포털, "건강보험심사평가원_공적 마스크 판매 정보"](https://www.data.go.kr/dataset/15043025/openapi.do)으로부터 데이터를 가져와서 새로 대쉬보드를 갱신시키는 자동화 과정이 필요하다. 이를 위해서 두가지 작업을 크게 진행한다.
 
 1. [로컬 개발](#real-time-dashboard-hosting-local)을 AWS EC2에서 수행할 수 있도록 환경을 구축한다.
-    - AWS EC2 생성
+    - AWS EC2 생성: [Rstudio](https://statkclee.github.io/bigdata/ds-aws-rstudio-server.html)
     - S3 버킷 생성
     - `aws sync` 연결
-1. `crontab -e` 명령어로 새로운 cronjob 생성
+1. `crontab -e` 명령어로 새로운 cronjob 생성: [자동화 헬로월드 - `wsl` + `crontab`](https://statkclee.github.io/sw4ds/)
+1. 도메인 구입 후 S3 버킷 연결
 
-### 도메인 {#real-time-dashboard-hosting-dns}
+RStudio IDE에서 `.Rmd` 파일을 컴파일 해서 `.html` 대쉬보드를 만들어내는 것이 아니라 CLI 쉘 환경에서 `rmarkdown::render()` 함수를 사용해서 `.html` 대쉬보드를 만들어 내고 이를 `awscli`를 사용해서 EC2에서 `.html` 대쉬보드를 S3 버킷으로 복사하여 동기화시킨다. 
+이와는 별도로 Route53 이나 기타 도메인 판매업체를 통해서 구입한 도메인을 S3 버킷 정적 웹사이트(static website)에 연결시킨다.
 
-`Route53`를 통해서 도메인 생성 후 S3 정적 웹사이트(static website) 연결 작업
+
+![대쉬보드 배포 작업흐름](fig/mask-workflow.png)
+
+### 도메인 [^route53-domain] {#real-time-dashboard-hosting-dns}
+
+[^route53-domain]: [minholee_93 (2019년 12월 11일), "[AWS] Route 53 DNS 서비스 사용하기"](https://velog.io/@minholee_93/AWS-Route-53-DNS-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-8lk40vfqt4)
+
+`Route53`와 같은 DNS 서비스는 도메인(domain)을 IP주소로 전환시켜주는 역할을 수행하여 IP 주소 숫자를 기억하지 않고 편리하게 인터넷을 사용할 수 있도록 도와준다.
+`Route53`를 통해서 도메인 생성 후, 즉 도메인 구입 후,  S3 정적 웹사이트(static website) 연결 작업을 수행하여 웹서비스를 제공할 수 있도록 한다.
+
+
 
 
 
