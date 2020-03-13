@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.25)  25 FEB 2020 13:48
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.25)  6 MAR 2020 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -834,29 +834,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--98
 (/usr/local/texlive/2015/texmf-dist/tex/generic/stringenc/se-ascii-print.def
 File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 
-) [1]
+)
 File: fig/tax-preparation.png Graphic file (type bmp)
 <fig/tax-preparation.png>
-[2]
+[1] [2]
+Overfull \hbox (21.01445pt too wide) in paragraph at lines 178--181
+[] \TU/NanumMyeongjo(0)/m/n/10 기 계 \TU/lmr/m/n/10 [[]Brynjolfsson and McAfee(20
+14)[], []Ford(2015)[], []Kaplan(2015)[], []Chang(2017)[]]\TU/NanumMyeongjo(0)/m
+/n/10 는
+ []
+
 File: fig/generative-model.png Graphic file (type bmp)
 <fig/generative-model.png>
 File: fig/discriminative-model.png Graphic file (type bmp)
 <fig/discriminative-model.png>
 [3]
-Overfull \hbox (7.72002pt too wide) in paragraph at lines 280--282
+Overfull \hbox (7.72002pt too wide) in paragraph at lines 282--284
 [][]\TU/lmr/m/n/10 Rachel Chen (Dec 13, 2017), “Generating Ambient Music from W
 aveNet”,
  []
 
 File: paper_files/figure-latex/productivity-gap-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/productivity-gap-1.pdf>
-[4]
 File: paper_files/figure-latex/labor-share-us-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/labor-share-us-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[5]
+[4] [5]
 File: paper_files/figure-latex/fred-data-labor-participation-1.pdf Graphic file
  (type pdf)
 <use paper_files/figure-latex/fred-data-labor-participation-1.pdf>
@@ -865,21 +867,21 @@ File: fig/the-end-of-outsourcing.png Graphic file (type bmp)
 <fig/the-end-of-outsourcing.png>
 File: paper_files/figure-latex/industrial-robot-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/industrial-robot-1.pdf>
-
-Underfull \vbox (badness 2941) has occurred while \output is active []
-
 [7]
-Underfull \vbox (badness 1308) has occurred while \output is active []
+Underfull \vbox (badness 1082) has occurred while \output is active []
 
 [8]
 File: fig/moravec-paradox.png Graphic file (type bmp)
 <fig/moravec-paradox.png>
-[9] [10]
+
+Underfull \vbox (badness 6741) has occurred while \output is active []
+
+[9]
 File: fig/role-allocation-skill-rules-experties.jpg Graphic file (type bmp)
 <fig/role-allocation-skill-rules-experties.jpg>
 File: fig/human-supervisory-control.png Graphic file (type bmp)
 <fig/human-supervisory-control.png>
-[11] (./paper.bbl
+[10] [11] (./paper.bbl
 Missing character: There is no 중 in font [lmmono8-regular]:!
 Missing character: There is no 국 in font [lmmono8-regular]:!
 Missing character: There is no 어 in font [lmmono8-regular]:!
@@ -895,27 +897,24 @@ Invalid UTF-8 byte or sequence at line 71 replaced by U+FFFD.
 Missing character: There is no � in font [lmroman8-regular]:mapping=tex-text;!
 Invalid UTF-8 byte or sequence at line 75 replaced by U+FFFD.
 Missing character: There is no � in font [lmroman8-regular]:mapping=tex-text;!
-[12]
-Invalid UTF-8 byte or sequence at line 79 replaced by U+FFFD.
-Missing character: There is no � in font [lmroman8-regular]:mapping=tex-text;!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 618.
-[13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 618.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 644.
+[12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 644.
 (./paper.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 618.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 618.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 644.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 644.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: F10F71E77C01472B50FAEFA7E50C3D24;417.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 618.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 644.
  ) 
 Here is how much of TeX's memory you used:
- 28551 strings out of 492472
- 504702 string characters out of 6129298
- 599589 words of memory out of 5000000
- 32718 multiletter control sequences out of 15000+600000
+ 28554 strings out of 492472
+ 504791 string characters out of 6129298
+ 596726 words of memory out of 5000000
+ 32721 multiletter control sequences out of 15000+600000
  538600 words of font info for 84 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  68i,10n,76p,415b,2559s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (13 pages).
+Output written on paper.pdf (12 pages).
