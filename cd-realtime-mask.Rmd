@@ -249,4 +249,12 @@ aws s3 sync /home/rstudio/bundang/docs/ s3://byungwook.kim/
 */15 * * * * bash /home/rstudio/run_covid.sh
 ```
 
+# `byungwook.kim` 분당구  {#real-time-dashboard-automation-kbw}
+
+`Route53`에서 구입한 `byungwook.kim` 도메인으로 앞선 과정을 자동화한 결과를 웹사이트에서 확인해보자.
+
+```{r webshot-bundang-github-byungwook-kim}
+webshot('http://byungwook.kim', 'fig/byungwook.png')
+```
+
 
