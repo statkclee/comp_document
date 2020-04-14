@@ -32,7 +32,11 @@ library(reticulate)
 
 - [블로그: ~~로봇~~ 자동화가 빼앗는 일자리 그리고 나](https://statkclee.github.io/ds-authoring/ds-bundang-2019.html)
 - [한국디지털경영학회 투고 논문 ](https://github.com/statkclee/comp_document/blob/gh-pages/tutorial/paper/paper.pdf)
-
+- [한국디지털경영학회 게재 논문](http://journal.kasdba.or.kr/journal/article.php?code=70468&vol=6&no=2&start_page=39&end_page=50): [**다운로드**](data/00006_002_39.pdf)
+    - Lee Kwang-Chun,Yong-Woo Joo (2020), "Competitive Factors and Collaboration Methods for Jobs between People and AI", Digital Management Review Vol.6 No.2 pp.39-50
+    - 이광춘, 주용우 (2020), "사람과 인공지능의 일자리 경쟁 요인과 협업 방안" 디지털경영연구 Vol.6 No.2 pp.39-50 
+    
+    
 ![블로그 포스트를 논문으로 변환시키는 작업](fig/blog2paper.png){#id .class width="100%"}
 
 목표를 정리하면 `이광춘, 주용우 (2020), "자동화에 따른 노동시간 변화 분석", 한국디지털경영학회`와 같이 논문을 게시하는 것이다.
