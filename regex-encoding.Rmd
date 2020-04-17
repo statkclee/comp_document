@@ -1,20 +1,34 @@
 ---
 layout: page
-title: 데이터 과학을 위한 저작도구
-subtitle: R 유니코드, 인코딩
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "R 유니코드, 인코딩"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
 ---
 
-> ## 학습 목표 {.objectives}
->
-> * 유니코드, 아스키, 확장 아스키, CP949 등 문자집합 개념을 이해한다.
-> * 문자코드를 인코딩/디코딩하는 개념을 잡는다.
-> * R에서 봉착하는 인코딩 문제에 대한 해법을 이해한다.
 
-### 1. 사람과 기호 그리고 소통 [^pycon-apac-string]
+# 학습 목표 {#encoding-objective}
+
+* 유니코드, 아스키, 확장 아스키, CP949 등 문자집합 개념을 이해한다.
+* 문자코드를 인코딩/디코딩하는 개념을 잡는다.
+* R에서 봉착하는 인코딩 문제에 대한 해법을 이해한다.
+
+# 사람과 기호 그리고 소통 [^pycon-apac-string] {#communication-encoding}
 
 [^pycon-apac-string]: [문자열? 그런 달달한 것이 남아있긴 한가?](https://www.pycon.kr/2016apac/program/5)
 
-#### 1.1. 유니코드와 인코딩/디코딩으로 `utf-8`을 사용해야 되는 이유 
+## 유니코드와 인코딩/디코딩으로 `utf-8`을 사용해야 되는 이유 {#communication-encoding-why}
 
 인코딩에 대한 기본 개념 및 교재는 소프트웨어 카펜트리 버젼 4 파이썬 텍스트에 대한 내용을 번역한 것이며 R에서 자주 봉착하는 인코딩 문제를 윈도우를 많이 사용하는 환경에 맞춰 체계적으로 정리했다.
 
@@ -26,7 +40,7 @@ subtitle: R 유니코드, 인코딩
 - [UTF-8](https://en.wikipedia.org/wiki/UTF-8)
 - [Usage of character encodings for websites](http://w3techs.com/technologies/overview/character_encoding/all)
 
-#### 1.2. 사람과 기호 그리고 컴퓨터 [^pragmatic-unicode] [^korean-encoding]
+## 사람과 기호 그리고 컴퓨터 [^pragmatic-unicode] [^korean-encoding] {#encoding-korean}
 
 [^pragmatic-unicode]: [Pragmatic Unicode](http://nedbatchelder.com/text/unipain.html)
 [^korean-encoding]: [문자 집합(Character Set)과 인코딩(Encoding)](http://nuli.navercorp.com/sharing/blog/post/1079940)
@@ -62,21 +76,30 @@ subtitle: R 유니코드, 인코딩
 
 이제 신경쓸 것은 인코딩 ... `utf-8` 만 신경쓰면 된다. 그리고 남은 레거시 유산을 잘 처리하면 된다.
 
-> ### 유닉스/리눅스(EUC-KR), 윈도우(CP949) {.callout}
-> 
-> `EUC-KR`, `CP949` 모두 2바이트 한글을 표현하는 방식으로 동일점이 있지만,
-> `EUC-KR` 방식은 KSC5601-87 완성형을 초기 사용하였으나, KSC5601-92 조합형도 사용할 수 있게 확장되었다.
-> `CP949`는 확장 완성형으로도 불리며 `EUC-KR`에서 표현할 수 없는 한글글자마디 8,822자를 추가한 것으로
-> 마이크로소프트 코드페이지(Code Page) 949를 사용하기 시작하면서 일반화되었다.  
->
-> 참고: [CP949 to Unicode table](http://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP949.TXT)
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**유닉스/리눅스(EUC-KR), 윈도우(CP949)**
+
+`EUC-KR`, `CP949` 모두 2바이트 한글을 표현하는 방식으로 동일점이 있지만,
+`EUC-KR` 방식은 KSC5601-87 완성형을 초기 사용하였으나, KSC5601-92 조합형도 사용할 수 있게 확장되었다.
+`CP949`는 확장 완성형으로도 불리며 `EUC-KR`에서 표현할 수 없는 한글글자마디 8,822자를 추가한 것으로
+마이크로소프트 코드페이지(Code Page) 949를 사용하기 시작하면서 일반화되었다.  
+
+- 참고: [CP949 to Unicode table](http://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP949.TXT)
+
+</div>
 
 
-### 2. 영어권에서 바라본 유니코드와 `utf-8` [^swcarpentry-v4-encoding]
+
+
+# 영어권에서 바라본 유니코드와 `utf-8` [^swcarpentry-v4-encoding] {#utf-8-from-europe}
 
 [^swcarpentry-v4-encoding]: [파이썬 - 텍스트](http://v4.software-carpentry.org/python/text.html)
 
-#### 2.1. 아스키(ASCII) 코드
+## 아스키(ASCII) 코드 {#utf-8-ascii}
 
 텍스트는 숫자보다 더 단순해야만 된다. 결국 텍스트는 단지 문자다. 하지만, 컴퓨터가 문자 하나를 어떻게 표현할까?
 
@@ -85,19 +108,19 @@ subtitle: R 유니코드, 인코딩
 모두 합쳐도 128개보다 적어서, 아스키(ASCII) 위원회가 문자마다 7bit를 사용하는 인코딩으로 표준화했다. 
 ( $2^7$ = 128). 참고: [아스키 코드 테이블](regex-encoding-ascii.html)
 
-#### 2.2. 텍스트 표현
+## 텍스트 표현 {#utf-8-text}
 
 다음 질문으로 많은 문자를 포함한 텍스트를 어떻게 표현할까?
 1940년대, 1950년대 펀치카드 기술로 정의된 첫번째 방식이 ***고정폭 레코드(fixed-width records)*** 를 사용하는 것으로, 줄 각각이 동일한 길이를 갖는다.
 예를 들어, 다음 일본 전통 단시 하이쿠(haiku)를 컴퓨터는 아래와 같이 레코드 3개로 배열했다. (점 문자는 "사용되지 않음"을 의미) 이런 방식은 여전히 데이터베이스에도 사용되고 있다. 
 
-> ### 일본 전동 단시 하이쿠 예시 {.callout}
+> **일본 전동 단시 하이쿠 예시**
 >
-> ~~~ {.input}
+> ```{r haiku, eval = FALSE}
 > A crash reduces
 > your expensive computer
 > to a simple stone.
-> ~~~
+> ```
 
 <img src="fig/regex-encoding-fixed-width.png" alt="고정폭 텍스트 배열" width="50%" />
 
@@ -131,11 +154,11 @@ subtitle: R 유니코드, 인코딩
 이런 불미스러운 일이 발생하지 않도록, *이진 모드(binary mode)* 로 파일을 열어야만 된다.
 이를 위해서, `open` 함수를 호출할 때 `r` 혹은 `w` 다음에 `b` 문자를 넣는다. 
 
-~~~ {.python}
+``` {python open-data, eval = FALSE}
 reader = open('mydata.dat', 'rb')
-~~~
+```
 
-#### 2.3. 확장 아스키
+## 확장 아스키{#ascii-extension}
 
 문자로 다시 돌아가서, ASCII 방식으로 숫자 `2`, 문자 `q`, 혹은 곡절 악센트 `^` 를 표현하는데 충분하다.
 하지만, 투르크어족 추바시어 `ĕ`, 그리스 문자 `β`, 러시아 키릴문자 `Я` 는 어떻게 저장하고 표현해야 할까?
@@ -151,7 +174,7 @@ reader = open('mydata.dat', 'rb')
 이와는 별도로 동아시아 국가들을 비롯한 많은 국가들이 256개 이상 기호를 사용한다. 
 왜냐하면 8-비트로 특히 동아시아 국가 문자를 표현하는데 한계가 있기 때문이다.
 
-#### 2.4. 유니코드
+## 유니코드 {#ascii-unicode}
 
 1990년대 나타나기 시작한 해결책을 ***유니코드(Unicode)*** 라고 부른다.
 유니코드는 정수값을 서로 다른 수만개 문자와 기호를 표현하는데 정의한다.
@@ -183,43 +206,56 @@ reader = open('mydata.dat', 'rb')
 특별한 인코딩을 사용하는 경우 두번 생각해 보라.
 
 
-### 3. R 유니코드
+# R 유니코드 {#r-unicode}
 
 기본적으로 `readr` 팩키지 `read_csv` 함수는 인코딩이 **UTF-8** 으로 설정되어 있다.
-`read.csv` 함수를 사용해서 파일을 불러 읽어오는 경우 다음 명령어를 사용한다.
+`read.csv()` 함수를 사용해서 파일을 불러 읽어오는 경우 다음 명령어를 사용한다.
 
-~~~ {.r}
+```{r read-csv, eval  = FALSE}
 dat <-read.csv("dat.csv", encoding="UTF-8", stringsAsFactors=FALSE)
-~~~
+```
 
 유니코드로 맥이나 리눅스에 작업한 후에 윈도우로 인코딩을 맞춰 내보내는 경우 다음 명령어를 쉘에서 돌린다.
 
-~~~ {.input}
+```{bash iconv-utf-8, eval = FALSE}
 $ iconv -f UTF8 -t EUC-KR sms_db_master.csv > sms_db_master_encoding.csv
-~~~
+```
 
-#### 3.1. R 인코딩 확인
 
-`Sys.getlocale()` 명령어를 통해 현재 설정된 인코딩을 확인한다. 윈도우 운영체제를 사용하는 경우 
-`CP949`가 기본디폴트 설정으로 떨어진다.
+## R 인코딩 확인 {#r-encoding-check}
 
-~~~ {.r}
+`Sys.getlocale()` 명령어를 통해 현재 설정된 인코딩을 확인한다. 맥에서는 다음과 같이 확인할 수 있다.
+
+```{r check-local-system}
+library(tidyverse)
+
 # Sys.getlocale()
-unlist(strsplit(Sys.getlocale(), ";"))
-~~~
 
-~~~ {.output}
+stringr::str_split(Sys.getlocale(), "/") %>% unlist
+```
+
+윈도우 운영체제를 사용하는 경우 
+`CP949`가 기본디폴트 설정으로 떨어진다. 
+윈도우의 경우 다음과 같은 결과가 출력된다.
+
+```{r encoding-windows, eval = FALSE}
+# 윈도우즈
+unlist(strsplit(Sys.getlocale(), ";"))
+
 [1] "LC_COLLATE=Korean_Korea.949"  "LC_CTYPE=Korean_Korea.949"    "LC_MONETARY=Korean_Korea.949"
 [4] "LC_NUMERIC=C"                 "LC_TIME=Korean_Korea.949"    
-~~~
+```
+
 
 `l10n_info()` 명령어를 통해 현지화(Localization) 설정정보를 확인한다.
 
-~~~ {.r}
+```{r check-localization}
 l10n_info()
-~~~
+```
 
-~~~ {.output}
+윈도우의 경우 다음과 같이 결과가 출력된다.
+
+```{r check-localization-windows, eval = FALSE}
 $MBCS
 [1] TRUE
 
@@ -231,29 +267,32 @@ $`Latin-1`
 
 $codepage
 [1] 949
-~~~
+```
 
 `.Platform` 명령어를 통해서 현재 R이 실행되는 환경 정보를 확인할 수 있다.
 
-~~~ {.r}
-unlist(.Platform)
-~~~
+```{r check-platform}
+.Platform
+```
 
-~~~ {.output}
+윈도우에서 확인했을 때 다음과 같이 확인된다.
+
+```{r check-platform-windows, eval = FALSE}
   OS.type     file.sep   dynlib.ext          GUI       endian      pkgType     path.sep 
 "windows"          "/"       ".dll"    "RStudio"     "little" "win.binary"          ";" 
    r_arch 
     "x64" 
-~~~
+```
 
 `CP949`를 유니코드로 설정을 바꾼는 명령어가 `Sys.setlocale` 함수에 
 인자값으로 `ko_KR.UTF-8`을 넣어준다.
 
-~~~ {.r}
+```{r check-set-locale-windows, eval = FALSE}
 Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8")
-~~~
+```
 
-#### 3.2. `readr` 인코딩 알아내기
+
+## `readr` 인코딩 알아내기 {#readr-encoding}
 
 데이터 파일(`.csv`, `.txt`)을 R에서 자료분석을 하기 위해서 열었을 때 한번쯤 누구나 깨진 파일을 열어본 경험이 있을 것이다.
 사실 데이터 파일을 열어보는 것부터 자료분석이 시작인데 대략 난감해서 덮어버릴 수도 있고, 좀더 진지하게 문제를 해결해 나가고자 할 경우도 있다.
@@ -267,7 +306,7 @@ Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8")
 <img src="fig/auth-encoding-readr.png" alt="CSV 파일 인코딩 알아내기" width="77%" />
 
 
-#### 3.3. 한글 인코딩 데이터 생성
+## 한글 인코딩 데이터 생성 {#generate-korean}
 
 `readr` 팩키지에 `guess_encoding` 함수로 테스트를 하기 전에 먼저 다양한 형태로 인코딩하여 인코딩된 데이터를 생성할 필요가 있다.
 `utf-8`, `cp949`는 윈도우에서 기본적으로 지원되기 때문에 나름 편리하게 파일 인코딩을 변경시킬 수 있지만, `euc-kr` 은 유닉스/리눅스 파일 인코딩에 사용되어 작업하기가 까다로울 수 있다.
@@ -277,30 +316,57 @@ Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8")
 
 `euc-kr`로 인코딩된 데이터 파일에 대한 인코딩된 값을 알아내는 과정은 다음과 같다.
 
-~~~ {.r}
-$ guess_encoding("../../test-euc-kr.csv", n_max = 100)
-~~~
+```{r guess-encoding-euc-kr}
+guess_encoding("data/iris_euc_kr.csv", n_max = 100)
+```
 
-~~~ {.output}
+```{r guess-encoding-euc-kr-output, eval = FALSE}
     encoding confidence
 1     EUC-KR       1.00
 2     EUC-JP       0.97
 3 ISO-8859-2       0.38
 4 ISO-8859-1       0.22
 5 ISO-8859-9       0.22
-~~~
+```
 
 `utf-8`로 인코딩된 데이터 파일에 대한 인코딩된 값을 알아내는 과정은 다음과 같다.
 
-~~~ {.r}
-$ guess_encoding("../../test-utf8.csv", n_max = 10)
-~~~
+```{r guess-encoding-utf-8}
+guess_encoding("data/iris_utf_8.csv", n_max = 100)
+```
 
-~~~ {.output}
+```{r guess-encoding-utf-8-output, eval = FALSE}
       encoding confidence
 1        UTF-8       1.00
 2 windows-1250       0.42
 3 windows-1252       0.24
 4 windows-1254       0.24
-~~~
+```
+
+## `stringi` 인코딩 확인 {#stringi-encoding}
+
+`stringi` 팩키지 `stri_enc_detect()` 함수로 인코딩을 확인할 수 있다.
+
+<div class = "row">
+  <div class = "col-md-6">
+**EUC-KR 인코딩**
+
+```{r stringi-detect-stringi}
+euc_kr_bytes <- readBin("data/iris_euc_kr.csv", what="raw",n=200)
+stringi::stri_enc_detect(euc_kr_bytes)
+```
+
+  </div>
+  <div class = "col-md-6">
+**`utf-8` 인코딩**
+
+```{r stringi-detect-utf-8}
+utf_8_bytes <- readBin("data/iris_utf_8.csv", what="raw",n=200)
+stringi::stri_enc_detect(utf_8_bytes)
+```
+
+  </div>
+</div>
+
+
 
