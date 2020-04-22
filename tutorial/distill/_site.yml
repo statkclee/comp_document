@@ -1,0 +1,8 @@
+name: "distill-website"
+navbar:
+  title: "한국 Tidyverse"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
