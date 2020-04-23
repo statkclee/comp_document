@@ -57,6 +57,8 @@ webshot2::webshot("https://app.netlify.com/drop", "fig/netlify-drop.png")
 
 # 논문: `distill` {#netlify-distill}
 
+- [Sharing Rmarkdown distill paper](https://github.com/statkclee/sharing-distill)
+
 # 블로그: `blogdown` {#netlify-distill}
 
 - [데이터 과학을 위한 저작도구: Computational Documents, 블로그 - `blogdown`](ds-blogdown.html)
