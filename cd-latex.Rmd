@@ -1,0 +1,232 @@
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "자주 사용되는 $\\LaTeX$ 수식"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+```
+
+# 기본기 [^latex-medium] {#latex-basic}
+
+[^latex-medium]: [Andre Ye (Mar 19 2020), "LaTeX for Data Scientists, in Under 6 Minutes
+An Essential Skill for Any Data Science Résumé", Towards Data Science](https://towardsdatascience.com/latex-for-data-scientists-in-under-6-minutes-3815d973c05c)
+
+R마크다운으로 $\LaTeX$ 수식을 표현할 때 크게 두가지 부분을 알아두면 큰 도움이 된다.
+
+1. 인라인 즉, 문장내부 글자 사이에 수식을 넣고자 할 때는 `$수식$`와 같이 `$` 달러기호를 하나만 사용한다. 예를 들어, `$E=mc^2$` &rarr; $E=mc^2$와 같이 표현하면 좋다.
+1. 두번째 사례를 `$$수식$$`와 같이 `$` 달러기호를 두개 사용한다. 예를 들어, `$$E=mc^2$$`
+
+$$E=mc^2$$
+
+# 위아래 첨자 {#latex-subscript}
+
+아래첨자는 `_`, 윗첨자는 `^`으로 해결한다. 위아래 첨자가 하나 이상인 경우 `{}`에 넣게 되면 다수 문자를 위아래 첨자로 보낼 수 있다. 또한 중찹하여 사용하는 것도 가능하고 적분기호나 합계기호도 가능하다.
+
+<div class = "row">
+  <div class = "col-md-6">
+<center> **수식** </center>
+
+1. $$ a_1^2 + a_2^2 = a_3^2 $$
+1. $$ x^{2 \alpha} - 1 = y_{ij} + y_{ij}  $$
+1. $$ (a^n)^{r+s} = a^{nr+ns}  $$
+1. $$ \sum_{i=1}^{\infty} \frac{1}{n^s} = \prod_p \frac{1}{1 - p^{-s}} $$
+
+  </div>
+  <div class = "col-md-6">
+<center> **R마크다운 $\LaTeX$ 구문** </center>
+<br>
+
+1. `$$ a_1^2 + a_2^{2} = a_3^2 $$`
+1. `$$ x^{2 \alpha} - 1 = y_{ij} + y_{ij}  $$`
+1. `$$ (a^n)^{r+s} = a^{nr+ns}  $$`
+1. `$$ \sum_{i=1}^{\infty} \frac{1}{n^s} = \prod_p \frac{1}{1 - p^{-s}} $$`
+
+  </div>
+</div>
+
+자주사용되는 적분, 집합기호는 다음과 같다.
+
+- 적분: `\int` &rarr; $\int$
+- 합집합: `\cup` &rarr; $\cup$
+- 교집합: `\cap` &rarr; $\cap$
+- 곡률적분(curvature integral): `\oint` &rarr; $\oint$
+- 쌍대곱(coproduct): `\coprod` &rarr; $\coprod$
+
+# 연산자(operator) {#latex-operator}
+
+연사자에는 삼각함수, 로그 등이 포함되는데 각각 앞에 `\`을 붙여주면 된다.
+`\rightarrow` 화살표와 분수 `\frac{a}{b}`로 표현한다.
+
+<div class = "row">
+  <div class = "col-md-6">
+<center> **수식** </center>
+
+1. $$ \sin(a + b ) = \sin(a)\cos(b) + \cos(a)\sin(b) $$
+1. $$ \lim_{h \rightarrow 0 } \frac{f(x+h)-f(x)}{h}  $$
+
+  </div>
+  <div class = "col-md-6">
+<center> **R마크다운 $\LaTeX$ 구문** </center>
+<br>
+
+1. `$$ \sin(a + b ) = \sin(a)\cos(b) + \cos(a)\sin(b) $$`
+1. `$$ \lim_{h \rightarrow 0 } \frac{f(x+h)-f(x)}{h}  $$`
+
+  </div>
+</div>
+
+# 분수와 분포 {#latex-distribution}
+
+`amsmath` 팩키지를 사용해서 사용되는데 `\usepackage{amsmath}`을 필요하면 가져와서 다양한 통계분포를 표식한다.
+
+<div class = "row">
+  <div class = "col-md-6">
+<center> **수식** </center>
+
+1. $$ \binom{n}{k} = \frac{n!}{k!(n-k)!}  $$
+1. $$ a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+\cdots}}}  $$
+
+  </div>
+  <div class = "col-md-6">
+<center> **R마크다운 $\LaTeX$ 구문** </center>
+<br>
+
+1. `$$ \binom{n}{k} = \frac{n!}{k!(n-k)!} $$`
+1. `$$ a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+\cdots}}} $$`
+
+  </div>
+</div>
+
+# 꺾쇠괄호 {#latex-brackets}
+
+꺾쇠괄호도 다양하게 표현할 수 있다.
+
+- `$(x+y)$` &rarr; $(x+y)$
+- `$[x+y]$` &rarr; $[x+y]$
+- `$\{ x+y \}$` &rarr; ${x+y}$
+- `$\langle x+y \rangle$` &rarr; $⟨x+y⟩$
+- `$|x+y|$` &rarr; $|x+y|$
+- `$\| x+y \|$` &rarr; $\|x+y\|$
+
+수식에 따라 동적으로 편화하는 괄호를 작성할 경우 `\left[수식]`, `\right[수식]` 명령어를 사용한다. 즉,
+
+<div class = "row">
+  <div class = "col-md-6">
+<center> **수식** </center>
+
+$$ F = G \left( \frac{m_1 m_2}{r^2} \right) $$
+
+  </div>
+  <div class = "col-md-6">
+<center> **R마크다운 $\LaTeX$ 구문** </center>
+<br>
+
+`$$ F = G \left( \frac{m_1 m_2}{r^2} \right) $$`
+
+  </div>
+</div>
+
+# 행렬 {#latex-matrix}
+
+`amsmath` 팩키지에 포함되어 있고 `\begin{object}`과 `\end{object}`로 감싸고 칼럼은 `&`으로 행구분은 `\\`을 사용한다. 그외 `matrix`를 다음과 같이 바꿀 경우 행렬 꺾쇠괄호를 다양하게 표현할 수 있다.
+
+- `pmatrix` &rarr; $( ... )$
+- `bmatrix` &rarr; $[ ... ]$
+- `Bmatrix` &rarr; $\{ ... \}$
+
+<div class = "row">
+  <div class = "col-md-6">
+<center> **수식** </center>
+
+1. $$ \begin{matrix}
+1 & 2 & 3\\
+a & b & c
+\end{matrix} $$
+1. $$ \begin{pmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{pmatrix} $$
+1. $$ \begin{bmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{bmatrix} $$
+1. $$ \begin{Bmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{Bmatrix} $$
+
+  </div>
+  <div class = "col-md-6">
+<center> **R마크다운 $\LaTeX$ 구문** </center>
+<br>
+
+1. `$$ \begin{matrix}
+1 & 2 & 3\\
+a & b & c
+\end{matrix} $$`
+1. `$$ \begin{pmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{pmatrix} $$`
+1. `$$ \begin{bmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{bmatrix} $$`
+1. `$$ \begin{Bmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{Bmatrix} $$`
+
+  </div>
+</div>
+
+# 연습문제 {#latex-exercise}
+
+<div class = "row">
+  
+  <div class = "col-md-6">
+  <br> <center> **수식** </center>
+  
+1. 손실방정식: $$Loss = Bias^2 + Variance^2 + Noise$$
+1. $\chi^2$ 통계량: $$ \chi^2 = \frac{(\hat(y)-y)^2}{\sqrt{y}} = \frac{\delta^2}{\sqrt{y}} $$
+1. KNN: $$ \hat{f}(x)
+\leftarrow \frac{\sum f(x)}{k} \\
+DE(x_i,x_j) = \sqrt{(x_i-x_j)^2 + (y_{xi}-y_{xj})^2} $$
+1. Sigmoid: $$ \frac{1}{1+e^{-(wx+b)}} $$
+1. $R^2$: $$ R^2 = \frac{n \sum xy - \sum x. \sum y}{\sqrt{(n \sum x^2 - (\sum x)^2). (n \sum y^2 - (\sum y)^2)}} $$
+
+  </div>
+  
+  <div class = "col-md-6">
+  <br> <center> **R마크다운 $\LaTeX$ 구문** </center>
+
+1. `$$Loss = Bias^2 + Variance^2 + Noise$$`
+1. `$$ \chi^2 = \frac{(\hat(y)-y)^2}{\sqrt{y}} = \frac{\delta^2}{\sqrt{y}} $$`
+1. `$$ \hat{f}(x)
+\leftarrow \frac{\sum f(x)}{k} \\
+DE(x_i,x_j) = \sqrt{(x_i-x_j)^2 + (y_{xi}-y_{xj})^2} $$`
+1. `$$ \frac{1}{1+e^{-(wx+b)}} $$`
+1. `$$ R^2 = \frac{n \sum xy - \sum x. \sum y}{\sqrt{(n \sum x^2 - (\sum x)^2). (n \sum y^2 - (\sum y)^2)}} $$`
+
+  
+  </div>
+</div>
+

@@ -25,6 +25,7 @@ subtitle: 데이터 과학 문서
     * [마크다운 기초](http://statkclee.github.io/modern-scientific-authoring/02-markdown-kr.html)
     * [고급 마크다운](http://statkclee.github.io/modern-scientific-authoring/03-advanced-kr.html)
     * [R 마크다운 실무](rmarkdown-in-production.html)
+    * [자주 사용되는 $\LaTeX$ 수식](cd-latex.html)
     * [이광춘, 주용우 (2020), "사람과 기계의 일자리 경쟁 요인과 협업 방안", 한국디지털경영학회](automation-kasdba.html)
 1. **[R 콘텐츠: 블로그, 이력서 등](cd-netlify.html)**
     * [정적 웹서비스 개발 툴체인](devops-dev-vm.html) 
