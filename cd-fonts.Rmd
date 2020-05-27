@@ -61,6 +61,9 @@ iris %>%
     theme(legend.position = "top")
 ```
 
+# R 글꼴에 대한 기본기 {#document-fonts-basics}
+
+ - [데이터 시각화 : R 그래프/코딩 글꼴(font)](https://statkclee.github.io/viz/viz-r-font.html)
 
 # R마크다운 문서 {#document-fonts}
 
