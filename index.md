@@ -15,11 +15,12 @@ subtitle: 데이터 과학 문서
 
 ## 학습목차 
 
-1. **인코딩과 텍스트**
+1. **인코딩, 글꼴**
     * [R 유니코드, 인코딩](regex-encoding.html)
     * [R 정규표현식](regex-r.html)
     * [정규표현식과 문자데이터 - `regexplain`](regex-r-char.html)
     * [자연어처리(NLP) - 정규표현식](http://statkclee.github.io/nlp)
+    * [R마크다운 글꼴(font)](cd-fonts.html)
 1. [현대적인 과학논문 저작](http://statkclee.github.io/modern-scientific-authoring/index-kr.html)
     * [심각한 현재 상황](http://statkclee.github.io/modern-scientific-authoring/01-mess-kr.html)
     * [마크다운 기초](http://statkclee.github.io/modern-scientific-authoring/02-markdown-kr.html)

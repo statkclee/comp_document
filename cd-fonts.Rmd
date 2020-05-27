@@ -1,0 +1,243 @@
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "R마크다운 글꼴(font)"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+```
+
+# 글꼴 {#mac-fonts}
+
+## 글꼴 확인 {#mac-fonts-check}
+
+맥OS의 경우 글꼴이 사용자 및 시스템에 따라 설치된 경로가 다르다.
+
+- `/Library/Fonts`: 컴퓨터를 이용하는 모든 사용자(계정)에게 적용되는 글꼴
+- `~/Library/Fonts`: 현재 로그인된 사용자(계정)만 적용가능한 글꼴
+
+
+터미널에서 `fc-list` 명령어를 통해 "나눔손글씨(Nanum Pen Script)" 폰트가 설치되었는지 찾아본다.
+
+```{bash mac-font-install}
+fc-list | grep -v statkclee | grep "Nanum Pen Script"
+```
+
+## R에서 확인 {#R-fonts-check}
+
+두번째 단계로 R에서 "나눔손글씨" 폰트가 설치되었는지 확인한다.
+`font_import()` 함수를 사용해서 시스템에 설치된 폰트를 R에서 사용할 수 있도록 등록한다. 등록된 폰트는 `loadfonts()` 함수를 사용해서 그래프에 우선 적용한다.
+
+
+```{r check-fonts-on-R}
+library(tidyverse)
+library(extrafont)
+# 폰트 설치
+font_import(pattern = "Nanum")
+
+# 폰트 가져오기
+loadfonts()
+
+iris %>% 
+  ggplot(aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
+    geom_point()+
+    labs(title="붓꽃 데이터 한글 글꼴 적용", color="붓꽃 종류") +
+    theme_minimal(base_family = "Nanum Pen Script") +
+    theme(legend.position = "top")
+```
+
+
+# R마크다운 문서 {#document-fonts}
+
+R 마크다운 문서에서 폰트를 변경시켜 적용하고자 하는 경우가 있다. 이런 경우 YAML 헤더 바로 아래 CSS 코드를 <style> ... </style> 사이에 넣어준다.
+
+```{r rmarkdown-font, eval = FALSE}
+---
+title: "R마크다운 글꼴(font)"
+subtitle: "문서 한글 글꼴 적용"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+<style>
+body {
+  font-family: Nanum Pen Script;
+}
+</style>
+  
+# 붓꽃 데이터
+
+붓꽃 데이터는 사랑입니다.
+```
+
+뜨게질(knit)하여 컴파일 시키게 되면 다음과 같이 폰트가 문서 전체에 적용된 것을 확인할 수 있다.
+
+```{r webshot-rmarkdown-document}
+library(webshot2)
+
+webshot("tutorial/fonts/documents.html", "fig/fonts-document.png")
+```
+
+
+# 한걸음 더 들어갑니다 {#document-fonts-move-forward}
+
+앞서 CSS 코드를 R 마크다운 문서에 넣게 되면 매번 YAML 헤더 바로 아래 CSS 코드를 <style> ... </style> 사이에 복사해서 붙어넣어야 하는 번거러움이 있다. 그러지 말고 별도 CSS 파일로 만들어서 `fonts.css` 서식파일에 저장시킨다.
+
+`rmarkdown-advanced.Rmd` 문서를 `fonts.css`를 서식파일로 지정해서 수준별 제목 및 표에 대한 폰트 및 배경 등을 따로 정의해서 문서를 생성시킬 수 있다.
+
+``` {r webshot-result}
+webshot2::webshot("tutorial/fonts/documents-advanced.html", "fig/rmarkdown-advaned2.png")
+```
+
+상기 결과를 얻기 위한 `rmarkdown-advanced.Rmd` 문서와 `fonts.css` 서식 파일은 다음과 같다.
+
+````markdown
+---
+title: "R마크다운 글꼴(font)"
+subtitle: "문서 한글 글꼴 적용"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    css: fonts.css 
+    toc: yes
+    toc_float: true
+    code_folding: show
+    number_section: true
+    self_contained: true
+---
+
+# 붓꽃 데이터
+
+붓꽃 데이터는 사랑입니다.
+
+## 품종 
+
+### setosa 품종
+
+### versicolor 품종
+
+### virginica 품종
+
+# 그래프
+
+붓꽃 품종별로 `ggplot`으로 시각화 합니다.
+
+```{r iris-font-graph, eval = FALSE}
+library(tidyverse)
+library(extrafont)
+loadfonts()
+
+iris %>% 
+  ggplot(aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
+    geom_point()+
+    labs(title="붓꽃 데이터 한글 글꼴 적용", color="붓꽃 종류") +
+    theme_minimal(base_family = "Nanum Pen Script") +
+    theme(legend.position = "top")
+```
+
+# 표
+
+```{r iris-font-table, eval = FALSE}
+iris %>% 
+  head(5) %>% 
+  knitr::kable(align=c(rep("c", 5)), 
+               col.names = c("S길이", "S너비", "P길이", "P너비", "품종"),
+               table.attr= 'class="flat-table"')
+```
+````
+
+`fonts.css` 서식 파일은 다음과 같다.
+
+````markdown
+/* ------------- HTML ------------- */
+
+body {
+  color: blue;
+  font-family: Nanum Pen Script;
+  background-color: darkgray;
+}
+
+pre {
+  color: blue;
+  font-family: NanumBarunpen;
+  background-color: lightblue;
+}
+
+#TOC {
+  color: red;
+  font-family: Nanum Pen Script;
+  background-color: gray;
+}
+
+header {
+  color: black;
+  font-family: Nanum Pen Script;
+  background-color: green;
+  opacity: 0.5;
+  font-family: NanumGothicBold;
+}
+
+h2,h3,p {
+  color: black;
+  background-color: pink;
+  font-family: NanumGothic;
+  font-size: 12px;
+}
+
+/* ------------- 표 ------------- */
+
+.flat-table {
+  display: block;
+  font-family: NanumGothicBold;
+  font-size: 125%;
+  overflow: auto;
+  width: auto;
+}
+
+th {
+  font-family: NanumGothicBold;
+  background-color: rgb(112, 196, 105);
+  color: white;
+  font-weight: normal;
+  padding: 20px 30px;
+  text-align: center;
+}
+
+td {
+  background-color: rgb(238, 238, 238);
+  color: rgb(111, 111, 111);
+  padding: 20px 30px;
+}
+````
+
+
+
+

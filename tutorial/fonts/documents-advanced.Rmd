@@ -1,0 +1,62 @@
+---
+title: "R마크다운 글꼴(font)"
+subtitle: "문서 한글 글꼴 적용"
+author:
+    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    css: fonts.css 
+    toc: yes
+    toc_float: true
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+```
+
+# 붓꽃 데이터
+
+붓꽃 데이터는 사랑입니다.
+
+## 품종 
+
+### setosa 품종
+
+### versicolor 품종
+
+### virginica 품종
+
+# 그래프
+
+붓꽃 품종별로 `ggplot`으로 시각화 합니다.
+
+```{r iris-font-graph}
+library(tidyverse)
+library(extrafont)
+loadfonts()
+
+iris %>% 
+  ggplot(aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
+    geom_point()+
+    labs(title="붓꽃 데이터 한글 글꼴 적용", color="붓꽃 종류") +
+    theme_minimal(base_family = "Nanum Pen Script") +
+    theme(legend.position = "top")
+```
+
+# 표
+
+```{r iris-font-table}
+iris %>% 
+  head(5) %>% 
+  knitr::kable(align=c(rep("c", 5)), 
+               col.names = c("S길이", "S너비", "P길이", "P너비", "품종"),
+               table.attr= 'class="flat-table"')
+```
+

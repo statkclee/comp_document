@@ -1,0 +1,60 @@
+/* ------------- HTML ------------- */
+
+body {
+  color: blue;
+  font-family: Nanum Pen Script;
+  background-color: darkgray;
+}
+
+pre {
+  color: blue;
+  font-family: NanumBarunpen;
+  background-color: lightblue;
+}
+
+#TOC {
+  color: red;
+  font-family: Nanum Pen Script;
+  background-color: gray;
+}
+
+header {
+  color: black;
+  font-family: Nanum Pen Script;
+  background-color: green;
+  opacity: 0.5;
+  font-family: NanumGothicBold;
+}
+
+h2,h3,p {
+  color: black;
+  background-color: pink;
+  font-family: NanumGothic;
+  font-size: 12px;
+}
+
+/* ------------- 표 ------------- */
+
+.flat-table {
+  display: block;
+  font-family: NanumGothicBold;
+  font-size: 125%;
+  overflow: auto;
+  width: auto;
+}
+
+th {
+  font-family: NanumGothicBold;
+  background-color: rgb(112, 196, 105);
+  color: white;
+  font-weight: normal;
+  padding: 20px 30px;
+  text-align: center;
+}
+
+td {
+  background-color: rgb(238, 238, 238);
+  color: rgb(111, 111, 111);
+  padding: 20px 30px;
+}
+
