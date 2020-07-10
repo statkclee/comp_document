@@ -51,6 +51,7 @@ subtitle: 데이터 과학 문서
         - [자동 문서 생성 스크립트](tutorial/02_parameterized_rmd/automate-province-report.R)
     - [인터랙티브 문서](tutorial/03_interactive_rmd/election-interactive.html)
     - [$\LaTeX$ `PDF` 문서](comp_doc_pdf.html)
+    - [R마크다운 코드 덩어리(Code Chunk)](cd-code-chunk.html)    
 1. Compendium ... R 프로젝트: (특정 주제에 대한) 개요서
     - [개요서(Compendium) 시작하며](cd_compendium.html)
     - [시작이 반이다 - `start small`](cd-start-small.html)
