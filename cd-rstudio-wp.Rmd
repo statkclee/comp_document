@@ -75,11 +75,6 @@ hunspell -D
 ```
 
 
-# RStudio IDE [^rstudio-ide-spell] {#hunspell-rstudio}
-
-[^rstudio-ide-spell]: [Josh Paulson (2020-07-28), "Spelling Dictionaries" RStudio Blog](https://support.rstudio.com/hc/en-us/articles/200551916)
-
-
 # 쉘에서 맞춤법 검사 [^hunspell-tutorial] {#spellcheck-bash}
 
 [^hunspell-tutorial]: [Xah Lee (2010-06-16), "Hunspell Tutorial"](http://xahlee.info/comp/hunspell_spell_checking.html)
@@ -114,7 +109,7 @@ Hello World! \n Thiss is Great.
 hunspell -l -d en_US -i utf-8 data/hunspell_test.txt 
 ```
 
-# 한글 {#check-spelling-korean}
+## 한글 {#check-spelling-korean}
 
 [자주 틀리는 한글 맞춤법 사례](http://blog.daum.net/woalsdlvjxld/5808471) 블로그에 올라온 사례를 가지고 한글 맞춤법을 확인해보자. 
 
@@ -126,4 +121,84 @@ hunspell -l -d en_US -i utf-8 data/hunspell_test.txt
 echo "기둥에 머리를 받치다. \n 아이가 밥을 넓죽 잘도 받아먹는다.\n 신문 스포츠란에 기사가 났다" > data/hunspell_korean.txt
 hunspell -l -d ko -i utf-8 data/hunspell_korean.txt 
 ```
+
+
+# RStudio IDE [^rstudio-ide-spell] {#hunspell-rstudio}
+
+[^rstudio-ide-spell]: [Josh Paulson (2020-07-28), "Spelling Dictionaries" RStudio Blog](https://support.rstudio.com/hc/en-us/articles/200551916)
+
+## `hunspell` R 팩키지 [^hunspell-blog] {#rstudio-package}
+
+[^hunspell-blog]: [Jeroen Ooms (March 14, 2016), "Hunspell: Spell Checker and Text Parser for R"](https://www.opencpu.org/posts/hunspell-release/)
+
+`hunspell` R 팩키지를 통해서 맞춤법 검정도 가능하다.
+
+```{r hunspell-r-package}
+library(hunspell)
+
+words <- c("beer", "wiskey", "wine")
+
+hunspell_check(words)
+```
+
+맞춤법에 대한 심층조사가 필요한 부분에 대해서 `hunspell_suggest()`를 통해 제안을 받을 수도 있다.
+
+```{r hunspell-suggest}
+bad_words <- hunspell("spell checkers are not neccessairy for langauge ninja's")
+print(bad_words)
+
+hunspell_suggest(bad_words[[1]])
+```
+
+## `hunspell` 한국어 {#hunspell-korean}
+
+한국어 맞춤법 검사를 진행하기 위해서는 먼저 한국어 사전을 설치해야 된다. 설치된 한국어 사전을 `list_dictionaries()`함수로 확인할 수 있다.
+
+```{r hunspell-korean-dic}
+list_dictionaries()
+```
+
+[The hunspell package: High-Performance Stemmer, Tokenizer, and Spell Checker for R](https://cran.r-project.org/web/packages/hunspell/vignettes/intro.html)을 참조하면 설치된 사전에 대한 자세한 내용도 확인할 수 있다.
+
+```{r hunspell-korean-dic-vignette}
+dictionary("ko_KR")
+```
+
+한국어 사전이 탐지되면 이를 이용하여 맞춤법 검사를 예전과 마찬가지로 진행하면 된다.
+
+```{r hunspell-korean}
+news <- hunspell("한켜레 신문사는 죠선 일보와 다른 논도를 갖는다.", dict = dictionary("ko_KR"))
+news
+
+hunspell_suggest(news[[1]], dict = dictionary("ko_KR"))
+```
+
+## 맞춤법 자동 동작 {#automatic-spelling-correction}
+
+[How to use hunspell package to suggest correct words in a column in R?](https://stackoverflow.com/questions/56026550/how-to-use-hunspell-package-to-suggest-correct-words-in-a-column-in-r)에 나와 있듯이 맞춤법이 맞지 않는 것도 자동으로 수정이 가능하다.
+
+```{r automatic-correction}
+sample_df <- data.frame("index" = 1:7, "text" = c("A complec sentence joins an independet",
+                                            "Mary and Samantha arived at the bus staton before noon",
+                                            "I did not see thm at the station in the mrning",
+                                            "The participnts read 60 sentences in radom order",
+                                            "how to fix mispelled words in R languge",
+                                            "today is Tuesday",
+                                            "bing sports quiz"))
+
+correct_text <- function(x){
+  sapply(1:length(x), function(y){
+    bad  <- hunspell(x[y])[[1]]
+    good <-unlist(lapply(hunspell_suggest(bad), `[[`, 1))
+
+    if (length(bad)){
+      for (i in 1:length(bad)){
+        x[y] <<- gsub(bad[i], good[i],x[y])
+      }}})
+  return(x)
+}
+
+correct_text(sample_df$text)
+```
+
 
