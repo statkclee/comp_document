@@ -1,0 +1,140 @@
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "GITHUB `readme.md`"
+author:
+  name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+  url: https://www.facebook.com/groups/tidyverse/
+  affiliation: Tidyverse Korea
+  affiliation_url: https://www.facebook.com/groups/tidyverse/
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    include:
+      after_body: footer.html
+      before_body: header.html
+    theme: journal
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+bibliography: bibliography.bib
+csl: biomed-central.csl
+urlcolor: blue
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+```
+
+
+# 깃헙 `readme.md` {#github-readme}
+
+[Github `readme.md`](https://github.com/statkclee)가 반영된 모습은 경우에 따라서는 [링크트인](https://www.linkedin.com/)에게 커다란 도전(?)도 될 수 있는 신선한 충격일 수 있다. 왜냐하면 개발자에 있어 `readme.md` 파일은 그 자체로 이력서나 다름없기 때문이다.
+
+
+# 제작방법 {#github-readme-howto}
+
+제작방법은 Github에 저장소를 하나 새로 생성한다. 하지만, 저장소 명칭을 본인 계정과 동일한 이름을 사용해야 하는 제약이 있다. 반대로 생각하면 계정명과 저장소명칭이 동일한 경우 `readme.md` 파일을 수정하면 사용자 계정의 대문에 반영시킬 수 있게 된다.
+
+
+1. 저장소(repository)를 계정명과 동일하게 생성시킨다.
+    - `ilovetidyverse` 계정명을 갖는 경우  `ilovetidyverse` 저장소를 하나 생성한다.
+1. `readme.md` 파일에 관련 내용, 즉 SNS, Github Stat 등등을 마크다운 문법에 맞춰 작성한다.
+
+# 제작 사례 
+
+[`statkclee`](https://github.com/statkclee) 사용자 작성 사례는 다음과 같다. `readme.md` 파일을 마크다운으로 작성한 사례.
+
+
+```{r readme-example, eval=FALSE}
+### Hi there, I'm Kwangchun 👋
+
+## I'm a Data Scientist!
+- 🔭 I’m currently working at [KPMG][KPMG]!
+- 🌱 I’m currently learning everything; in particular AI/ML/Data Science/Tidyverse/NLP 🤣
+- 👯 I’m looking to collaborate with other content creators and Tidyverse R developers.
+- 🏫 I'm a certified [RStudio Tidyverse](https://education.rstudio.com/trainers/people/lee+kwangchun/) and [Software Carpentry](https://carpentries.org/instructors/) Instructor.
+- 🥅 2020 Goals: Contribute more to Open Source projects
+- ⚡ Fun fact: I love to learn something new; digitization, history, algorithm, documents etc.
+
+### Connect with me:
+
+[<img align="left" alt="statkclee | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
+[<img align="left" alt="statkclee | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.4.0/icons/facebook.svg" />][facebook]
+[<img align="left" alt="statkclee | meetup" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.4.0/icons/meetup.svg" />][meetup]
+[<img align="left" alt="statkclee | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />][twitter]
+
+<br />
+
+### Languages and Tools:
+
+[<img align="left" alt="RStudio" width="26px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.4.0/icons/rstudio.svg" />][rstudio]
+[<img align="left" alt="HTML5" width="26px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.4.0/icons/r.svg" />][R]
+[<img align="left" alt="HTML5" width="26px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.4.0/icons/python.svg" />][python]
+[<img align="left" alt="HTML5" width="26px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.4.0/icons/markdown.svg" />][markdown]
+[<img align="left" alt="HTML5" width="26px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.4.0/icons/azurepipelines.svg" />][azure]
+
+[rstudio]: https://rstudio.com/
+[R]: https://www.r-project.org/
+[python]: https://www.python.org/
+[azure]: https://azure.microsoft.com/ko-kr/
+[markdown]: https://daringfireball.net/projects/markdown/
+
+
+<br />
+<br />
+
+---
+
+### 📕 Latest Blog Posts
+<!-- BLOG-POST-LIST:START -->
+- [Data Science Decks: 데이터 과학 기고문과 발표자료](https://statkclee.github.io/ds-authoring/)
+- [Data Science: 데이터 과학](https://statkclee.github.io/data-science/)
+- [Computational Documents](https://statkclee.github.io/comp_document/)
+- [Model](https://statkclee.github.io/model/)
+<!-- BLOG-POST-LIST:END -->
+
+---
+
+<img align="left" alt="statkclee's Github Stats" src="https://github-readme-stats.codestackr.vercel.app/api?username=codeSTACKr&show_icons=true&hide_border=true" />
+
+[linkedin]: https://www.linkedin.com/in/kwangchunlee/
+[facebook]: https://www.facebook.com/groups/tidyverse/
+[twitter]: https://twitter.com/statkclee
+[meetup]: https://www.meetup.com/seoul-r-meetup/
+[KPMG]: https://home.kpmg/kr/ko/home.html
+```
+
+# 스크린 샷 {#screenshot-copy}
+
+```{r screenshot-readme}
+webshot2::webshot(url = "https://github.com/statkclee", file="fig/github-readme.png")
+```
+
+
+
+# 참고자료 {#github-reference}
+
+동영상을 시청한 후에 [README.md](https://raw.githubusercontent.com/codeSTACKr/codeSTACKr/master/README.md) 참고해서 필요한 기능을 본인 README.md 파일에 적어 넣으면 좋을 듯 싶다.
+
+<iframe width="300" height="180" src="https://www.youtube.com/embed/ECuqb5Tv9qI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+
+
+
+
+
+
+

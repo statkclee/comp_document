@@ -40,6 +40,7 @@ subtitle: 데이터 과학 문서
     * [R 노트북(Notebook)](ds-notebook.html)
     * [R 발표자료(Presentation)](ds-presn.html)
     * [보고서 자동화](ds-report-automation.html)
+    * [GITHUB `readme.md`](ds-github-readme.html)
 1. [대쉬보드(Dashboard)](cd-dashboard.html)
     - [코로나19](cd-corona.html)
     - [`GitHub` 호스팅](cd-github-hosting.html)
