@@ -65,5 +65,20 @@ library(magick)
 
 ![](fig/use-pptx-master.png)
 
+# R마크다운 + PPT 템플릿 [^rendering-pptx-rmarkdown] {#pptx-slide-master-rmarkdown}
+
+[^rendering-pptx-rmarkdown]: [RStudio Support (September 15, 2020), "Rendering PowerPoint Presentations with RStudio"](https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio)
+
+`reference_doc: template.pptx` 와 같이 `reference_doc`에 파워포인트 템플릿을 지정하여 R 마크다운으로 PPT 발표자료를 제작한다.
+
+- New File > R Markdown > Presentation > PowerPoint
+
+
+
+
+
+
+
+
 
 
