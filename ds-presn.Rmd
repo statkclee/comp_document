@@ -1,18 +1,30 @@
 ---
 layout: page
 title: "데이터 과학을 위한 저작도구"
-subtitle: "R 발표자료(Presentation) - `xaringan` 슬라이드쇼"
+subtitle: "R 발표자료(Slideshows) - `xaringan`"
 author:
-    name: xwMOOC
+  name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+  url: https://www.facebook.com/groups/tidyverse/
+  affiliation: Tidyverse Korea
+  affiliation_url: https://www.facebook.com/groups/tidyverse/
 date: "`r Sys.Date()`"
 output:
   html_document: 
+    include:
+      after_body: footer.html
+      before_body: header.html
+    theme: journal
     toc: yes
+    toc_depth: 2
     toc_float: true
     highlight: tango
     code_folding: show
     number_section: true
     self_contained: true
+bibliography: bibliography.bib
+csl: biomed-central.csl
+urlcolor: blue
+linkcolor: blue
 editor_options: 
   chunk_output_type: console
 ---
@@ -109,3 +121,71 @@ p {
 # 스타일 생성 {#ds-xaringan-slide-style}
 
 `xaringan` 슬라이드에 스타일 입히는 [`xaringanthemer`](https://github.com/gadenbuie/xaringanthemer) 팩키지를 통해서 슬라이드 내용은 그대로 둔 채로 다양한 스타일을 입힐 수 있다.
+
+# PPT &rarr; `xaringan` 슬라이드 {#xaringan-slideshows}
+
+[Korea Community Day 2020](https://kcd2020.festa.io/)에서 [코딩으로 글쓰는 슬기로운 탐구생활](https://statkclee.github.io/ds-authoring/KCD2020_Tidyverse.html) 발표자료를 제작하는 과정은 다음과 같다. 
+먼저, 커뮤니티에 발표자로 선정되면 발표일관성과 통일성을 위해서 통상 파워포인트 템플릿을 전달해 준다. 파워포인트 템플릿은 다소 차이가 있지만, 본문 슬라이드와 발표제목 슬라이드로 구성되어 있고, 글꼴, 글꼴크기 위치 등이 사전에 지정되어 있다. 
+
+![](fig/kcd_xaringan.png)
+
+## PPT 파일 {#ppt-file}
+
+[KCD 발표 템플릿](data/KCD2020_온라인_최종.pptx)을 전자우편으로 전달받게 되면 템플릿에서 권장하는 글꼴폰트도 다운로드 받아 작업 컴퓨터에 설치하고 슬라이드 마스터 기능을 활용하여 Look-and-Feel 을 맞추어 발표 내용을 작성한다.
+특히, 한국출판인회의에서 [`KoPubWorld` 서체](http://www.kopus.org/Biz/electronic/Font.aspx)를 별도 승인없이 기본정보만 입력함으로써 사용가능한 폰트이기도 하다.
+
+```{r ppt-slickr}
+library(tidyverse)
+library(slickR)
+
+kcd_template <- fs::dir_ls(path="data/KCD2020_온라인_최종")
+
+kcd_template_df <- tibble(page = glue::glue("{kcd_template}") )
+  
+slickR(kcd_template_df$page, height = 600)
+```
+
+## PPT 마스터 {#ppt-master-file}
+
+본격적인 발표내용을 채우기 전에 KCD 발표 템플릿이 마스터에 글꼴, 크기, 위치 등이 지정되지 않아 슬라이드 마스터를 열어 슬라이드 마스터를 통해 기본 윤곽을 잡고 발표내용을 채우는 것도 권장되는 방법 중 하다.
+[KCD 발표 마스터 템플릿](data/KCD2020_Tidyverse.pptx)에 발표내용을 소그룹으로 나눌 수 있는 기능이 빠져있어 중간제목 슬라이드를 추가한다.
+
+
+```{r ppt-slickr-master}
+kcd_master_template <- fs::dir_ls(path="data/KCD2020_Tidyverse")
+
+kcd_master_template_df <- tibble(page = glue::glue("{kcd_master_template}") )
+  
+slickR(kcd_master_template_df$page, height = 600)
+```
+
+## 작업 구조 {#file-structure}
+
+KCD 발표 마스터 템플릿에 지정된 글꼴과 글자 크기 및 관련된 사항을 `kcd.css`에 담아두고,
+`.Rmd` 파일에 발표 콘텐츠를 `xaringan` 문법에 맞춰 발표자료를 작성한다. 
+`KCD2020_Tidyverse.Rmd` 파일이 모든 것을 담당하는 `main` 역할을 담당하고 `opening.Rmd`, `writing.Rmd`, `bookdown.Rmd`으로 나눠 모듈화시켜 발표자료를 제작한다. 기본적인 발표자료 작업 디렉토리 구조는 다음과 같다.
+
+```{r xaringan-file-directory-structure, eval = FALSE}
+KCD2020_Tidyverse.Rmd
+├── css/ kcd.css
+├── Rmd/
+    ├── KCD2020_opening.Rmd  
+    ├── KCD2020_writing.Rmd
+    └── KCD2020_bookdown.Rmd
+```
+
+- [KCD2020_Tidyverse.Rmd](https://raw.githubusercontent.com/statkclee/ds-authoring/gh-pages/KCD2020_Tidyverse.Rmd)
+    - [KCD2020_opening.Rmd](https://raw.githubusercontent.com/statkclee/ds-authoring/gh-pages/KCD2020_opening.Rmd)
+    - [KCD2020_writing.Rmd](https://raw.githubusercontent.com/statkclee/ds-authoring/gh-pages/KCD2020_writing.Rmd)
+    - [KCD2020_bookdown.Rmd](https://raw.githubusercontent.com/statkclee/ds-authoring/gh-pages/KCD2020_bookdown.Rmd)
+- [kcd.css](https://raw.githubusercontent.com/statkclee/ds-authoring/gh-pages/kcd.css)
+
+## KCD 발표자료 {#file-structure-presentation}
+
+상기 작업을 완료한 후에 작업결과는 다음과 같다.
+
+```{r kcd-2020-slideshow}
+knitr::include_url('https://statkclee.github.io/ds-authoring/KCD2020_Tidyverse.html#1')
+```
+
+

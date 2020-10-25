@@ -39,7 +39,7 @@ subtitle: 데이터 과학 문서
     * [북다운(bookdown)](bookdown-intro.html)
         * [출판 자동화(DevOps)](bookdown-github-travis.html)
     * [R 노트북(Notebook)](ds-notebook.html)
-    * [R 발표자료(Presentation)](ds-presn.html)
+    * [R 발표자료(Slideshows) - `xaringan`](ds-presn.html)
     * [보고서 자동화](ds-report-automation.html)
     * [GITHUB `readme.md`](ds-github-readme.html)
     * [파워포인트 `pptx` 발표자료](ds-pptx-rmarkdown.html)
