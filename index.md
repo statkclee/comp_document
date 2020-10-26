@@ -40,6 +40,7 @@ subtitle: 데이터 과학 문서
         * [출판 자동화(DevOps)](bookdown-github-travis.html)
     * [R 노트북(Notebook)](ds-notebook.html)
     * [R 발표자료(Slideshows) - `xaringan`](ds-presn.html)
+        * [`xaringan` 기본기능](cd-xaringan-basics.html)
     * [보고서 자동화](ds-report-automation.html)
     * [GITHUB `readme.md`](ds-github-readme.html)
     * [파워포인트 `pptx` 발표자료](ds-pptx-rmarkdown.html)

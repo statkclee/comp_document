@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R마크다운 발표자료</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Yihui Xie" />
+    <meta name="author" content="이광춘" />
+    <meta name="date" content="2020-10-26" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R마크다운 발표자료
+## 기본 기능
+### Yihui Xie
+### 이광춘
+### 2020-10-26
+
+---
+
+
+
+
+
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+# 2 칼럼 - 5:5 비율
+
+.pull-left[
+
+### R 코드 
+
+
+```r
+random_var &lt;- rnorm(1000); mean(random_var)
+```
+
+```
+[1] -0.008799116
+```
+
+
+```r
+random_df &lt;- tibble(var = random_var)
+
+random_df %&gt;% ggplot(aes(x=var)) +
+    geom_histogram()
+```
+
+&lt;img src="xaringan_basics_files/figure-html/hello-world-ggplot-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+.pull-right[
+
+### 외부 그림 이미지
+
+![](fig/xaringan-hex.png)
+]
+
+
+---
+# 2 칼럼 - 2:8 비율
+
+
+.left-column[
+### 외부 그림
+![](fig/xaringan-hex.png)
+]
+
+.right-column[
+### R 코드 
+
+
+```r
+random_var &lt;- rnorm(1000); mean(random_var)
+```
+
+```
+[1] 0.02281531
+```
+
+```r
+random_df &lt;- tibble(var = random_var)
+
+random_df %&gt;% ggplot(aes(x=var)) +
+    geom_histogram()
+```
+
+&lt;img src="xaringan_basics_files/figure-html/hello-world-two-columns-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# Tidyverse Korea
+
+--
+KRUG Fork?
+
+--
+### Facebook 페북 그룹
+
+--
+## Seoul R 미트업
+
+---
+# 코드 강조
+
+.pull-left[
+R 코드
+
+````markdown
+```{r code-highlight}
+random_var &lt;- rnorm(1000)
+# mean(random_var)
+
+random_df &lt;- tibble(var = random_var)
+
+random_df %&gt;% 
+  ggplot(aes(x=var)) + #&lt;&lt;
+    geom_histogram()
+```
+````
+]
+
+.pull-right[
+출력결과
+
+
+```r
+random_var &lt;- rnorm(1000)
+# mean(random_var)
+
+random_df &lt;- tibble(var = random_var)
+
+random_df %&gt;% 
+* ggplot(aes(x=var)) +
+    geom_histogram()
+```
+
+&lt;img src="xaringan_basics_files/figure-html/code-highlight-output-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+# 출력결과 강조
+
+.pull-left[
+R 코드
+
+````markdown
+```{r 출력결과, highlight.output=c(1, 5, 7)}
+random_df %&gt;% 
+  sample_n(10)
+```
+````
+]
+
+.pull-right[
+출력결과
+
+
+```
+*# A tibble: 10 x 1
+      var
+    &lt;dbl&gt;
+ 1  0.265
+* 2  1.10 
+ 3  0.287
+* 4 -0.680
+ 5 -0.352
+ 6  0.314
+ 7  0.276
+ 8  1.56 
+ 9 -0.379
+10  0.521
+```
+
+]
+
+---
+# 이미지 크기 조정
+
+R마크다운에서 많이 사용되는 이미지 삽입 구문, 예를 들어, `![](fig/xaringan-hex.png){width=17px}`은 사용될 수 없어 다음과 같이 HTML `img` 태그를 사용하거나, `knitr::include_graphics()` 태그를 사용한다. 
+
+.pull-left[
+### HTML `img` 태그
+
+`&lt;img src="fig/xaringan-hex.png" width="50%" /&gt;`
+&lt;img src="fig/xaringan-hex.png" width="50%" /&gt;
+]
+
+.pull-right[
+### R 코드 덩어리
+
+````markdown
+```{r image-resize}
+knitr::include_graphics("fig/xaringan-hex.png")
+```
+````
+
+&lt;img src="fig/xaringan-hex.png" width="20%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+background-image: url(fig/xaringan-hex.png), url(fig/xaringan-hex.png) 
+background-position: 5% 100%, 100% 5%
+background-size: 5%, 10%
+
+# 로고 삽입
+
+좌측하단, 우측상단에 다음과 같이 로고를 삽입한다. 
+
+
+```r
+background-image: url(fig/xaringan-hex.png), url(fig/xaringan-hex.png) 
+background-position: 5% 100%, 100% 5%
+background-size: 5%, 10%
+```
+
+---
+# 키보드 단축키
+
+
+&lt;img src="fig/xaringan-shortcuts.png" width="1041" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
