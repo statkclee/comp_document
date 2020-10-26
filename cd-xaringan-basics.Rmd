@@ -196,7 +196,7 @@ convert_pptx(path = pptx, author = "Daniel Anderson")
 
 # 테마(theme) {#xaringan-thema}
 
-```{r chocolate-minimal, eval = FALSE}
-knitr::include_url('https://statkclee.github.io/ds-authoring/KCD2020_Tidyverse.html#1')
+```{r chocolate-minimal, eval = TRUE}
+knitr::include_url('https://statkclee.github.io/comp_document/tutorial/slideshows/xaringan_theme.html#1')
 ```
 
