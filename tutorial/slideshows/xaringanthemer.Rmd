@@ -1,6 +1,6 @@
 ---
 title: "Tidyverse Slideshows"
-subtitle: "hocolate Theme"  
+subtitle: "chocolate Theme"  
 author: 
   - "이광춘"
   - "Yongfu Liao"
@@ -8,9 +8,8 @@ date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: xaringan-themer.css
+    css: my-xaringan-themer.css
     nature:
-      beforeInit: "macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -31,6 +30,7 @@ style_duo_accent(
   text_font_google   = google_font("Noto Sans KR", "300", "300i"),
   code_font_google   = google_font("Fira Mono")
 )
+library(tidyverse)
 ```
 
 class: title-slide

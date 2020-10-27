@@ -52,7 +52,7 @@
   --inverse-background-color: #FF961C;
   --inverse-header-color: #FFFFFF;
   --title-slide-background-color: #1381B0;
-  --title-slide-text-color: #FFFFFF;
+  --title-slide-text-color: #000000;
   --header-background-color: #1381B0;
   --header-background-text-color: #FFFFFF;
   --primary: #1381B0;
@@ -133,8 +133,6 @@ a, a > code {
 }
 .title-slide {
   background-color: var(--title-slide-background-color);
-  background-image: url("fig/slide_background_milky_way.jpg"); 
-  background-size: cover;
 }
 .title-slide .remark-slide-number {
   display: none;

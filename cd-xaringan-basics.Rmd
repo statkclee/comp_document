@@ -302,8 +302,73 @@ xfun::embed_file('tutorial/slideshows/xaringan_title_slides.Rmd')
 
 [`xaringanthemer`](https://github.com/gadenbuie/xaringanthemer)를 활용할 경우 `.css`를 많이 고치지 않고 `xaringan` 슬라이드 작성에 많이 사용되는 기능을 쉽게 넣을 수 있다.
 
-```{r chocolate-minimal-themer, eval = FALSE}
+```{r chocolate-minimal-themer, eval = TRUE}
 knitr::include_url('https://statkclee.github.io/comp_document/tutorial/slideshows/xaringanthemer.html')
+```
+
+상기 슬라이드를 앞서와 같이 PDF 로 변환시킨 후에 PNG 이미지 파일로 일별할 수 있다.
+
+```{r themer-pdf, eval = FALSE}
+pagedown::chrome_print("xaringanthemer.html", output="xaringanthemer.pdf")
+```
+
+```{r themer-magick}
+themer_slides <- image_read_pdf("tutorial/slideshows/xaringanthemer.pdf")
+
+themer_slides %>% 
+  image_scale("300") %>% 
+  image_append(stack = FALSE)
+```
+
+[`xaringanthemer`](https://github.com/gadenbuie/xaringanthemer)은 또한 `ggplot`으로 시각화 그래프를 넣을 경우 `look-and-feel`을 자동으로 맞춰준다는 면에서 큰 장점도 있다. 
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+YAML 헤더에 `seal: false`을 지정할 경우 `background-image: url("fig/slide_background_milky_way.jpg");`와 같이 원하는 이미지를 지정할 수 있다.
+
+```{r set-background-image, eval = FALSE}
+.title-slide {
+  background-image: url("fig/slide_background_milky_way.jpg");
+  background-size: cover;
+}
+```
+
+</div>
+
+## 다운로드 {#download-minimal-css-xaringan}
+
+상기 `.css` 파일을 다운로드 받는다.
+
+```{r slidedhows-title-download-themer}
+xfun::embed_file('tutorial/slideshows/my-xaringan-themer.css')
+```
+
+`.css` 파일을 R마크다운 `xaringan` 슬라이드쇼에 반영하여 발표 슬라이드 외관을 깔끔하게 정리한다.
+
+```{r slidedhows-title-css-download-themer}
+xfun::embed_file('tutorial/slideshows/xaringanthemer.Rmd')
+```
+
+# 여자 닌자 [^female-ninja]  {#female-ninja}
+
+[^female-ninja]: [Earo Wang, "Presenting like a kunoichi kunoichi with Xaringa", R Ladies 2020](https://github.com/earowang/rladiesakl20)
+
+[Earo Wang, "Presenting like a kunoichi kunoichi with Xaringa", R Ladies 2020](https://github.com/earowang/rladiesakl20) 발표자료를 참조하여 가장 많이 사용되는 발표자료 형태를 찾아 나중에 `xaringan` 발표자료를 제작할 때 활용하도록 한다.
+
+```{r chocolate-minimal-ninja, eval = TRUE}
+knitr::include_url('https://statkclee.github.io/comp_document/tutorial/slideshows/female-ninja.html')
+```
+
+## 다운로드 {#download-minimal-css-ninja}
+
+필요한 `.css`, `.js` 파일은 별도 준비하여 나중에 사용하도록 한다.
+
+
+```{r slidedhows-title-css-download-ninja}
+xfun::embed_file('tutorial/slideshows/female-ninja.Rmd')
 ```
 
 
