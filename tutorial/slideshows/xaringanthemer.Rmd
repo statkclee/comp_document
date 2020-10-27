@@ -1,0 +1,125 @@
+---
+title: "Tidyverse Slideshows"
+subtitle: "hocolate Theme"  
+author: 
+  - "이광춘"
+  - "Yongfu Liao"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    seal: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1381B0",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF",
+  header_font_google = google_font("Nanum Pen Script"),
+  text_font_google   = google_font("Noto Sans KR", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+class: title-slide
+
+.bg-text[
+# Tidyverse Slideshows
+### Chocolate Theme
+<hr />
+`r format(Sys.Date(), '%B %e, %Y')`  
+Yongfu Liao
+이광춘
+]
+
+---
+## Table of Contents
+
+- Get Started
+    - Hello World
+    - Tidyverse Korea
+
+---
+class: center, middle
+
+# Get Started
+
+---
+## Hello World
+
+Install the **xaringan** package from [Github](https://github.com/yihui/xaringan):
+
+```{r eval=FALSE, tidy=FALSE}
+devtools::install_github("yihui/xaringan")
+```
+
+--
+
+You are recommended to use the [RStudio IDE](https://www.rstudio.com/products/rstudio/), but you do not have to.
+
+- Create a new R Markdown document from the menu `File -> New File -> R Markdown -> From Template -> Ninja Presentation`;<sup>1</sup>
+
+.center[
+<img src="fig/xaringan-hex.png" width="17%" />  
+]
+
+.footnote[
+[1] 中文用户请看[这份教程](http://slides.yihui.name/xaringan/zh-CN.html)
+[2] See [#2](https://github.com/yihui/xaringan/issues/2) if you do not see the template or addin in RStudio.
+]
+
+---
+## Tidyverse Korea
+
+.pull-left[
+```{r matching-ggplot, eval = FALSE}
+library(ggplot2)
+ggplot(diamonds) +
+  aes(cut, fill = cut) +
+  geom_bar(show.legend = FALSE) +
+  labs(
+    x = "Cut",
+    y = "Count",
+    title = "A Fancy diamonds Plot"
+  ) +
+  theme_xaringan(background_color = "#FFFFFF") +
+  scale_xaringan_fill_discrete()
+```
+]
+
+.pull-right[
+```{r matching-ggplot-plot, echo = FALSE, eval = TRUE}
+ggplot(diamonds) +
+  aes(cut, fill = cut) +
+  geom_bar(show.legend = FALSE) +
+  labs(
+    x = "Cut",
+    y = "Count",
+    title = "A Fancy diamonds Plot"
+  ) +
+  theme_xaringan(background_color = "#FFFFFF") +
+  scale_xaringan_fill_discrete()
+```
+]
+
+
+---
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).

@@ -1,18 +1,20 @@
 ---
-title: "Presentation Ninja"
-subtitle: "&#x2694;&#xFE0F; xaringan +<br/>&#x1F60E; xaringanthemer"  
+title: "Tidyverse Slideshows"
+subtitle: "hocolate Theme"  
 author: 
   - "이광춘"
-  - "Garrick Aden-Buie"
+  - "Yongfu Liao"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [chocolate, xaringan-chocolate-themer.css]
+    css: [default, chocolate, chocolate-fonts, xaringan-chocolate-themer.css]
     nature:
+      beforeInit: "macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+    seal: false
 ---
 
 ```{r setup, include=FALSE}
@@ -28,13 +30,30 @@ style_duo_accent(
 )
 ```
 
+class: title-slide
+.bg-text[
+# Tidyverse Slideshows
+### Chocolate Theme
+<hr />
+`r format(Sys.Date(), '%B %e, %Y')`  
+Yongfu Liao
+이광춘
+]
+
+---
+## Table of Contents
+
+- Get Started
+    - Hello World
+    - Tidyverse Korea
+
+---
 class: center, middle
 
 # Get Started
 
 ---
-
-# Hello World
+## Hello World
 
 Install the **xaringan** package from [Github](https://github.com/yihui/xaringan):
 
@@ -51,12 +70,18 @@ You are recommended to use the [RStudio IDE](https://www.rstudio.com/products/rs
 
 .footnote[
 [1] 中文用户请看[这份教程](http://slides.yihui.name/xaringan/zh-CN.html)
-
 [2] See [#2](https://github.com/yihui/xaringan/issues/2) if you do not see the template or addin in RStudio.
 ]
 
 ---
+## Tidyverse Korea
 
+
+.center[
+<img src="fig/xaringan-hex.png" width="37%" />  
+]
+
+---
 class: center, middle
 
 # Thanks!

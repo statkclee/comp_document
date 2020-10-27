@@ -50,9 +50,11 @@ knitr::include_graphics("fig/xaringan-overview.png")
     - [`ninja-theme`](https://github.com/emitanaka/ninja-theme)
     - [`slidex`](https://github.com/datalorax/slidex)
 
-# 슬라이드쇼 기본기능 [^slideshow-tutorial] {#slideshows-basics}
+# 슬라이드쇼 기본기능 [^slideshow-tutorial] [^reduce-complexity] {#slideshows-basics}
 
 [^slideshow-tutorial]: [Zhi Yang, "How to make xaringan slides in R", Orange County R Users Group](https://zhiyang.netlify.app/talk/xaringan/)
+
+[^reduce-complexity]: [Yong Fu (Apr 29, 2019), "Tips to Reduce the Complexity of Slide Making with Xaringan", Yongfu's Blog](https://yongfu.name/2019/04/29/xaringan_tips.html)
 
 ## 2 칼럼 {#slideshow-basics-two-columns}
 
@@ -194,9 +196,114 @@ convert_pptx(path = pptx, author = "Daniel Anderson")
 
 ![](fig/slidex-preview.gif)
 
-# 테마(theme) {#xaringan-thema}
+
+# `html` 슬라이드 &rarr; `.png` {#slides-to-png}
+
+`xaringan`으로 제작한 `.html` 슬라이드를 예를 들어 `.png`와 같은 이미지로 작업을 할 경우 몇가지 장점이 있다. 발표자료를 만들 경우 맨 앞장 Title 슬라이드와, 목차, 소분류 제목, 본문, 마무리 슬라이드로 구성되는 대략의 얼개를 확인할 수 있다는 장점이 있다. 이를 위해서 `pagedown` 팩키지로 html 파일을 pdf 파일로 변환시킨 후에 `magick`에서 pdf 파일을 불러 읽을 수 있도록 한 후 다양한 이미지 처리 작업을 수행한다.
+
+![](fig/html-to-png.png)
+
+## 테마(theme) {#xaringan-thema}
+
+`knitr` 팩키지 `include_url()`함수를 사용하면 `xaringan` 슬라이드를 R마크다운 문서에 내장할 수 있다.
 
 ```{r chocolate-minimal, eval = TRUE}
 knitr::include_url('https://statkclee.github.io/comp_document/tutorial/slideshows/xaringan_theme.html#1')
 ```
+
+## PDF 변환 {#xaringan-thema-pdf}
+
+`pagedown` 팩키지 `chrome_print()` 함수를 사용하게 되면 `xaringan` `.html`슬라이드를 `.pdf` 파일로 변환시킬 수 있다.
+
+```{r html-to-png, eval = FALSE}
+pagedown::chrome_print("xaringan_theme.html", output="xaringan_theme.pdf")
+```
+
+## 이미지 작업 {#xaringan-thema-pdf-img}
+
+`.pdf` 파일을 이미지로 작업할 경우 두가지 방법이 있는데 `pdftools`와 `mgaick` 팩키지가 그것이다. `.pdf` 파일에서 텍스트를 추출하는 등의 작업을 하지 않을 것이라 `magick` 팩키지 `image_read_pdf()` 함수를 사용해서 `magick` 이미지 객체로 후속 작업을 수행하는 것이 훨씬 더 수월하다.
+
+```{r pdf-to-png-magickf}
+library(magick)
+
+chocolate <- image_read_pdf("tutorial/slideshows/xaringan_theme.pdf")
+
+chocolate %>% 
+  image_scale("300") %>% 
+  image_append(stack = FALSE)
+
+```
+
+# `.css` 날코딩 {#slides-css}
+
+발표 슬라이드는 크다 다음과 같이 5가지로 나눠진다.
+
+- 제목 타이틀 슬라이드
+- 목차(Table of Contents)
+- 소제목 타이틀 슬라이드
+- 본문 슬라이드
+- 마무리 슬라이드
+
+제목 타이틀 슬라이드를 제작하는 것이 아마도 발표자료 제작의 첫걸음으로 생각된다.
+`.css` 파일을 하나 제작하는데 기본적인 `.css` 문법에 맞춰 `html` 태그를 매칭하는 방식으로 제작한다.
+
+```{r html-to-png-title, eval = FALSE}
+pagedown::chrome_print("xaringan_title_slides.html", output="xaringan_title_slides.pdf")
+```
+
+전체 적인 작업흐름은 구글 검색으로 적당한 [외부 이미지 파일](https://pixabay.com/photos/milky-way-starry-sky-night-sky-star-2695569/)을 첫 제목 슬라이드에 넣고 이를 `.css` 에 반영한다. 한글 폰트를 [Google Fonts](https://fonts.google.com/)에서 가져와서 웹브라우져에서 실시간 사용하도록 활성화시키고 `html` 태그 `h1, h2, h3`와 `body`에 대한 내용을 적용시킨다.
+
+```{r html-to-png-title-magick}
+title_slides <- image_read_pdf("tutorial/slideshows/xaringan_title_slides.pdf")
+
+title_slides %>% 
+  image_scale("300") %>% 
+  image_append(stack = FALSE)
+```
+
+## 최소 `.css` {#minimal-css}
+
+Google Fonts 웹사이트에서 한글 폰트를 특정하고 `.title-slide`다음과 같이 지정하고 이미지를 넣고 `h1, h2`등을 지정하고 본문 글꼴도 지정한다.
+
+```{r minimal-css, eval = FALSE}
+@import url(https://fonts.googleapis.com/css?family=Nanum+Pen+Script);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans+KR);
+
+.title-slide {
+  background-image: url(fig/slide_background_milky_way.jpg);
+  background-size: cover;
+}
+
+h1, h2{
+  font-family: 'Nanum Pen Script';
+  font-weight: normal;
+}
+
+body { font-family: 'Noto Sans KR', 'Nanum Pen Script', serif; }
+
+.remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; }
+```
+
+## 다운로드 {#download-minimal-css}
+
+상기 `.css` 파일을 다운로드 받는다.
+
+```{r slidedhows-title-download}
+xfun::embed_file('tutorial/slideshows/xaringan-title.css')
+```
+
+`.css` 파일을 R마크다운 `xaringan` 슬라이드쇼에 반영하여 발표 슬라이드 외관을 깔끔하게 정리한다.
+
+```{r slidedhows-title-css-download}
+xfun::embed_file('tutorial/slideshows/xaringan_title_slides.Rmd')
+```
+
+# `xaringanthemer` {#xaringan-themer}
+
+[`xaringanthemer`](https://github.com/gadenbuie/xaringanthemer)를 활용할 경우 `.css`를 많이 고치지 않고 `xaringan` 슬라이드 작성에 많이 사용되는 기능을 쉽게 넣을 수 있다.
+
+```{r chocolate-minimal-themer, eval = FALSE}
+knitr::include_url('https://statkclee.github.io/comp_document/tutorial/slideshows/xaringanthemer.html')
+```
+
 
