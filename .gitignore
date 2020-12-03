@@ -13,3 +13,4 @@ play_with_data_conference.Rproj
 .Rproj.user
 .Rhistory
 tutorial/02_parameterized_rmd/report
+.httr-oauth

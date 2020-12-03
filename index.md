@@ -82,7 +82,8 @@ subtitle: 데이터 과학 문서
     * [doit 시작하기](doit-basics.html)
     * [부작업(Sub-tasks)](doit-sub_tasks.html)
     * [분석결과가 최신상태인지 점검하기](doit-uptodate.html)
-
+1. [출판사, 저널, 논문 API](publisher-journal-api.html)
+    * [논문 저자: `rorcid`](author-orcid.html)
 
 > ### 원문 출처 및 저작 라이선스 {.getready}
 >
