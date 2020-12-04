@@ -34,6 +34,7 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
 library(tidyverse)
 ```
 
+![](fig/overview-orcid.png)
 
 # 학술출판사 순위 [^academic-publisher] {#major-publisher}
 

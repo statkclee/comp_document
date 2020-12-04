@@ -55,6 +55,8 @@ ORCID(영어: Open Researcher and Contributor ID)는 과학자와 다른 학문 
 library(tidyverse)
 library(rorcid)
 
+orcid_auth(reauth = TRUE)
+
 # orcid_auth()
 # 
 # no ORCID token found; attempting OAuth authentication
@@ -88,12 +90,114 @@ papagiannidis <- rorcid::orcid_search(given_name = "Savvas",  family_name = "Pap
 papagiannidis
 ```
 
+[Savvas Papagiannidis, ORCID iD](https://orcid.org/0000-0003-0799-491X)를 웹브라우져를 통해 확인이 가능하다.
 
-
-`rorcid::browse(papagiannidis$orcid)`
-
-```{r rorcid-browse}
-# rorcid::browse(papagiannidis$orcid)
+```{r check-papagiannidis}
+# webshot2::webshot(url = "https://orcid.org/0000-0003-0799-491X", file = "fig/papagiannidis.png")
+knitr::include_graphics("fig/papagiannidis.png")
 ```
 
+# 과학연구자 프로필 {#orcid-identifier-go-deeper}
+
+`rorcid::browse(papagiannidis$orcid)` 명령어를 통해 관련 내용을 좀더 깊이 들어갈 수 있다.
+특별한 정보가 하들리 위컴(Hadley Wickham)으로 바꿔 한걸음 더 들어가보자.
+
+```{r hadley-wickham-orcid}
+hadley <- orcid_search(given_name = "hadley", family_name = "wickham")
+#   first  last    orcid              
+#   <chr>  <chr>   <chr>              
+# 1 Hadley Wickham 0000-0003-4757-117X
+
+hadley_list <- rorcid::orcid_person(hadley$orcid)
+
+listviewer::jsonedit(hadley_list)
+```
+
+상기 정보를 통해 개인 프로필을 작성할 수 있다. 꼭 필요하다고 생각되는 값만 추출하여 데이터프레임으로 작성한다. `purrr::pluck` 함수를 사용해서 꼭 필요한 Attribute 만 추출하여 데이터프레임으로 제작한다.
+
+```{r hadley-wickham-about}
+hadley_df <- hadley_list %>% {
+    dplyr::tibble(
+      created_date = purrr::map_dbl(., purrr::pluck, "name", "created-date", "value", .default=NA_character_),
+      given_name = purrr::map_chr(., purrr::pluck, "name", "given-names", "value", .default=NA_character_),
+      family_name = purrr::map_chr(., purrr::pluck, "name", "family-name", "value", .default=NA_character_),
+      orcid_identifier_path = purrr::map_chr(., purrr::pluck, "name", "path", .default = NA_character_),
+      biography = purrr::map_chr(., purrr::pluck, "biography", "content", .default=NA_character_),
+      emails = purrr::map(., purrr::pluck, "emails", "email", "email", .default=NA_character_),
+      keywords = purrr::map(., purrr::pluck, "keywords", "keyword", "content", .default=NA_character_),
+      researcher_urls = purrr::map(., purrr::pluck, "researcher-urls", "researcher-url", "url.value",  .default=NA_character_)
+    )
+  } %>% 
+  mutate(created_date = as.POSIXct(created_date /1e3, tz = "UTC", origin="1970-01-01 00:00:00" ))
+
+hadley_df %>% 
+  unnest(researcher_urls)
+```
+
+`rorcid::works()` 함수를 사용해서 과학연구자 해들리 위컴이 저술한 논문에 대해 추출하여 정리한다.
+
+```{r hadley-works}
+hadley_works <- rorcid::works(hadley$orcid)
+
+hadley_works_df <- hadley_works %>% 
+  as.data.frame() %>% 
+  janitor::clean_names() %>% 
+  select(put_code, type, date = publication_date_year_value, journal = journal_title_value, 
+         title = title_title_value, doi = url_value) %>% 
+  mutate(doi = str_remove(doi, "https://doi.org/")) %>% 
+  as_tibble() %>% 
+  arrange(desc(date))
+
+hadley_works_df
+```
+
+# `tidyverse` 관련 논문 {#tidyverse-papers}
+
+해드리 위컴이 `tidyverse` 생태계 구축에 지대한 영향을 미쳤기 때문에 관련 논문을 찾아 공저자를 찾아보자.
+"Welcome to the Tidyverse"[@Wickham2019] 논문을 시작점으로 시작해보자. 먼저, DOI가 "10.21105/joss.01686"이라 함께 작업한 공저자를 찾아낸다. 
+
+```{r tidyverse-ecosystem}
+orcid(query = 'digital-object-ids:"10.21105/joss.01686"') 
+```
+
+
+다른 방식은 논문 제목을 "Welcome to the Tidyverse" 동일하게 `query = `에 넣어 확인한다.
+
+```{r tidyverse-ecosystem-search}
+tidyverse_orcid <- orcid(query = 'work-titles:"Welcome to the Tidyverse"')
+tidyverse_orcid
+```
+
+
+# `tidyverse` 공동저자 {#tidyverse-papers-coworkers}
+
+`tidyverse` 논문 저작에 참여한 공저자를 함께 찾아보자. 
+"Welcome to the Tidyverse" 논문저작에 참여한 공저자의 ORCID를 추출하여 앞서 해들리 위컴과 마찬가지로 정보를 추출한다.
+
+```{r tidyverse-coworkers}
+tidyverse_team <- rorcid::orcid_person(tidyverse_orcid$`orcid-identifier.path`)
+
+listviewer::jsonedit(tidyverse_team)
+```
+
+추출한 데이터가 JSON에 기반한 리스트 형식 데이터라 이를 데이터프레임으로 변환시킨다.
+
+```{r json-to-dataframe}
+tidyverse_member_info <- tidyverse_team %>% {
+    dplyr::tibble(
+      created_date = purrr::map_dbl(., purrr::pluck, "name", "created-date", "value", .default=NA_character_),
+      given_name = purrr::map_chr(., purrr::pluck, "name", "given-names", "value", .default=NA_character_),
+      family_name = purrr::map_chr(., purrr::pluck, "name", "family-name", "value", .default=NA_character_),
+      orcid_identifier_path = purrr::map_chr(., purrr::pluck, "name", "path", .default = NA_character_),
+      biography = purrr::map_chr(., purrr::pluck, "biography", "content", .default=NA_character_),
+      researcher_urls = purrr::map(., purrr::pluck, "researcher-urls", "researcher-url", .default=NA_character_),
+      emails = purrr::map_chr(., purrr::pluck, "emails", "email", "email", .default=NA_character_),
+      keywords = purrr::map(., purrr::pluck, "keywords", "keyword", "content", .default=NA_character_),
+      external_ids = purrr::map(., purrr::pluck, "external-identifiers", "external-identifier", .default=NA_character_)
+    )
+  } %>%
+  dplyr::mutate(created_date = anytime::anydate(created_date/1000)) %>% 
+  arrange(created_date)
+tidyverse_member_info
+```
 
