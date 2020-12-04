@@ -84,6 +84,7 @@ subtitle: 데이터 과학 문서
     * [분석결과가 최신상태인지 점검하기](doit-uptodate.html)
 1. [출판사, 저널, 논문 API](publisher-journal-api.html)
     * [논문 저자: `rorcid`](author-orcid.html)
+    * [상호참조: `crossref`](paper-crossref.html)
 
 > ### 원문 출처 및 저작 라이선스 {.getready}
 >
