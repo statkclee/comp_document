@@ -96,9 +96,11 @@ download.file(url = "https://raw.githubusercontent.com/lerocha/chinook-database/
 이제 `sqlite3` 데이터베이스를 생성시킨다. 이를 위해서 다음 두가지 작업을 수행한다.
 
 1. 터미널을 열고 `Chinook_Sqlite.sql` 파일을 다운로드 받은 디렉토리로 이동한다.
-2. `sqlite3` 명령어를 실행시켜 데이터베이스를 생성한다.
+2. `Chinook_Sqlite.sql` 파일을 `Chinook.db` 으로 변환시킨다.
+    - `$sqlite3 Chinook.db < Chinook_Sqlite.sql`
+3. `sqlite3` 명령어를 실행시켜 데이터베이스를 생성한다.
     - `$ sqlite3 Chinook.db`
-3. 다운로드받은 `Chinook_Sqlite.sql` 스크립트를 실행하여 `Chinook` 데이터베이스를 생성시킨다.
+4. 다운로드받은 `Chinook_Sqlite.sql` 스크립트를 실행하여 `Chinook` 데이터베이스를 생성시킨다.
     - `sqlite> .read Chinook_Sqlite.sql`
 
 ## `sqlite3` DB를 R에 연결 {#sqlite3-sql-db-creation-r}
