@@ -21,7 +21,7 @@ output:
     code_folding: show
     number_section: true
     self_contained: yes
-bibliography: bibliography.bib
+bibliography: bibliography-cd.bib
 csl: biomed-central.csl
 editor_options: 
   chunk_output_type: console
