@@ -37,6 +37,7 @@ subtitle: 데이터 과학 문서
     * [GITHUB `readme.md`](ds-github-readme.html)
     * [블로그 - blogdown](ds-blogdown.html)
         * [R마크다운 보고서 패스워드 보안](ds-netlify-protection.html)
+        * [구매한 도메인 `netlify` 연결](ds-netlify-domain.html)
     * [이력서(Resume)](ds-resume.html)
     * [북다운(bookdown)](bookdown-intro.html)
         * [출판 자동화(DevOps)](bookdown-github-travis.html)
