@@ -21,7 +21,7 @@ output:
     code_folding: show
     number_section: true
     self_contained: true
-bibliography: bibliography.bib
+bibliography: bibliography-cd.bib
 csl: biomed-central.csl
 urlcolor: blue
 linkcolor: blue
@@ -129,6 +129,12 @@ API ID 키값을 얻은 후에 `Netlify` OAuth Key도 User Settings &rarr; Appli
 
 ![](fig/bookdown-oauth-api-key-github.png)
 
+## `_book` 배포 디렉토리 {#bookdown-github-repo-netlify-publish}
+
+`bookdown` 빌드(CTRL + Alt + B)를 할 경우 작업 결과물이 `_book` 디렉토로리 `publish` 된다.
+`_book` 디렉토리를 `Publish directory`에 명시적으로 설정한다.
+
+![](fig/bookdown-netlify-publish.png)
 
 ## GitHub workflow 생성 {#bookdown-github-workflow}
 
