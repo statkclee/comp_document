@@ -31,7 +31,8 @@ subtitle: 데이터 과학 문서
 1. [`RStudio` 워드 프로세서: `hunspell`](cd-rstudio-wp.html)
     * [GIF 동영상 제작 - 맥OS](cd-gif.html)
 1. **[R마크다운 콘텐츠: 웹사이트, 블로그, 포트폴리오 등](cd-netlify.html)**
-    * [정적 웹서비스 개발 툴체인](devops-dev-vm.html) 
+    * [정적 웹사이트 + 블로그](cd-static-website-blog.html) 
+        * [정적 웹서비스 개발 툴체인](devops-dev-vm.html) 
         * [윈도우 정적 웹서비스 개발 툴체인](devops-dev-vm-windows.html) 
     * [블로그 - blogdown](ds-blogdown.html)
         * [R마크다운 보고서 패스워드 보안](ds-netlify-protection.html)
