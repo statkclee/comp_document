@@ -30,7 +30,7 @@ subtitle: 데이터 과학 문서
     * [이광춘, 주용우 (2020), "사람과 기계의 일자리 경쟁 요인과 협업 방안", 한국디지털경영학회](automation-kasdba.html)
 1. [`RStudio` 워드 프로세서: `hunspell`](cd-rstudio-wp.html)
     * [GIF 동영상 제작 - 맥OS](cd-gif.html)
-1. **[R 콘텐츠: 블로그, 이력서 등](cd-netlify.html)**
+1. **[R마크다운 콘텐츠: 웹사이트, 블로그, 포트폴리오 등](cd-netlify.html)**
     * [정적 웹서비스 개발 툴체인](devops-dev-vm.html) 
         * [윈도우 정적 웹서비스 개발 툴체인](devops-dev-vm-windows.html) 
     * [블로그 - blogdown](ds-blogdown.html)

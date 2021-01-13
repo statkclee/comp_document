@@ -1,9 +1,11 @@
 ---
 layout: page
 title: "데이터 과학을 위한 저작도구: Computational Documents"
-subtitle: "R 콘텐츠: 블로그, 이력서 등"
+subtitle: "R마크다운 콘텐츠: 웹사이트, 블로그, 포트폴리오 등"
 author:
-    name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+- name: "이광춘"
+  affiliation: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+tags: ["데이터 과학", "Data Science", "데이터 사이언스", "distill", "웹사이트", "과학기술", "블로그"]
 date: "`r Sys.Date()`"
 output:
   html_document: 
@@ -23,6 +25,17 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
 
 library(reticulate)
 ```
+
+# Birds Eye View {#birds-eye-view}
+
+디지털 전환(Digital Transformation) 세상에 보장된 직업은 없으며 각자 일자리를 본인이 창출하는 세상으로 접어든지 시간이 좀 지난듯 하다.
+[네이버 블로그](https://section.blog.naver.com/), [카카오 브런치](https://brunch.co.kr/), [티스토리](https://www.tistory.com/) 등 국내도 블로그 플랫폼이 있지만 데이터 과학과 과학기술을 지원하는데는 한계가 있다. 또한, 블로그를 넘어서 정적 웹사이트(Static Website) 기능도 장착하는 것도 필요하고 [`postcards`](https://github.com/seankross/postcards)와 같이 이력서 및 포트폴리오 홍보를 위한 기능도 필요하다. 이를 R마크다운과 `distill`을 주된 인프라로 구축하는 방식이 제법 실무적으로 사용가능하도록 다가왔다.
+
+- [`postcards` 포트폴리오](https://github.com/seankross/postcards)
+- [`distill` 웹사이트](https://rstudio.github.io/distill/website.html)
+- [`distill` 블로그](https://rstudio.github.io/distill/blog.html)
+
+![](fig/rmarkdown-webstie-blog.png)
 
 # 공유와 배포 [^rstudio-sharing] {#netlify-share}
 
@@ -55,14 +68,16 @@ webshot2::webshot("https://app.netlify.com/drop", "fig/netlify-drop.png")
 
 ![`netlify` Drag and Drop](fig/netlify-drag-and-drop.png)
 
-# 논문: `distill` {#netlify-distill}
+# 웹사이트와 블로그: `distill` {#netlify-distill}
 
 - [Sharing Rmarkdown distill paper](https://github.com/statkclee/sharing-distill)
 
-# 블로그: `blogdown` {#netlify-distill}
+# 블로그: `blogdown` {#netlify-blog}
 
 - [데이터 과학을 위한 저작도구: Computational Documents, 블로그 - `blogdown`](ds-blogdown.html)
 
 # 책: `bookdown` {#netlify-bookdown}
 
 - [데이터 과학을 위한 저작도구: 북다운(`bookdown`)](bookdown-intro.html)
+
+
