@@ -58,6 +58,7 @@ subtitle: 데이터 과학 문서
         - [기본 문서](tutorial/02_parameterized_rmd/election.html)
         - [매개변수 적용된 문서](tutorial/02_parameterized_rmd/election-province.html)
         - [자동 문서 생성 스크립트](tutorial/02_parameterized_rmd/automate-province-report.R)
+    - [**전문가 제작 문서**](cd-professional-document.html)
     - [인터랙티브 문서](tutorial/03_interactive_rmd/election-interactive.html)
     - [$\LaTeX$ `PDF` 문서](comp_doc_pdf.html)
     - [R마크다운 코드 덩어리(Code Chunk)](cd-code-chunk.html)    
