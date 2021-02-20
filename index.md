@@ -43,6 +43,7 @@ subtitle: 데이터 과학 문서
     * [이력서(Resume)](ds-resume.html)
     * [북다운(bookdown)](bookdown-intro.html)
         * [출판 자동화(DevOps)](bookdown-github-travis.html)
+        * [책 이해하기: 용어](bookdown-about-book.html)
     * [R 발표자료(Slideshows) - `xaringan`](ds-presn.html)
         * [`xaringan` 기본기능](cd-xaringan-basics.html)
         * [파워포인트 `pptx` 발표자료](ds-pptx-rmarkdown.html)
