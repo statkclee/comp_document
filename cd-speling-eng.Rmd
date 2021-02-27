@@ -1,0 +1,77 @@
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "Spelling Check"
+author:
+- name: "이광춘"
+  affiliation: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+tags: ["데이터 과학", "Data Science", "데이터 사이언스", "distill", "웹사이트", "과학기술", "블로그", "전문가 문서", "책", "용어", "Spelling", "맞춤법"]
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    include:
+      after_body: footer.html
+      before_body: header.html
+    theme: default
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: yes
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography-cd.bib
+csl: biomed-central.csl
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+library(tidyverse)
+library(slickR)
+library(pdftools)
+```
+
+# Spelling Check Helloworld {#spelling-check}
+
+We can fint spelling check exmples like [ESL Writing Samples](http://writing.colostate.edu/wcenter/wchandbook.htm).
+Let's fix spelling errors through [`grammarly`](https://www.grammarly.com/). We can find more spelling and grammar check examples on this [website](http://faculty.washington.edu/sandeep/check/)
+
+---
+
+<div class = "row">
+  <div class = "col-md-6">
+**Spelling ESL Example**
+
+It<ins>'s tell</ins> what kinds of animals that we treat badly. This issue also <ins>hope</ins> that someday the creature of human and other animals are live peacefully on earth so this animal doesn't have to <ins>suffering</ins> terrible death the pain in which they suffering.
+
+I <ins>am agree</ins> with what the article <ins>say</ins> because if we <ins>are not care</ins> about the animals, they got wild animals from zoos because <ins>the got</ins> make foot, hand <ins>and</ins> everything for what they need.
+
+Devlin also <ins>seem</ins> eerie of the fact that we are evading <ins>there</ins> homes and wildlife.
+
+
+  </div>
+  <div class = "col-md-6">
+**Corrected Spelling ESL Example through Grammarly**
+
+It<ins> tells</ins> what kinds of animals that we treat badly. This issue also <ins>hopes</ins> that someday the creature of human and other animals are live peacefully on earth so this animal doesn't have to <ins>suffer</ins> terrible death the pain in which they suffering.
+
+I <ins>agree</ins> with what the article <ins>says</ins> because if we <ins>do not care</ins> about the animals, they got wild animals from zoos because <ins>they got</ins> make foot, hand <ins>, and</ins> everything for what they need.
+
+Devlin also <ins>seems</ins> eerie of the fact that we are evading <ins>their</ins> homes and wildlife.
+
+  </div>
+</div>
+
+# Spelling Package {#spelling-check-package}
+
+[rOpenSci: The spelling package](https://docs.ropensci.org/spelling/) can support $\LaTeX$, markdown, manual pages, description files.
+
+```{r check-esl}
+library(spelling)
+spell_check_files('data/spelling_esl.md', lang = 'en_US')
+```

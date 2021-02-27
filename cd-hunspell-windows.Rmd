@@ -1,0 +1,60 @@
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "`hunspell` 윈도우즈"
+author:
+- name: "이광춘"
+  affiliation: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+tags: ["데이터 과학", "Data Science", "데이터 사이언스", "distill", "웹사이트", "과학기술", "블로그", "전문가 문서", "책", "용어", "Spelling", "맞춤법", "hunspell"]
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    include:
+      after_body: footer.html
+      before_body: header.html
+    theme: default
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography-cd.bib
+csl: biomed-central.csl
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(reticulate)
+library(tidyverse)
+library(slickR)
+library(pdftools)
+```
+
+# `hunspell` 사전 {#hunspell-dictionary}
+
+[`hunspell` 한국어 사전](https://github.com/spellcheck-ko/hunspell-dict-ko/releases/) GitHub 저장소에서 다운로드 받는다.
+
+# Sublime Text 3 [^sublimetext] {#install-sublimetext}
+
+[^sublimetext]: [Sublime Forum, "Can’t install new dictionaries"](https://forum.sublimetext.com/t/cant-install-new-dictionaries/29540/2)
+
+Sublime Text 3 편집기에서 Hunspell 한국어 맞춤법 검사를 하기 위해서 먼저 사전을 설치해야 된다. 설치방법은 다음과 같다. [`Dictionaries`](https://github.com/titoBouzout/Dictionaries) 한국어 사전이 다소 오래된 `hunspell 0.7.1` 3년전 사전이 등록되어 있다.
+
+1. `Ctrl-shift-p` 를 눌러 `Package Control: Add Repository` 선택한다.
+1. <https://github.com/titoBouzout/Dictionaries> URL을 붙여넣는다.
+1. `Package Control: Install Package` 에서 `Dictionaries`가 보이기 때문에 설치하면 된다.
+
+설치가 완료되면 `View` &rarr; `Dictionary` &rarr; `Dictionaries` &rarr; `Korean`을 순차적으로 선택하여 맞춤법 검사를 시작한다.
+
+![](fig/sublimetext-hunspell.png)
+
+
+
+
+

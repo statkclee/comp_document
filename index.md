@@ -30,6 +30,8 @@ subtitle: 데이터 과학 문서
     * [이광춘, 주용우 (2020), "사람과 기계의 일자리 경쟁 요인과 협업 방안", 한국디지털경영학회](automation-kasdba.html)
 1. [`RStudio` 워드 프로세서: `hunspell`](cd-rstudio-wp.html)
     * [GIF 동영상 제작 - 맥OS](cd-gif.html)
+    * [Spelling Check](cd-speling-eng.html)
+    * [`hunspell` 윈도우즈](cd-hunspell-windows.html)    
 1. **[R마크다운 콘텐츠: 웹사이트, 블로그, 포트폴리오 등](cd-netlify.html)**
     * [정적 웹사이트 + 블로그](cd-static-website-blog.html) 
         * [정적 웹서비스 개발 툴체인](devops-dev-vm.html) 
@@ -62,7 +64,7 @@ subtitle: 데이터 과학 문서
     - [**전문가 제작 문서**](cd-professional-document.html)
     - [인터랙티브 문서](tutorial/03_interactive_rmd/election-interactive.html)
     - [$\LaTeX$ `PDF` 문서](comp_doc_pdf.html)
-    - [R마크다운 코드 덩어리(Code Chunk)](cd-code-chunk.html)    
+    - [R마크다운 코드 덩어리(Code Chunk)](cd-code-chunk.html)
 1. Compendium ... R 프로젝트: (특정 주제에 대한) 개요서
     - [개요서(Compendium) 시작하며](cd_compendium.html)
     - [시작이 반이다 - `start small`](cd-start-small.html)
