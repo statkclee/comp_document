@@ -13,7 +13,7 @@ output:
     include:
       after_body: footer.html
       before_body: header.html
-    theme: journal
+    theme: default
     toc: yes
     toc_depth: 2
     toc_float: true
@@ -21,7 +21,7 @@ output:
     code_folding: show
     number_section: true
     self_contained: true
-bibliography: bibliography.bib
+bibliography: bibliography-cd.bib
 csl: biomed-central.csl
 urlcolor: blue
 linkcolor: blue
@@ -70,8 +70,14 @@ download.file(url = "https://cgit.freedesktop.org/libreoffice/dictionaries/plain
 
 `hunspell -D` 명령어를 통해 맞춤법을 확인을 위한 설치된 언어 사전을 확인할 수 있다.
 
-```{bash check-dictionary}
-hunspell -D
+```{bash check-dictionary, eval = FALSE}
+$ hunspell -D
+
+SEARCH PATH:
+.::/usr/share/hunspell:/usr/share/myspell:/usr/share/myspell/dicts:/Library/Spelling:/Users/kwangchunlee/.openoffice.org/3/user/wordbook:/Users/kwangchunlee/.openoffice.org2/user/wordbook:/Users/kwangchunlee/.openoffice.org2.0/user/wordbook:/Users/kwangchunlee/Library/Spelling:/opt/openoffice.org/basis3.0/share/dict/ooo:/usr/lib/openoffice.org/basis3.0/share/dict/ooo:/opt/openoffice.org2.4/share/dict/ooo:/usr/lib/openoffice.org2.4/share/dict/ooo:/opt/openoffice.org2.3/share/dict/ooo:/usr/lib/openoffice.org2.3/share/dict/ooo:/opt/openoffice.org2.2/share/dict/ooo:/usr/lib/openoffice.org2.2/share/dict/ooo:/opt/openoffice.org2.1/share/dict/ooo:/usr/lib/openoffice.org2.1/share/dict/ooo:/opt/openoffice.org2.0/share/dict/ooo:/usr/lib/openoffice.org2.0/share/dict/ooo
+AVAILABLE DICTIONARIES (path is not mandatory for -d option):
+/Users/kwangchunlee/Library/Spelling/ko
+/Users/kwangchunlee/Library/Spelling/en_US
 ```
 
 
@@ -105,8 +111,10 @@ Hello World! \n Thiss is Great.
 
 배치방식으로 `-l` 플래그를 사용하게 되면 철자법 검사에서 검출된 사례만 뽑을 수 있다.
 
-```{bash hunspell-batch}
-hunspell -l -d en_US -i utf-8 data/hunspell_test.txt 
+```{bash hunspell-batch, eval = FALSE}
+$ hunspell -l -d en_US -i utf-8 data/hunspell_test.txt 
+
+Thiss
 ```
 
 ## 한글 {#check-spelling-korean}
@@ -117,15 +125,20 @@ hunspell -l -d en_US -i utf-8 data/hunspell_test.txt
 - 아이가 밥을 {**넙죽**/넓죽} 잘도 받아먹는다.
 - 신문 {**스포츠난**/스포츠란}에 기사가 났다
 
-```{bash spell-check-korean}
-echo "기둥에 머리를 받치다. \n 아이가 밥을 넓죽 잘도 받아먹는다.\n 신문 스포츠란에 기사가 났다" > data/hunspell_korean.txt
-hunspell -l -d ko -i utf-8 data/hunspell_korean.txt 
+```{bash spell-check-korean, eval = FALSE}
+$ echo "기둥에 머리를 받치다. \n 아이가 밥을 넓죽 잘도 받아먹는다.\n 신문 스포츠란에 기사가 났다" > data/hunspell_korean.txt
+$ hunspell -l -d ko -i utf-8 data/hunspell_korean.txt 
+
+넓죽
+스포츠란에
 ```
 
+`C:\Users\statkclee\AppData\Local\RStudio-Desktop\dictionaries\languages-user` 디렉토리에 <https://github.com/spellcheck-ko/hunspell-dict-ko/releases>에서 다운로드 받은 `.dic`, `.aff` 파일을 압축을 풀어 넣는다. `ko.dic`, `ko.aff` 파일인데 이렇게 하면 RStudio에서 인식을 못하기 때문에 `ko.dic` &rarr; `ko_KR.dic`, `ko.aff` &rarr; `ko_KR.aff`로 각각 파일명을 변경한다. 그리고, `Sys.setenv(DICPATH = "C:/Users/statkclee/AppData/Local/RStudio-Desktop/dictionaries/languages-user/")`와 같이 한국어 사전이 저장된 위치를 지정해줘야 한국어 맞춤법 검사가 가능하다.
 
-# RStudio IDE [^rstudio-ide-spell] {#hunspell-rstudio}
+# ROpenSci `hunspell` [^hunspell-pkg] {#hunspell-package}
 
-[^rstudio-ide-spell]: [Josh Paulson (2020-07-28), "Spelling Dictionaries" RStudio Blog](https://support.rstudio.com/hc/en-us/articles/200551916)
+[^hunspell-pkg]: [Josh Paulson (2020-07-28), "Spelling Dictionaries" RStudio Blog](https://support.rstudio.com/hc/en-us/articles/200551916)
+
 
 ## `hunspell` R 팩키지 [^hunspell-blog] {#rstudio-package}
 
@@ -161,6 +174,7 @@ list_dictionaries()
 [The hunspell package: High-Performance Stemmer, Tokenizer, and Spell Checker for R](https://cran.r-project.org/web/packages/hunspell/vignettes/intro.html)을 참조하면 설치된 사전에 대한 자세한 내용도 확인할 수 있다.
 
 ```{r hunspell-korean-dic-vignette}
+Sys.setenv(DICPATH = "C:/Users/statkclee/AppData/Local/RStudio-Desktop/dictionaries/languages-user/")
 dictionary("ko_KR")
 ```
 
@@ -200,5 +214,12 @@ correct_text <- function(x){
 
 correct_text(sample_df$text)
 ```
+
+
+# RStudio Visual IDE [^rstudio-ide-spell] {#hunspell-package-ko}
+
+[^rstudio-ide-spell]: [Josh Paulson (February 02, 2021 01:56), "Spelling Dictionaries", RStudio Support](https://support.rstudio.com/hc/en-us/articles/200551916)
+
+`C:\Users\statkclee\AppData\Local\RStudio-Desktop\dictionaries\languages-user` 디렉토리에 <https://github.com/spellcheck-ko/hunspell-dict-ko/releases>에서 다운로드 받은 `.dic`, `.aff` 파일을 압축을 풀어 넣는다. `ko.dic`, `ko.aff` 파일인데 이렇게 하면 RStudio에서 인식을 못하기 때문에 `ko.dic` &rarr; `ko_KR.dic`, `ko.aff` &rarr; `ko_KR.aff`로 각각 파일명을 변경한다. 그렇게 되면 RStudio IDE에서 `Tools` &rarr; `Global Options ...` &rarr; `Spelling` 을 통해 한국어를 지정할 수 있다.
 
 
