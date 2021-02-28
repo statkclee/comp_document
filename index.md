@@ -79,20 +79,16 @@ subtitle: 데이터 과학 문서
 1.  [데이터 과학 개발운영 아키텍처](devops-dev-vm-arch.html)
     * [객체 저장소 FTP 배포(Deployment)](devops-ftp-object-storage.html)
     * [개발운영(DevOps) 실습예제 - 컴퓨터 과학 언플러그드](devops-pracitce.html)
-1. [문서 프로그래밍 - 한글 $LaTeX$ 사전준비](latex.html)
-    * [한글 LaTeX 소개](latex-intro.html)
-    * [한글 LaTeX 윈도우 설치](latex-install-windows.html)
-    * [한글 LaTeX 설치환경 가상화](latex-virtual.html)
-    * [한글 LaTeX 편집기](latex-utils.html)
-    * [파이썬 스핑크스](latex-sphinx.html)
 1. [파이썬 빌드 doit](doit-index.html)
     * [doit 설치하기](doit-install.html)
     * [doit 시작하기](doit-basics.html)
     * [부작업(Sub-tasks)](doit-sub_tasks.html)
     * [분석결과가 최신상태인지 점검하기](doit-uptodate.html)
+    - [파이썬 스핑크스](latex-sphinx.html)
 1. [출판사, 저널, 논문 API](publisher-journal-api.html)
     * [논문 저자: `rorcid`](author-orcid.html)
     * [상호참조: `crossref`](paper-crossref.html)
+1. [$\LaTeX$](https://statkclee.github.io/latex/)
 
 > ### 원문 출처 및 저작 라이선스 {.getready}
 >
