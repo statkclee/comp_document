@@ -39,10 +39,9 @@ library(magick)
 
 ```
 
-
 # 맞춤법 검사 {#check-spelling}
 
-[Hunspell](hunspell.github.io)은 `MySpell`에 기반을 두고 있으며 MySpell 사전과 하위 호환되는데, `MySpell`이 싱글 바이트 문자 인코딩을 사용하는 반면, `Hunspell`은 **유니코드 UTF-8 인코딩 사전**을 사용할 수 있다. Hunspell은 처음에 헝가리어를 대상으로 설계되었으나, 풍부한 형태론 및 합성어, 문자 인코딩을 포함한 맞춤법 검사기이자 형태론 분석기의 하나로 자리잡았다. 
+[Hunspell](hunspell.github.io)은 `MySpell`에 기반을 두고 있으며 MySpell 사전과 하위 호환되는데, `MySpell`이 싱글 바이트 문자 인코딩을 사용하는 반면, `Hunspell`은 **유니코드 UTF-8 인코딩 사전**을 사용할 수 있다. Hunspell은 처음에 헝가리어를 대상으로 설계되었으나, 풍부한 형태론 및 합성어, 문자 인코딩을 포함한 맞춤법 검사기이자 형태론 분석기의 하나로 자리잡았다.
 
 오픈 소스 소프트웨어 기반으로 맞춤법을 실시하는 것이 경우에 따라서는 더 성능이 좋다. 하지만, 이를 위해서 몇가지 사전 준비를 해야 한다. 먼저 `hunspell` 소프트웨어를 설치하고 맞춤법 검사를 위한 언어사전(영어, 한국어)을 각각 설치한다.
 
@@ -65,8 +64,7 @@ download.file(url = "https://cgit.freedesktop.org/libreoffice/dictionaries/plain
 
 ## 한국어 사전 {#hunspell-dictionary}
 
-[`hunspell` 한국어 맞춤법 사전](https://github.com/spellcheck-ko/hunspell-dict-ko)은 오픈소스 데스크톱에 널리 사용되는 **hunspell 맞춤법 검사 프로그램**에서 동작하는 (현재 유일한) 한국어 맞춤법 사전으로 [`hunspell-dict-ko`: `hunspell` 한국어 사전](https://github.com/spellcheck-ko/hunspell-dict-ko/releases)을 다운로드 받아, 압축을 풀게 되면 `ko.aff`, `ko.dic` 파일이 두개 나오게 된다. 
-영어 사전과 마찬가지로 웹사이트에서 필요한 언어 사전(영어, `en_US`)을 다운로드 받아 `~/Library/Spelling/` 디렉토리에 복사하여 넣어둔다.
+[`hunspell` 한국어 맞춤법 사전](https://github.com/spellcheck-ko/hunspell-dict-ko)은 오픈소스 데스크톱에 널리 사용되는 **hunspell 맞춤법 검사 프로그램**에서 동작하는 (현재 유일한) 한국어 맞춤법 사전으로 [`hunspell-dict-ko`: `hunspell` 한국어 사전](https://github.com/spellcheck-ko/hunspell-dict-ko/releases)을 다운로드 받아, 압축을 풀게 되면 `ko.aff`, `ko.dic` 파일이 두개 나오게 된다. 영어 사전과 마찬가지로 웹사이트에서 필요한 언어 사전(영어, `en_US`)을 다운로드 받아 `~/Library/Spelling/` 디렉토리에 복사하여 넣어둔다.
 
 `hunspell -D` 명령어를 통해 맞춤법을 확인을 위한 설치된 언어 사전을 확인할 수 있다.
 
@@ -80,10 +78,9 @@ AVAILABLE DICTIONARIES (path is not mandatory for -d option):
 /Users/kwangchunlee/Library/Spelling/en_US
 ```
 
+# 쉘에서 맞춤법 검사 [^1] {#spellcheck-bash}
 
-# 쉘에서 맞춤법 검사 [^hunspell-tutorial] {#spellcheck-bash}
-
-[^hunspell-tutorial]: [Xah Lee (2010-06-16), "Hunspell Tutorial"](http://xahlee.info/comp/hunspell_spell_checking.html)
+[^1]: [Xah Lee (2010-06-16), "Hunspell Tutorial"](http://xahlee.info/comp/hunspell_spell_checking.html)
 
 ## 인터랙티브 방식 {#hunspell-interactive}
 
@@ -119,11 +116,11 @@ Thiss
 
 ## 한글 {#check-spelling-korean}
 
-[자주 틀리는 한글 맞춤법 사례](http://blog.daum.net/woalsdlvjxld/5808471) 블로그에 올라온 사례를 가지고 한글 맞춤법을 확인해보자. 
+[자주 틀리는 한글 맞춤법 사례](http://blog.daum.net/woalsdlvjxld/5808471) 블로그에 올라온 사례를 가지고 한글 맞춤법을 확인해보자.
 
-- 기둥에 머리를 {받치다/**받히다**}
-- 아이가 밥을 {**넙죽**/넓죽} 잘도 받아먹는다.
-- 신문 {**스포츠난**/스포츠란}에 기사가 났다
+-   기둥에 머리를 {받치다/**받히다**}
+-   아이가 밥을 {**넙죽**/넓죽} 잘도 받아먹는다.
+-   신문 {**스포츠난**/스포츠란}에 기사가 났다
 
 ```{bash spell-check-korean, eval = FALSE}
 $ echo "기둥에 머리를 받치다. \n 아이가 밥을 넓죽 잘도 받아먹는다.\n 신문 스포츠란에 기사가 났다" > data/hunspell_korean.txt
@@ -133,16 +130,15 @@ $ hunspell -l -d ko -i utf-8 data/hunspell_korean.txt
 스포츠란에
 ```
 
-`C:\Users\statkclee\AppData\Local\RStudio-Desktop\dictionaries\languages-user` 디렉토리에 <https://github.com/spellcheck-ko/hunspell-dict-ko/releases>에서 다운로드 받은 `.dic`, `.aff` 파일을 압축을 풀어 넣는다. `ko.dic`, `ko.aff` 파일인데 이렇게 하면 RStudio에서 인식을 못하기 때문에 `ko.dic` &rarr; `ko_KR.dic`, `ko.aff` &rarr; `ko_KR.aff`로 각각 파일명을 변경한다. 그리고, `Sys.setenv(DICPATH = "C:/Users/statkclee/AppData/Local/RStudio-Desktop/dictionaries/languages-user/")`와 같이 한국어 사전이 저장된 위치를 지정해줘야 한국어 맞춤법 검사가 가능하다.
+`C:\Users\statkclee\AppData\Local\RStudio-Desktop\dictionaries\languages-user` 디렉토리에 <https://github.com/spellcheck-ko/hunspell-dict-ko/releases>에서 다운로드 받은 `.dic`, `.aff` 파일을 압축을 풀어 넣는다. `ko.dic`, `ko.aff` 파일인데 이렇게 하면 RStudio에서 인식을 못하기 때문에 `ko.dic` → `ko_KR.dic`, `ko.aff` → `ko_KR.aff`로 각각 파일명을 변경한다. 그리고, `Sys.setenv(DICPATH = "C:/Users/statkclee/AppData/Local/RStudio-Desktop/dictionaries/languages-user/")`와 같이 한국어 사전이 저장된 위치를 지정해줘야 한국어 맞춤법 검사가 가능하다.
 
-# ROpenSci `hunspell` [^hunspell-pkg] {#hunspell-package}
+# ROpenSci `hunspell` [^2] {#hunspell-package}
 
-[^hunspell-pkg]: [Josh Paulson (2020-07-28), "Spelling Dictionaries" RStudio Blog](https://support.rstudio.com/hc/en-us/articles/200551916)
+[^2]: [Josh Paulson (2020-07-28), "Spelling Dictionaries" RStudio Blog](https://support.rstudio.com/hc/en-us/articles/200551916)
 
+## `hunspell` R 팩키지 [^3] {#rstudio-package}
 
-## `hunspell` R 팩키지 [^hunspell-blog] {#rstudio-package}
-
-[^hunspell-blog]: [Jeroen Ooms (March 14, 2016), "Hunspell: Spell Checker and Text Parser for R"](https://www.opencpu.org/posts/hunspell-release/)
+[^3]: [Jeroen Ooms (March 14, 2016), "Hunspell: Spell Checker and Text Parser for R"](https://www.opencpu.org/posts/hunspell-release/)
 
 `hunspell` R 팩키지를 통해서 맞춤법 검정도 가능하다.
 
@@ -175,7 +171,7 @@ list_dictionaries()
 
 ```{r hunspell-korean-dic-vignette}
 Sys.setenv(DICPATH = "C:/Users/statkclee/AppData/Local/RStudio-Desktop/dictionaries/languages-user/")
-dictionary("ko_KR")
+hunspell::dictionary("ko_KR")
 ```
 
 한국어 사전이 탐지되면 이를 이용하여 맞춤법 검사를 예전과 마찬가지로 진행하면 된다.
@@ -215,11 +211,29 @@ correct_text <- function(x){
 correct_text(sample_df$text)
 ```
 
+# RStudio Visual IDE [^4] {#hunspell-package-ko}
 
-# RStudio Visual IDE [^rstudio-ide-spell] {#hunspell-package-ko}
+[^4]: [Josh Paulson (February 02, 2021 01:56), "Spelling Dictionaries", RStudio Support](https://support.rstudio.com/hc/en-us/articles/200551916)
 
-[^rstudio-ide-spell]: [Josh Paulson (February 02, 2021 01:56), "Spelling Dictionaries", RStudio Support](https://support.rstudio.com/hc/en-us/articles/200551916)
+`C:\Users\statkclee\AppData\Local\RStudio-Desktop\dictionaries\languages-user` 디렉토리에 <https://github.com/spellcheck-ko/hunspell-dict-ko/releases>에서 다운로드 받은 `.dic`, `.aff` 파일을 압축을 풀어 넣는다. `ko.dic`, `ko.aff` 파일인데 이렇게 하면 RStudio에서 인식을 못하기 때문에 `ko.dic` → `ko_KR.dic`, `ko.aff` → `ko_KR.aff`로 각각 파일명을 변경한다. 그렇게 되면 RStudio IDE에서 `Tools` → `Global Options ...` → `Spelling` 을 통해 한국어를 지정할 수 있다. 하지만, 버그가 있어 한국어 맞춤법 검사를 제대로 실시할 수 없다.
 
-`C:\Users\statkclee\AppData\Local\RStudio-Desktop\dictionaries\languages-user` 디렉토리에 <https://github.com/spellcheck-ko/hunspell-dict-ko/releases>에서 다운로드 받은 `.dic`, `.aff` 파일을 압축을 풀어 넣는다. `ko.dic`, `ko.aff` 파일인데 이렇게 하면 RStudio에서 인식을 못하기 때문에 `ko.dic` &rarr; `ko_KR.dic`, `ko.aff` &rarr; `ko_KR.aff`로 각각 파일명을 변경한다. 그렇게 되면 RStudio IDE에서 `Tools` &rarr; `Global Options ...` &rarr; `Spelling` 을 통해 한국어를 지정할 수 있다.
+RStudio Support 프로그램을 통해서 RStudio Desktop 버전에 버그가 있는 것을 확인했으며 RStudio Desktop 1.5 버전에는 이런 문제를 해결할 예정이고 한국어 사전이 디폴트로 장착되어 배포될 예정이라고 합니다. (Mar 15, 2021)
 
+당분간 맞춤법 한글 검사를 하는 방식은 다음과 같습니다.
 
+1.  윈도우 10의 경우 검색창을 열어 `%appdata%` 디렉토리를 확인합니다.
+2.  윈도우 탐색기를 사용해서 `%appdata%\\rstudio\\dictionaries\\languages-system\` 디렉토리로 이동합니다.
+3.  `ko_KR.dic`, `ko_KR.aff` 파일을 복사합니다.
+4.  RStudio를 재시작하고 `Visual R Markdown` 편집기를 열어 `F7` 키를 눌러 맞춤법 검사를 실행합니다.
+
+![](fig/rstudio-spelling.png)
+
+# 맞춤법 기능 활성화 {#spelling-check}
+
+한글 맞춤법 검사가 활성화 되지 않은 경우 한글 단어 아래 빨간색 줄이 쫙\~\~ 간 것이 보일 것이다. 하지만 앞서 한글 맞춤법 사전을 설치하고 RStudio Desktop에 기능을 붙일 경우 단어 아래 빨간색 줄이 대폭 없어진 것을 알 수 있고 필요한 경우 `F7` 키를 누르게 되면 맞춤법 검사를 원활히 수행할 수 있다.
+
++-----------------------------+-----------------------------------+
+| 한글 맞춤법 검사 이슈       | 한글 맞춤법 검사 기능 활성화      |
++=============================+===================================+
+| ![](fig/spelling-error.png) | ![](fig/spelling-error-fixed.png) |
++-----------------------------+-----------------------------------+
