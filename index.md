@@ -43,6 +43,7 @@ subtitle: 데이터 과학 문서
         * [GITHUB `readme.md`](ds-github-readme.html)
     * [과학기술 블로그 - `distill` + `GitHub`](ds-distill-blog.html)
     * [이력서(Resume)](ds-resume.html)
+        * [이력서 자동화: `css` + `googlesheets` + 웹사이트](ds-resume-automation.html)
     * [북다운(bookdown)](bookdown-intro.html)
         * [출판 자동화(DevOps)](bookdown-github-travis.html)
         * [책 이해하기: 용어](bookdown-about-book.html)
