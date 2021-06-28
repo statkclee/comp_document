@@ -13,7 +13,7 @@ affiliation:
 main_findings:
   - "R과 함께 떠나는 디지털 패러다임 전환"
   - '![](https://raw.githubusercontent.com/tidyverse-korea/rconf/master/fig/useR_Korea.png){.main_pic}'
-logoleft_name: '![](fig/useR-qrcode.png){.main-img-left}'
+logoleft_name: '![](https://raw.githubusercontent.com/statkclee/comp_document/gh-pages/fig/useR_qrcode.png){.main-img-left}'
 logoright_name: '![](https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png){.main-img-right}'
 output: 
   posterdown::posterdown_betterland:

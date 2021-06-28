@@ -63,7 +63,7 @@ dev.off()
 ![](fig/useR_qrcode.png){width=300px}
 
 
-
+![](fig/Tidyverse_Korea_logo.png)
 
 
 
