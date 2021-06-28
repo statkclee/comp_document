@@ -330,242 +330,38 @@ Brent Thorne<sup> 1, <a class="orcid" href="https://orcid.org/0000-0002-1099-385
 </p>
 
 </div>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>This is the <code>posterdown_betterland</code> template for the {posterdown} package! I was inspired by the twitter thread of <a href="https://mobile.twitter.com/mikemorrison/status/1110191245035479041">Mike Morrison</a> and wanted to apply the <code>#betterposter</code> concept to the reproducible (yet simple to use) functionality of the {posterdown} package <span class="citation">(<a href="#ref-R-posterdown" role="doc-biblioref">Thorne 2021</a>)</span>. If you’re not an R user don’t sweat as you do <strong>NOT</strong> need to use it at all! Feel free to use only the Markdown functionality of this package :)</p>
-<div id="objectives" class="section level2">
-<h2>Objectives</h2>
+<div id="소개" class="section level1">
+<h1>소개</h1>
+<p>코로나 19로 명확해진 디지털 불평등(Digital Divide)과 디지털 경제전환(Digital Transformation)이 가속화되면서 플랫폼 노동이 주류로 자리를 잡아가면서 이러한 변화의 중심에 빅데이터, 기계학습, 인공지능로 대변되는 데이터 기반 기술이 집중관심을 받고 있다. R은 통계에 기반한 프로그래밍 언어임에도 불구하고 데이터 사이언스 시대에 다른 범용 프로그래밍 언어와 같은 인기를 얻고 있다.</p>
+<p>금번 useR! 2021 Korea 컨퍼런스는 기존 데이터를 주로 다루던 통계학관련 학계, 산업계, 정부 뿐만 아니라 데이터 사이언스까지 폭과 깊이를 더하여 데이터를 통해 문제를 해결하고 가치를 창출하고자 하는 모든 분들이 모여 경험과 지식을 공유하고 네트워킹을 할 수 있는 자리로 기획되어 데이터를 통해 새로운 세상을 열어가고 함께 하실 수 있는 많은 분들을 찾을 수 있는 소중한 시간이 되셨으면 합니다.</p>
+</div>
+<div id="키노트" class="section level1">
+<h1>키노트</h1>
 <ol style="list-style-type: decimal">
-<li>Pick a template layout.</li>
-<li>Write/ create your poster content distraction free.</li>
-<li>Let posterdown do its thing!</li>
+<li><a href="https://www.rstudio.com/speakers/julia-silge/">Julia Silge</a></li>
+<li></li>
+<li></li>
 </ol>
 </div>
-</div>
-<div id="methods" class="section level1">
-<h1>Methods</h1>
-<p>I will show here how to include poster elements that may be useful, such as an equation using mathjax:</p>
-<p><span class="math display">\[
-E = mc^2
-\]</span></p>
-<p>To reference a citation you can add your <code>.bib</code> file to the working directory and name it in the YAML metadata or generate an automated one as done here, then you only need to reference the label value in the <code>.bib</code> file. For example this package is built on top of the wonderful {pagedown} package and I will cite it at the end of this sentance using this in the rmd <code>[@R-pagedown]</code> <span class="citation">(<a href="#ref-R-pagedown" role="doc-biblioref">Xie et al. 2021</a>)</span>.</p>
-<p>To get a better understanding of how to include features like these please refer to the {posterdown} <a href="https://github.com/posterdown/wiki">wiki</a>.</p>
-<p><strong><em>Now on to the results!</em></strong></p>
+<div id="프로그램" class="section level1">
+<h1>프로그램</h1>
 <p><br></p>
 </div>
-<div id="results" class="section level1">
-<h1>Results</h1>
-<p>Here you may have some figures to show off, bellow I have made a scatterplot with the infamous Iris dataset and I can even reference to the figure automatically like this, <code>Figure \@ref(fig:irisfigure)</code>, Figure <a href="#fig:irisfigure">1</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:irisfigure"></span>
-<img src="useR_2021_Korea_files/figure-html/irisfigure-1.png" alt="Here is a caption for the figure. This can be added by using the &quot;fig.cap&quot; option in the r code chunk options, see this [link](https://yihui.name/knitr/options/#plots) from the legend himself, [Yihui Xie](https://twitter.com/xieyihui)." width="80%" />
-<p class="caption">
-Figure 1: Here is a caption for the figure. This can be added by using the “fig.cap” option in the r code chunk options, see this <a href="https://yihui.name/knitr/options/#plots">link</a> from the legend himself, <a href="https://twitter.com/xieyihui">Yihui Xie</a>.
-</p>
+<div id="함께하시는-분들" class="section level1">
+<h1>함께하시는 분들</h1>
 </div>
-<p>Maybe you want to show off some of that fancy code you spent so much time on to make that figure, well you can do that too! Just use the <code>echo=TRUE</code> option in the r code chunk options, Figure <a href="#fig:myprettycode">2</a>!</p>
-<div class="figure" style="text-align: center"><span id="fig:myprettycode"></span>
-<img src="useR_2021_Korea_files/figure-html/myprettycode-1.png" alt="Boxplots, so hot right now!" width="80%" />
-<p class="caption">
-Figure 2: Boxplots, so hot right now!
-</p>
-</div>
-<p>How about a neat table of data? See, Table <a href="#tab:iristable">1</a>:</p>
-<table>
-<caption>
-<span id="tab:iristable">Table 1: </span>A table made with the <strong>knitr::kable</strong> function.
-</caption>
-<thead>
-<tr>
-<th style="text-align:center;">
-Sepal <br> Length
-</th>
-<th style="text-align:center;">
-Sepal <br> Width
-</th>
-<th style="text-align:center;">
-Petal <br> Length
-</th>
-<th style="text-align:center;">
-Petal <br> Width
-</th>
-<th style="text-align:center;">
-Species
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-5.1
-</td>
-<td style="text-align:center;">
-3.5
-</td>
-<td style="text-align:center;">
-1.4
-</td>
-<td style="text-align:center;">
-0.2
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4.9
-</td>
-<td style="text-align:center;">
-3.0
-</td>
-<td style="text-align:center;">
-1.4
-</td>
-<td style="text-align:center;">
-0.2
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4.7
-</td>
-<td style="text-align:center;">
-3.2
-</td>
-<td style="text-align:center;">
-1.3
-</td>
-<td style="text-align:center;">
-0.2
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4.6
-</td>
-<td style="text-align:center;">
-3.1
-</td>
-<td style="text-align:center;">
-1.5
-</td>
-<td style="text-align:center;">
-0.2
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-5.0
-</td>
-<td style="text-align:center;">
-3.6
-</td>
-<td style="text-align:center;">
-1.4
-</td>
-<td style="text-align:center;">
-0.2
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-5.4
-</td>
-<td style="text-align:center;">
-3.9
-</td>
-<td style="text-align:center;">
-1.7
-</td>
-<td style="text-align:center;">
-0.4
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4.6
-</td>
-<td style="text-align:center;">
-3.4
-</td>
-<td style="text-align:center;">
-1.4
-</td>
-<td style="text-align:center;">
-0.3
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-5.0
-</td>
-<td style="text-align:center;">
-3.4
-</td>
-<td style="text-align:center;">
-1.5
-</td>
-<td style="text-align:center;">
-0.2
-</td>
-<td style="text-align:center;">
-setosa
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-R-posterdown" class="csl-entry">
-Thorne, Brent. 2021. <em>Posterdown: Generate PDF Conference Posters Using r Markdown</em>. <a href="https://github.com/brentthorne/posterdown">https://github.com/brentthorne/posterdown</a>.
-</div>
-<div id="ref-R-pagedown" class="csl-entry">
-Xie, Yihui, Romain Lesur, Brent Thorne, and Xianying Tan. 2021. <em>Pagedown: Paginate the HTML Output of r Markdown with CSS for Print</em>. <a href="https://github.com/rstudio/pagedown">https://github.com/rstudio/pagedown</a>.
-</div>
-</div>
+<div id="후원사" class="section level1">
+<h1>후원사</h1>
 </div>
 
 </div>
 <div class="main">
 <p>R과 함께 떠나는 디지털 패러다임 전환<br><br> <img src="https://raw.githubusercontent.com/tidyverse-korea/rconf/master/fig/useR_Korea.png" class="main_pic" /></p>
-<img src="https://raw.githubusercontent.com/statkclee/comp_document/gh-pages/fig/useR_qrcode.png" class="main-img-left" />
-<img src="https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png" class="main-img-right" />
+<img src="https://raw.githubusercontent.com/tidyverse-korea/rconf/master/fig/useR_qrcode.png" class="main-img-left" />
+<img src="https://raw.githubusercontent.com/tidyverse-korea/rconf/master/fig/Tidyverse_Korea_logo.png" class="main-img-right" />
 </div>
 </div>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-var script = document.createElement("script");
-script.type = "text/javascript";
-var src = "true";
-if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-if (location.protocol !== "file:" && /^https?:/.test(src))
-src = src.replace(/^https?:/, '');
-script.src = src;
-document.getElementsByTagName("head")[0].appendChild(script);
-})();
-</script>
 
 
 </body>

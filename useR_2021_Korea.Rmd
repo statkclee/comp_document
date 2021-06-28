@@ -13,8 +13,8 @@ affiliation:
 main_findings:
   - "R과 함께 떠나는 디지털 패러다임 전환"
   - '![](https://raw.githubusercontent.com/tidyverse-korea/rconf/master/fig/useR_Korea.png){.main_pic}'
-logoleft_name: '![](https://raw.githubusercontent.com/statkclee/comp_document/gh-pages/fig/useR_qrcode.png){.main-img-left}'
-logoright_name: '![](https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png){.main-img-right}'
+logoleft_name: '![](https://raw.githubusercontent.com/tidyverse-korea/rconf/master/fig/useR_qrcode.png){.main-img-left}'
+logoright_name: '![](https://raw.githubusercontent.com/tidyverse-korea/rconf/master/fig/Tidyverse_Korea_logo.png){.main-img-right}'
 output: 
   posterdown::posterdown_betterland:
     self_contained: false
@@ -42,72 +42,26 @@ plot(iris$Sepal.Length, iris$Sepal.Width)
 dev.off()
 ```
 
-# Introduction
+# 소개
 
-This is the `posterdown_betterland` template for the {posterdown} package! I was inspired by the twitter thread of [Mike Morrison](https://mobile.twitter.com/mikemorrison/status/1110191245035479041) and wanted to apply the `#betterposter` concept to the reproducible (yet simple to use) functionality of the {posterdown} package [@R-posterdown]. If you're not an R user don't sweat as you do **NOT** need to use it at all! Feel free to use only the Markdown functionality of this package :)
+코로나 19로 명확해진 디지털 불평등(Digital Divide)과 디지털 경제전환(Digital Transformation)이 가속화되면서 플랫폼 노동이 주류로 자리를 잡아가면서 이러한 변화의 중심에 빅데이터, 기계학습, 인공지능로 대변되는 데이터 기반 기술이 집중관심을 받고 있다. R은 통계에 기반한 프로그래밍 언어임에도 불구하고 데이터 사이언스 시대에 다른 범용 프로그래밍 언어와 같은 인기를 얻고 있다. 
 
-```{r, include=FALSE}
-knitr::write_bib(c('posterdown', 'rmarkdown','pagedown'), 'packages.bib')
-```
+금번 useR! 2021 Korea 컨퍼런스는 기존 데이터를 주로 다루던 통계학관련 학계, 산업계, 정부 뿐만 아니라 데이터 사이언스까지 폭과 깊이를 더하여 데이터를 통해 문제를 해결하고 가치를 창출하고자 하는 모든 분들이 모여 경험과 지식을 공유하고 네트워킹을 할 수 있는 자리로 기획되어 데이터를 통해 새로운 세상을 열어가고 함께 하실 수 있는 많은 분들을 찾을 수 있는 소중한 시간이 되셨으면 합니다.
 
-## Objectives
 
-1. Pick a template layout.
-2. Write/ create your poster content distraction free.
-3. Let posterdown do its thing!
 
-# Methods
+# 키노트
 
-I will show here how to include poster elements that may be useful, such as an equation using mathjax:
+1. [Julia Silge](https://www.rstudio.com/speakers/julia-silge/)
+2. 
+3. 
 
-$$
-E = mc^2
-$$
+# 프로그램
 
-To reference a citation you can add your `.bib` file to the working directory and name it in the YAML metadata or generate an automated one as done here, then you only need to reference the label value in the `.bib` file. For example this package is built on top of the wonderful {pagedown} package and I will cite it at the end of this sentance using this in the rmd `[@R-pagedown]` [@R-pagedown].
-
-To get a better understanding of how to include features like these please refer to the {posterdown} [wiki](https://github.com/posterdown/wiki).
-
-**_Now on to the results!_**
 
 <br>
 
-# Results
+# 함께하시는 분들
 
-Here you may have some figures to show off, bellow I have made a scatterplot with the infamous Iris dataset and I can even reference to the figure automatically like this, `Figure \@ref(fig:irisfigure)`, Figure \@ref(fig:irisfigure).
 
-```{r, irisfigure, fig.cap='Here is a caption for the figure. This can be added by using the "fig.cap" option in the r code chunk options, see this [link](https://yihui.name/knitr/options/#plots) from the legend himself, [Yihui Xie](https://twitter.com/xieyihui).', out.width="80%"}
-par(mar=c(2,2,0,1))
-plot(x = iris$Sepal.Length, y = iris$Sepal.Width,
-     col = iris$Species, pch = 19, xlab = "Sepal Length",
-     ylab = "Sepal Width")
-```
-
-Maybe you want to show off some of that fancy code you spent so much time on to make that figure, well you can do that too! Just use the `echo=TRUE` option in the r code chunk options, Figure \@ref(fig:myprettycode)!
-
-```{r myprettycode, echo=FALSE,collapse=TRUE, fig.cap='Boxplots, so hot right now!', fig.height=3.5, out.width="80%"}
-#trim whitespace
-par(mar=c(2,2,0,0))
-#plot boxplots
-boxplot(iris$Sepal.Width~iris$Species,
-        col = "#008080", 
-        border = "#0b4545",
-        ylab = "Sepal Width (cm)",
-        xlab = "Species")
-```
-
-How about a neat table of data? See, Table \@ref(tab:iristable):
-
-```{r, iristable}
-knitr::kable(
-  iris[1:8,1:5], format = "html",
-  caption = "A table made with the **knitr::kable** function.",
-  align = "c", col.names = c("Sepal <br> Length",
-                             "Sepal <br> Width",
-                             "Petal <br> Length",
-                             "Petal <br> Width",
-                             "Species"),
-  escape = FALSE)
-```
-
-# References
+# 후원사
