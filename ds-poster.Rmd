@@ -59,8 +59,21 @@ qrcode_gen("https://use-r.kr/")
 dev.off()
 ```
 
+```{r transparent-logo}
+library(magick)
 
-![](fig/useR_qrcode.png){width=300px}
+useR_qrcode <- image_read("fig/useR_qrcode.png")
+
+useR_qrcode_transparent <- image_transparent(useR_qrcode, color = "white") %>% 
+  image_resize("60%")
+
+useR_qrcode_transparent %>% 
+  image_write("fig/useR_qrcode_transparent.png")
+```
+
+
+
+![](fig/useR_qrcode_transparent.png)
 
 
 ![](fig/Tidyverse_Korea_logo.png)
