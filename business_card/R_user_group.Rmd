@@ -1,0 +1,32 @@
+---
+phone: "+82 010-xxxx-xxxx"
+email: "victor@r2bit.com"
+url: www.r2bit.com
+address: |
+  경기도 성남시 분당구 판교
+logo: "https://raw.githubusercontent.com/statkclee/art/gh-pages/fig/R_user_group.png"
+person: 
+  - name: 이광춘
+    title: R 사용자회, 대표
+    repeat: 12
+googlefonts: "sunflower" # feel free to try other fonts at https://fonts.google.com
+paperwidth: 8.5in
+paperheight: 11in
+cols: 4
+rows: 3
+output: pagedown::business_card
+---
+
+
+<!-- if you prefer black text on white background, set eval=TRUE on the chunk below -->
+
+```{css, eval=TRUE}
+.wrapper {
+  color: black;
+  background-color: skyblue;
+  border: 1px dotted black;
+}
+.coordinates {
+  color: #333;
+}
+```

@@ -53,6 +53,7 @@ subtitle: 데이터 과학 문서
     * [보고서 자동화](ds-report-automation.html)
     * [R 노트북(Notebook)](ds-notebook.html)
     * [포스터(Poster)](ds-poster.html)
+    * [명함(Business Card)](ds-business-card.html)
 1. [대쉬보드(Dashboard)](cd-dashboard.html)
     - [코로나19](cd-corona.html)
     - [`GitHub` 호스팅](cd-github-hosting.html)
