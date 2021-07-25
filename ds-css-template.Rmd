@@ -1,0 +1,61 @@
+---
+layout: page
+title: "데이터 과학을 위한 저작도구: Computational Documents"
+subtitle: "`css` 템플릿: 글꼴, 스타일, ..."
+author:
+  - name: "이광춘"
+    affiliation: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+date: "`r Sys.Date()`"
+tags: ["데이터 과학", "Data Science", "데이터 사이언스", "tidymodels", "parsnip", "로지스틱 회귀모형", "tidyverse", "팽귄", "penguin", "CSS", "Template"]
+output:
+  html_document: 
+    include:
+      after_body: footer.html
+      before_body: header.html
+    theme: default
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    highlight: tango
+    code_folding: show
+    number_section: true
+    self_contained: true
+bibliography: bibliography-cd.bib
+csl: biomed-central.csl
+urlcolor: blue
+linkcolor: blue
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+
+library(pdftools)
+library(tidyverse)
+library(magick)
+
+```
+
+![](fig/design_specs.png){width="357"}
+
+# PPT 스타일 [\^xaringan-tutorial] {#xaringan-style}
+
+```{r ppt-style}
+library(tidyverse)
+library(magick)
+library(sysfonts)
+font_add_google("Noto Sans KR")
+# library(extrafont)
+# loadfonts()
+
+template_img <- image_blank(width = 400, height = 500, color = "darkgray", pseudo_image = "", defines = NULL)
+
+template_img %>% 
+  image_annotate("Typography", location = "+30+30", size = 20, font = "NanumGothic", color = "black") %>% 
+  image_annotate("Aa가", location = "+30+50", size = 30, font = "Noto Sans KR", color = "black")
+  
+
+
+```
