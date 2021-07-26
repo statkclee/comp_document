@@ -40,19 +40,22 @@ library(magick)
 
 ![](fig/design_specs.png){width="357"}
 
-# PPT 스타일 [^xaringan-tutorial] [^circle-image] {#xaringan-style}
+# 타이포그래피와 색상 [^xaringan-tutorial] [^circle-image] {#xaringan-style}
 
 [^circle-image]: https://stackoverflow.com/questions/64597525/r-magick-square-crop-and-circular-mask
 
 [^xaringan-tutorial]: https://www.katiejolly.io/blog/2021-03-16/designing-slides
+
+발표자료를 구성하는 핵심적인 내용을 다양한 구성요소를 살펴본다.
+글꼴(font)에 대한 타이포그래피 사항, 제목과 본문 글의 구현사항, 색상에 대한 내용도 일별한다.
 
 ```{r ppt-style}
 library(tidyverse)
 library(magick)
 library(sysfonts)
 # font_add_google("Noto Sans KR")
-# library(extrafont)
-# loadfonts()
+library(extrafont)
+loadfonts()
 
 ## 텍스트 Lorem Ipsum ------------
 lorem_raw <- lorem::ipsum(paragraphs = 3)
@@ -66,30 +69,31 @@ lorem_text <- lorem_raw %>%
 lorem_text <- lorem_text[!is.na(lorem_text)]
 
 ## 빈 이미지 --------------------
-template_img <- image_blank(width = 650, height = 350, color = "gray", pseudo_image = "", defines = NULL)
-
+template_img <- image_blank(width = 700, height = 350, color = "gray95", pseudo_image = "", defines = NULL)
 
 ## 조합 -------------------------
 left_img <- template_img %>% 
   ## 폰트 -----------------------
-  image_annotate("Typography", location = "+30+30", size = 20, font = "NanumGothic", color = "black") %>% 
+  image_annotate("타이포그래피(Typography)", location = "+30+30", size = 20, font = "NanumGothic", color = "black") %>% 
   # image_annotate("Aa가", location = "+30+50", size = 30, font = "Noto Sans KR", color = "black") %>% 
   # image_annotate("Aa가", location = "+90+50", size = 30, font = "Noto Serif KR", color = "black")
-  image_annotate("Aa가", location = "+30+60", size = 30, font = "Nanum Gothic", color = "black") %>% 
-  image_annotate("Aa가", location = "+90+60", size = 30, font = "Nanum Myeongjo", color = "black") %>% 
+  image_annotate("Aa가", location = "+30+60", size = 30, font = "NanumGothic", color = "black") %>% 
+  image_annotate("Aa가", location = "+150+60", size = 30, font = "NanumMyeongjo", color = "black") %>% 
+  image_annotate("Nanum 고딕", location = "+30+90", size = 10, font = "NanumGothic", color = "black") %>% 
+  image_annotate("Nanum 명조", location = "+150+90", size = 10, font = "NanumMyeongjo", color = "black") %>% 
   ## 텍스트 -----------------------
-  image_annotate("Lorem Ipsum", location = "+30+150", size = 30, font = "Nanum Myeongjo", color = "black") %>% 
+  image_annotate("제목: Lorem Ipsum", location = "+30+150", size = 30, font = "NanumGothic", color = "black") %>% 
   image_annotate(lorem_text[1], location = "+30+200", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
   image_annotate(lorem_text[2], location = "+30+220", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
   image_annotate(lorem_text[3], location = "+30+240", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
   image_annotate(lorem_text[4], location = "+30+260", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
   image_annotate(lorem_text[5], location = "+30+280", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
   ## 색상 -----------------------
-  image_annotate("Colors",  location = "+430+30", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
-  image_annotate("#EFBE43", location = "+470+90", size = 17, font = "Nanum Myeongjo", color = "darkgray") %>%    
-  image_annotate("#FDF7E9", location = "+470+140", size = 17, font = "Nanum Myeongjo", color = "darkgray") %>%    
-  image_annotate("#4466B0", location = "+470+190", size = 17, font = "Nanum Myeongjo", color = "darkgray") %>% 
-  image_annotate("#333333", location = "+470+240", size = 17, font = "Nanum Myeongjo", color = "darkgray")  
+  image_annotate("색상 (Colors)",  location = "+430+30", size = 20, font = "NanumMyeongjo", color = "black") %>% 
+  image_annotate("#EFBE43", location = "+470+90", size = 17, font = "NanumMyeongjo", color = "darkgray") %>%    
+  image_annotate("#FDF7E9", location = "+470+140", size = 17, font = "NanumMyeongjo", color = "darkgray") %>%    
+  image_annotate("#4466B0", location = "+470+190", size = 17, font = "NanumMyeongjo", color = "darkgray") %>% 
+  image_annotate("#333333", location = "+470+240", size = 17, font = "NanumMyeongjo", color = "darkgray")  
   
 full_img <- image_draw(left_img)
 symbols(600, 100, circles=20, fg = '#EFBE43', bg='#EFBE43', inches=FALSE, add=TRUE)
@@ -99,9 +103,146 @@ symbols(600, 250, circles=20, fg = '#333333', bg='#333333', inches=FALSE, add=TR
 
 dev.off()
 
-print(full_img)
-
+print(full_img %>% image_resize("150%"))
 ```
 
+## 간편 테스트 함수 {#xaringan-style-function}
 
+앞선 타이포그래피와 색상을 간편하게 일별할 수 있도록 제작해본다.
+
+```{r ppt-style-typegraphy}
+
+generate_design <- function(title_font     = "NanumGothic",
+                            paragraph_font = "NanumMyeongjo") {
+  ## 텍스트 Lorem Ipsum ------------
+  lorem_raw <- lorem::ipsum(paragraphs = 3)
+  
+  lorem_text <- lorem_raw %>% 
+    str_split("\\.") %>% 
+    unlist() %>% 
+    str_trim() %>% 
+    str_extract(pattern = "(?:\\w+\\s+){5}") 
+  
+  lorem_text <- lorem_text[!is.na(lorem_text)]
+  
+  ## 빈 이미지 --------------------
+  template_img <- image_blank(width = 700, height = 350, color = "gray95", pseudo_image = "", defines = NULL)
+  
+  ## 조합 -------------------------
+  left_img <- template_img %>% 
+    ## 폰트 -----------------------
+    image_annotate("타이포그래피(Typography)", location = "+30+30", size = 20, font = "NanumGothic", color = "black") %>% 
+    # image_annotate("Aa가", location = "+30+50", size = 30, font = "Noto Sans KR", color = "black") %>% 
+    # image_annotate("Aa가", location = "+90+50", size = 30, font = "Noto Serif KR", color = "black")
+    image_annotate("Aa가", location = "+30+60", size = 30, font = title_font, color = "black") %>% 
+    image_annotate("Aa가", location = "+150+60", size = 30, font = paragraph_font, color = "black") %>% 
+    image_annotate(title_font, location = "+30+90", size = 10, font = title_font, color = "black") %>% 
+    image_annotate(paragraph_font, location = "+150+90", size = 10, font = paragraph_font, color = "black") %>% 
+    ## 텍스트 -----------------------
+    image_annotate("제목: Lorem Ipsum", location = "+30+150", size = 30, font = "NanumGothic", color = "black") %>% 
+    image_annotate(lorem_text[1], location = "+30+200", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
+    image_annotate(lorem_text[2], location = "+30+220", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
+    image_annotate(lorem_text[3], location = "+30+240", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
+    image_annotate(lorem_text[4], location = "+30+260", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
+    image_annotate(lorem_text[5], location = "+30+280", size = 20, font = "Nanum Myeongjo", color = "black") %>% 
+    ## 색상 -----------------------
+    image_annotate("색상 (Colors)",  location = "+430+30", size = 20, font = "NanumMyeongjo", color = "black") %>% 
+    image_annotate("#EFBE43", location = "+470+90", size = 17, font = "NanumMyeongjo", color = "darkgray") %>%    
+    image_annotate("#FDF7E9", location = "+470+140", size = 17, font = "NanumMyeongjo", color = "darkgray") %>%    
+    image_annotate("#4466B0", location = "+470+190", size = 17, font = "NanumMyeongjo", color = "darkgray") %>% 
+    image_annotate("#333333", location = "+470+240", size = 17, font = "NanumMyeongjo", color = "darkgray")  
+    
+  full_img <- image_draw(left_img)
+  symbols(600, 100, circles=20, bg='#EFBE43', inches=FALSE, add=TRUE)
+  symbols(600, 150, circles=20, bg='#FDF7E9', inches=FALSE, add=TRUE)
+  symbols(600, 200, circles=20, bg='#4466B0', inches=FALSE, add=TRUE)
+  symbols(600, 250, circles=20, bg='#333333', inches=FALSE, add=TRUE)
+  
+  dev.off()
+  
+  print(full_img)
+  full_img %>% 
+    image_write(path="fig/slideshow_design.png")
+}
+
+# generate_design()
+# 
+# design_img <- image_read(path="fig/slideshow_design.png")
+# design_img
+
+generate_design(title_font = "Nanum Pen Script",
+                paragraph_font = "NanumGothicCoding")
+
+design_img <- image_read(path="fig/slideshow_design.png")
+design_img %>% 
+  image_resize("150%")
+```
+
+# 슬라이드 레이아웃 {#xaringan-style-layout}
+
+발표자료는 크게 첫 발표 슬라이드, 각 세션을 알리는 중간 제목 슬라이드, 그리고 본문 메인 슬라이드로 구성된다. 이러한 사례는 다음을 살펴보면 확연히 알 수 있다. [`xaringanthemer`](https://pkg.garrickadenbuie.com/xaringanthemer/index.html) 팩키지에 포함된 slideshow를 통해 이를 확인해보자.
+
+`xaringanthemer`를 설치하면 R 마크다운 문서를 신규로 생성할 경우 `From Template > Ninja Themed Presentation`에서 색상을 달리하는 템플릿이 있어 이를 일부 수정하여 원하는 템플릿을 바탕으로 발표자료를 slideshow 형태로 제작할 수 있다. 기본 Xaringan Default 설정된 것을 제작하는 방식은 다음과 같다.
+
+```{r xaringan-themer}
+# pagedown::chrome_print("slideshow/xaringan-themer.html", output="slideshow/xaringan-themer.pdf")
+
+themer_layout <- image_read_pdf("slideshow/xaringan-themer.pdf")
+
+themer_layout[c(1,6,7)] %>% 
+  image_resize(300) %>% 
+  image_append(stack=FALSE)
+```
+
+`xaringanthemer` 팩키지에 포함된 `style_duo()` 함수를 사용해서 발표첫장, 세션, 본문 슬라이드 내용을 살펴보면 다음과 같다.
+
+```{r xaringan-themer-style-duo}
+# pagedown::chrome_print("slideshow/xaringan-style-duo.html", output="slideshow/xaringan-style-duo.pdf")
+
+style_duo_layout <- image_read_pdf("slideshow/xaringan-style-duo.pdf")
+
+style_duo_layout[c(1,6,7)] %>% 
+  image_resize(300) %>% 
+  image_append(stack=FALSE)
+```
+
+# 내보내기 {#xaringan-export}
+
+[`xaringanBuilder`](https://jhelvy.github.io/xaringanBuilder/) 팩키지를 통해 다양한 형태 산출물을 제작할 수 있다.
+
+
+> Rmd
+>  |
+>  |--> social (png)
+>  |
+>  |--> html
+>        |
+>        |--> pdf
+>              |
+>              |--> png
+>                    |
+>                    |--> gif
+>                    |
+>                    |--> mp4
+>                    |
+>                    |--> pptx
+
+
+`chromote` 팩키지를 <https://rstudio.github.io/chromote/> 설치하면 PDF 파일을 설치하는데 도움이 된다. 
+`build_pdf()`, `build_pptx()` 함수 등을 사용하면 다양한 형태로 발표자료를 변환시킬 수가 있다. 
+
+```{r export-xaringan, eval = FALSE}
+# remotes::install_github("jhelvy/xaringanBuilder")
+library(xaringanBuilder)
+
+Sys.setenv(CHROMOTE_CHROME = "/path/to/browser")
+
+build_pdf("slideshow/xaringan-themer.Rmd", output_file = "slideshow/xaringan-themer.pdf")
+
+build_pptx("slideshow/xaringan-themer.Rmd", output_file = "slideshow/xaringan-themer.pptx")
+```
+
+```{r show-slideshow}
+knitr::include_graphics("slideshow/xaringan-themer.pdf")
+```
 
