@@ -51,6 +51,7 @@ subtitle: 데이터 과학 문서
         * [`xaringan` 기본기능](cd-xaringan-basics.html)
         * [파워포인트 `pptx` 발표자료](ds-pptx-rmarkdown.html)
         * [`css` 템플릿: 글꼴, 스타일, ...](ds-css-template.html)
+        * [한국 R 컨퍼런스 템플릿](ds-r-conference.html)
     * [보고서 자동화](ds-report-automation.html)
     * [R 노트북(Notebook)](ds-notebook.html)
     * [포스터(Poster)](ds-poster.html)
